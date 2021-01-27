@@ -1,0 +1,51 @@
+body{
+    background-color: whitesmoke;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+.headMain{
+    text-align: center;
+}
+
+.bodyMain{
+    margin: 10%;
+    margin-top: 0%;
+}
+
+h3{
+    font-style:italic;
+    text-decoration: underline;
+}
+
+h3,h4{
+    margin-top:5px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+
+label{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.buttonRace,.buttonClass{
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(5,1fr); 
+}
+
+.buttonClass{
+    grid-template-columns: repeat(6,1fr); 
+}
+
+.Races,.Classes,.Ability,.Gear,.Information{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.Scores{
+    margin-left: 5%;
+}
