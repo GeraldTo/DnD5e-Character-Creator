@@ -12,13 +12,14 @@ export default function AbilityItem(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [val])
     return (
-        <div>
-            {props.ability}
-            <button onClick={() => setVal(prev => prev>0 ? prev - 1: prev)}> - </button>
+        <div className="AbilityItem">
+            <div className="AbilityNames">{props.ability}</div>
+            <div><button className="IncDec" onClick={() => setVal(prev => prev>0 ? prev - 1: prev)}> - </button>
                 {val}
-            <button onClick={() => setVal(prev => prev + 1)}> + </button> + 
-            {props.bonus} (Bonus)  = 
-            <div className="Scores"><label>{'_'+(val+props.bonus)+'_'}</label> , {mod(props.abilityMod[props.index])} (Mod)</div>
+            <button className="IncDec" onClick={() => setVal(prev => prev + 1)}> + </button> </div>
+            <div>+ {props.bonus} (Bonus) </div>
+            <div className="Score">{val+props.bonus}</div>
+            <div>{mod(props.abilityMod[props.index])} (Mod)</div>
         </div>
     )
 }

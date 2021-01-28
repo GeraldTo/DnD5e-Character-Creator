@@ -13,7 +13,7 @@ export default function Body() {
     const [race, setRace] = useState(null)
     const [classType,setClassType] = useState(null)
     // [str,dex,con,int,wis,cha]
-    const types = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
+    const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
     const [raceBonus, setraceBonus] = useState([0,0,0,0,0,0]) 
     const [abilityMod, setabilityMod] = useState([-5,-5,-5,-5,-5,-5])
     const [saving, setsaving] = useState([0,0,0,0,0,0])
@@ -34,7 +34,7 @@ export default function Body() {
         
         if(race && classType){
             setData([
-                Object.assign({}, types),
+                Object.assign({}, abilities),
                 Object.assign({}, totalScore),
                 Object.assign({}, abilityMod),
                 Object.assign({}, saving),

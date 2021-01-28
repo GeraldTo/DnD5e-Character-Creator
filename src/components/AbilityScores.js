@@ -7,7 +7,7 @@ import Hitdie from './Hitdie'
 import Skills from './Skills'
 
 export default function AbilityScore(props) {    
-    const abilities = ["STRENGTH: ", "DEXTERITY: ","CONSTITUTION: ","INTELLIGENCE: ","WISDOM: ","CHARISMA: "]
+    const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
     const [score, setScore] = useState([0,0,0,0,0,0])
     function abilityList() {
         let list = []
@@ -40,7 +40,9 @@ export default function AbilityScore(props) {
             <Rolls/>
             <h3>Allocate Rolls:</h3> <br/> 
             Roll + Bonuses = Ability Score
-            {list}
+            <div className="AbilityList">
+                {list}
+            </div>
             <Saving saving={props.saving} abilityMod={props.abilityMod}/>
             <h3>Initiative:</h3> {props.abilityMod[1]} (Dex)<br/>
             <Hitdie hitdie={props.classType? props.classType.hit_die:0} conMod={props.abilityMod[2]} level={props.level}/>
