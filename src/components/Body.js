@@ -1,15 +1,16 @@
+/* eslint-disable no-unused-vars */
 import React,{useState, useEffect} from 'react'
-import Ability from './AbilityScores'
-import Classes from './Classes'
-import Races from "./Races";
+import Races from "./Races/Races";
+import Classes from './Classess/Classes'
+import Ability from './AbilityScore/AbilityScores'
 import {ExportCSV} from './ExportCSV';
-import Gear from './Gear'
-import Information from './Information'
+import Gear from './Gear/Gear'
+import Information from './Info/Information'
 import Level from './Level'
 
 
 export default function Body() {
-    
+    const url = 'https://www.dnd5eapi.co/api/'
     const [race, setRace] = useState(null)
     const [classType,setClassType] = useState(null)
     // [str,dex,con,int,wis,cha]
@@ -20,37 +21,12 @@ export default function Body() {
     const [level, setlevel] = useState(1)
     const [name, setName] = useState('')
     const [totalScore, setTotalScore] = useState([0,0,0,0,0,0])
-    // eslint-disable-next-line no-unused-vars
-    const test = [
-        {
-            Type: 'Scores',
-        },
-        {
-            Type: 'Modifiers',
-        }
-        ] 
-    const [data, setData] = useState([{error:"set class and race"}])
-    useEffect(() => {
-        
-        if(race && classType){
-            setData([
-                Object.assign({}, abilities),
-                Object.assign({}, totalScore),
-                Object.assign({}, abilityMod),
-                Object.assign({}, saving),
-            ])
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [race,classType,totalScore])
+    const [data, setData] = useState(0)
     return (
         <div className="bodyMain">
-            <h2>Set Starting Level:</h2><br/>
             <Level level={level} setlevel={setlevel}/>
-            <h2>Race </h2>
-            <Races path='races/' race={race} setRace={setRace} setraceBonus={setraceBonus} />
-            <h2>Class </h2>
-            <Classes path = 'classes/' classType={classType} setClassType={setClassType} setsaving={setsaving} />
-            <h2>Ability Scores and Modifiers:</h2>
+            <Races race={race} setRace={setRace} setraceBonus={setraceBonus} url={url+'races/'}/>
+            <Classes classType={classType} setClassType={setClassType} setsaving={setsaving} url={url+'classes/'}/>
             <Ability raceBonus={raceBonus} 
                         abilityMod={abilityMod} 
                         setabilityMod={setabilityMod} 

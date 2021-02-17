@@ -26,10 +26,10 @@ export default function RaceInfo(props) {
         }
         return (
             <div className="description">
-                <h3>{props.race.name}</h3> <br />
-                <h3>Speed:</h3> {props.race.speed}ft <br />
-                <h3>Race Bonus:</h3>  {bonusDesc.join(', ')} <br />
-                <h3>Size:</h3> {props.race.size}<br />
+                <h3>{props.race.name}</h3> 
+                <h4>Speed:</h4> {props.race.speed}ft <br />
+                <h4>Race Bonus:</h4>  {bonusDesc.join(', ')} <br />
+                <h4>Size:</h4> {props.race.size}<br />
                 <h4>Description:</h4> {props.race.size_description}<br />
                 <label>Age:</label> {props.race.age}<br />
                 <label>Starting Languages:</label> {props.race.language_desc}<br />

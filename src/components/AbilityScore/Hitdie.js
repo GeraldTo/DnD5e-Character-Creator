@@ -5,19 +5,14 @@ import React from 'react'
 export default function Hitdie(props) {
     const [hp, sethp] = useState([0])
     const [hpsum, sethpsum] = useState(0)
-    const [reroll, setreroll] = useState(true)
+    const [reroll, setreroll] = useState('')
 
     useEffect(() => {
-        let totalHP = []
-        for(let i =0; i<props.level;i++){
-            totalHP.push(Math.floor(Math.random() * props.hitdie) + 1)
-        }
-        sethp(totalHP)
-    }, [props.hitdie,reroll])
+        sethp(randHP())
+    }, [props.hitdie])
     useEffect(() => {
         sethpsum(hp.reduce((a,b)=>{return a+b})+(hp.length*props.conMod))
         }, [hp,props.conMod])
-    
     useEffect(() => {
         let totalHP = [...hp]
         if(hp.length<props.level){
@@ -34,13 +29,24 @@ export default function Hitdie(props) {
         }
     }, [props.level])
 
+    function randHP() {
+        let totalHP = []
+        for(let i =0; i<props.level;i++){
+            totalHP.push(Math.floor(Math.random() * props.hitdie) + 1)
+        }
+        return totalHP
+    }
+
     if(props.hitdie){
         return (
             <div>
-                <h3>Hit Points:</h3>  <b>{hpsum}</b> ({hp.join(', ')}) <br/>
+                <h3>Roll Hit Points:</h3> 
+                <button onClick={() => sethp(randHP)}>Roll HP</button><br/>
+                <b>{hpsum}</b> ({hp.join(', ')}) <br/>
                 <h4>Description: </h4> HP = (Hit Die: 1d{props.hitdie} + Consitution Modifier: {props.conMod}) per level <br/>
-                {/* Note: Uses maximum of {(props.hitdie/2)+1} or Hit Die after 1st level <br/> */}
-                <button onClick={() => setreroll(prev=>!prev)}>Reroll HP</button><br/>
+                <div><button className="IncDec" onClick={() => sethp(prev => prev>0 ? prev - 1: prev)}> - </button>
+                    {hpsum}
+                <button className="IncDec" onClick={() => sethpsum(prev => prev + 1)}> + </button> </div>
             </div>
         )
     }

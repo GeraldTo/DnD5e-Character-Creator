@@ -30,10 +30,10 @@ export default function ClassInfo(props) {
         
         return (
             <div className="description">
-                <h3>{props.classType.name}</h3> <br/>
-                <h3>Hit Dice:</h3> 1d{props.classType.hit_die}<br />
-                <h3>Saving Throws:</h3> {saving.join(', ')}<br/>
-                <label>Proficiencies:</label> {proficiencies.join(', ')}<br />
+                <h3>{props.classType.name}</h3> 
+                <h4>Hit Dice:</h4> 1d{props.classType.hit_die}<br />
+                <h4>Saving Throws:</h4> {saving.join(', ')}<br/>
+                <h4>Proficiencies:</h4> {proficiencies.join(', ')}<br />
             </div>
         )
     }

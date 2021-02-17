@@ -18,15 +18,15 @@ export default function Rolls() {
                 score += roll[i]
             }
             score -= lowest
-            totalRolls.push(<div>{score + ' (' + roll.join(' ') + ')'}</div>)
+            totalRolls.push(<div key={i}>{score + ' (' + roll.join(' ') + ')'}</div>)
         }
         return totalRolls
     }
-    useEffect(() => {setrandomRolls(randRoll)}, [])
     return (
         <div>
-            <button onClick={() => setrandomRolls(randRoll)}>Roll Random</button> <br />
+            <h3>Roll Scores:</h3>
             Drop the lowest roll: <br />
+            <button onClick={() => setrandomRolls(randRoll)}>Roll Random</button> <br />
             {randomRolls}
             Or Use Default: 15, 14, 13, 12, 10, 8
         </div>

@@ -1,0 +1,39 @@
+.AbilityList{
+    display:grid;
+    grid-template-columns:repeat(6,1fr)
+}
+
+.AbilityItem{
+    margin:10px;
+    width: 1fr;
+    text-align: center;
+}
+
+.AbilityNames{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.Score{
+    display: block;
+    height: 50px;
+    width: 50px;
+    position: relative;
+    -moz-border-radius: 50%; /* or 50% */
+    border-radius: 50%; /* or 50% */
+    background-color: rgb(173, 171, 171);
+    border: 1px solid #000;
+    color: black;
+    text-align: center;
+    margin:auto;
+    font-size: 2em;
+}
+
+.saveNum{
+    text-decoration: none;
+    text-align: center;
+    border-bottom: .1rem solid black;
+    width: 2rem;
+    display: inline-block;
+}

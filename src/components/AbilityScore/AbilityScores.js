@@ -5,6 +5,7 @@ import Rolls from "./Rolls";
 import Saving from './Saving'
 import Hitdie from './Hitdie'
 import Skills from './Skills'
+import './AbilityScore.css'
 
 export default function AbilityScore(props) {    
     const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
@@ -13,6 +14,7 @@ export default function AbilityScore(props) {
         let list = []
         for(let i=0;i<6;i++){
             list.push(<AbilityItem ability={abilities[i]} 
+                                    key={i}
                                     bonus = {props.raceBonus[i]} 
                                     abilityMod={props.abilityMod} 
                                     score={score}
@@ -35,16 +37,15 @@ export default function AbilityScore(props) {
     const list = abilityList()
     return (
         <div className="Ability"> 
-            
-            <h3>Roll Scores:</h3>
+            <h2>Ability Scores and Modifiers:</h2>
             <Rolls/>
-            <h3>Allocate Rolls:</h3> <br/> 
+            <h3>Allocate Rolls:</h3>
             Roll + Bonuses = Ability Score
             <div className="AbilityList">
                 {list}
             </div>
             <Saving saving={props.saving} abilityMod={props.abilityMod}/>
-            <h3>Initiative:</h3> {props.abilityMod[1]} (Dex)<br/>
+            <h4>Initiative:</h4> {props.abilityMod[1]} (Dex)<br/>
             <Hitdie hitdie={props.classType? props.classType.hit_die:0} conMod={props.abilityMod[2]} level={props.level}/>
             <Skills />
         </div>

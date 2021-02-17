@@ -21,62 +21,15 @@ h3{
 h3,h4{
     margin-top:5px;
     margin-bottom: 5px;
+}
+
+h4{
     display: inline-block;
 }
-
-
-label{
-    text-decoration: underline;
-    font-weight: bold;
-}
-
-.buttonRace,.buttonClass{
-    margin-left: 5%;
-    margin-right: 5%;
-    display: grid;
-    grid-template-columns: repeat(5,1fr); 
-}
-
 .buttonClass{
     grid-template-columns: repeat(6,1fr); 
 }
 
-.Races,.Classes,.Ability,.Gear,.Information{
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-.AbilityList{
-    display:grid;
-    grid-template-columns:repeat(6,1fr)
-}
-
-.AbilityItem{
-    margin:10px;
-    width: 1fr;
-    text-align: center;
-}
-
-.AbilityNames{
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: larger;
-}
-
-.Score{
-    display: block;
-    height: 50px;
-    width: 50px;
-    position: relative;
-    -moz-border-radius: 50%; /* or 50% */
-    border-radius: 50%; /* or 50% */
-    background-color: rgb(173, 171, 171);
-    border: 1px solid #000;
-    color: black;
-    text-align: center;
-    margin:auto;
-    font-size: 2em;
-}
 
 .IncDec{
     margin: 5px;
