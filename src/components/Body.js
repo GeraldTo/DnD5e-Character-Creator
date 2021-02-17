@@ -20,25 +20,28 @@ export default function Body() {
     const [saving, setsaving] = useState([0,0,0,0,0,0])
     const [level, setlevel] = useState(1)
     const [name, setName] = useState('')
+    const [hp, sethp] = useState(0)
     const [totalScore, setTotalScore] = useState([0,0,0,0,0,0])
     const [data, setData] = useState(0)
     return (
         <div className="bodyMain">
             <Level level={level} setlevel={setlevel}/>
             <Races race={race} setRace={setRace} setraceBonus={setraceBonus} url={url+'races/'}/>
-            <Classes classType={classType} setClassType={setClassType} setsaving={setsaving} url={url+'classes/'}/>
-            <Ability raceBonus={raceBonus} 
-                        abilityMod={abilityMod} 
-                        setabilityMod={setabilityMod} 
-                        saving={saving} 
-                        setTotalScore={setTotalScore} 
-                        classType={classType} 
-                        level={level}
-                        setlevel={setlevel}/>
-            <h2>Choose Information</h2>
-            <Information setName={setName}/>
-            <h2>Pick Gear</h2>
-            <Gear />
+            {race && <Classes classType={classType} 
+                        setClassType={setClassType} 
+                        setsaving={setsaving} 
+                        url={url+'classes/'}/>}
+            {classType && <Ability raceBonus={raceBonus} 
+                            abilityMod={abilityMod} 
+                            setabilityMod={setabilityMod} 
+                            saving={saving} 
+                            setTotalScore={setTotalScore} 
+                            classType={classType} 
+                            level={level}
+                            sethp={sethp}
+                            hp={hp}/>}
+            {hp? <Information setName={setName}/>:null}
+            {name && <Gear />}
             <ExportCSV csvData={data} fileName={name? name:'Character'} />
         </div>
     )
