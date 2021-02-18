@@ -4,6 +4,12 @@ import axios from 'axios'
 export default function ClassPick(props) {
     const buttons = []
     if(props.api){
+        const more_data = require('./suggestion.json');
+        function setter(response,index) {
+            let data = response.data
+            data = Object.assign(data,more_data.results[index])
+            props.setClassType(data)
+        }
         for(let i = 0; i < props.api.count;i++){
             let current = props.api.results[i]
             buttons.push(
@@ -11,8 +17,7 @@ export default function ClassPick(props) {
                     className="buttonItem" 
                     key={i} 
                     onClick={() => axios.get(props.url+current.index)
-                                    .then(response=>{
-                                        props.setClassType(response.data)})
+                                    .then(response=>setter(response,i))
                             } > 
                     {current.name}
                 </button>)

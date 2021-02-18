@@ -11,18 +11,22 @@ import Level from './Level'
 
 export default function Body() {
     const url = 'https://www.dnd5eapi.co/api/'
-    const [race, setRace] = useState(null)
-    const [classType,setClassType] = useState(null)
-    // [str,dex,con,int,wis,cha]
-    const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
-    const [raceBonus, setraceBonus] = useState([0,0,0,0,0,0]) 
-    const [abilityMod, setabilityMod] = useState([-5,-5,-5,-5,-5,-5])
-    const [saving, setsaving] = useState([0,0,0,0,0,0])
     const [level, setlevel] = useState(1)
-    const [name, setName] = useState('')
-    const [hp, sethp] = useState(0)
+    const [race, setRace] = useState(null)
+    const [raceBonus, setraceBonus] = useState([0,0,0,0,0,0]) 
+    const [classType,setClassType] = useState(null)
+    const [saving, setsaving] = useState([0,0,0,0,0,0])
+    // [str,dex,con,int,wis,cha]
+    // const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
     const [totalScore, setTotalScore] = useState([0,0,0,0,0,0])
+    const [abilityMod, setabilityMod] = useState([-5,-5,-5,-5,-5,-5])
+    const [hp, sethp] = useState(0)
+    const [name, setName] = useState('')
+    const [alignment, setAlignment] = useState(null)
     const [data, setData] = useState(0)
+    useEffect(() => {
+        console.log(classType)
+    }, [classType])
     return (
         <div className="bodyMain">
             <Level level={level} setlevel={setlevel}/>
@@ -40,9 +44,10 @@ export default function Body() {
                             level={level}
                             sethp={sethp}
                             hp={hp}/>}
-            {hp? <Information setName={setName}/>:null}
-            {name && <Gear />}
-            <ExportCSV csvData={data} fileName={name? name:'Character'} />
+            {hp? <Information setName={setName} url={url} alignment={alignment} setAlignment={setAlignment}/>:null}
+            {alignment && <Gear />}
+            {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}
+            
         </div>
     )
 }

@@ -34,6 +34,8 @@ export default function ClassInfo(props) {
                 <h4>Hit Dice:</h4> 1d{props.classType.hit_die}<br />
                 <h4>Saving Throws:</h4> {saving.join(', ')}<br/>
                 <h4>Proficiencies:</h4> {proficiencies.join(', ')}<br />
+                <h4>Suggested Ability Scores:</h4> {props.classType.scores_desc}<br />
+                <h4>Suggested Background:</h4> {props.classType.background}
             </div>
         )
     }

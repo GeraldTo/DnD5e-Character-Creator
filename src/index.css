@@ -18,12 +18,14 @@ h3{
     text-decoration: underline;
 }
 
-h3,h4{
+h3{
     margin-top:5px;
     margin-bottom: 5px;
 }
 
 h4{
+    margin-top:0px;
+    margin-bottom: 0px;
     display: inline-block;
 }
 .buttonClass{
