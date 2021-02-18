@@ -34,7 +34,7 @@ export default function Alignment(props) {
             {props.alignment &&
             <div>
                 <h4> {props.alignment.name}</h4><br/>
-                <h4>Description:</h4> <label>{props.alignment.desc}</label> 
+                <h4>Description:</h4>  <label>{props.alignment.desc}</label> 
             </div>}
         </div>
     )
