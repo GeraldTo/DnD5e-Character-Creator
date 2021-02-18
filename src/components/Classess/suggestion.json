@@ -28,7 +28,7 @@
       "background":"soldier background."    },
     {
       "index": "monk",
-      "scores_desc": "First, make Dexterity your highest ability score, followed by Wisdom .",
+      "scores_desc": "First, make Dexterity your highest ability score, followed by Wisdom.",
       "scores": "First Dexterity. Second Wisdom.",
       "background":"hermit background."    },
     {
@@ -38,7 +38,7 @@
       "background":"noble background."    },
     {
       "index": "ranger",
-      "scores_desc": "First, make Dexterity your highest ability score, followed by Wisdom. (Some rangers who focus on two-weapon fighting make Strength higher than Dexterity.) ",
+      "scores_desc": "First, make Dexterity your highest ability score, followed by Wisdom. (Some rangers who focus on two-weapon fighting make Strength higher than Dexterity.)",
       "scores": "First Dexterity. Second Wisdom.",
       "background":"outlander background."    },
     {

@@ -16,6 +16,8 @@ export default function Body() {
     const [raceBonus, setraceBonus] = useState([0,0,0,0,0,0]) 
     const [classType,setClassType] = useState(null)
     const [saving, setsaving] = useState([0,0,0,0,0,0])
+    const [profBonus, setProfBonus] = useState(2)
+    const [prof, setProf] = useState([])
     // [str,dex,con,int,wis,cha]
     // const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
     const [totalScore, setTotalScore] = useState([0,0,0,0,0,0])
@@ -25,18 +27,20 @@ export default function Body() {
     const [alignment, setAlignment] = useState(null)
     const [data, setData] = useState(0)
     useEffect(() => {
-        console.log(classType)
     }, [classType])
     return (
         <div className="bodyMain">
-            <Level level={level} setlevel={setlevel}/>
+            <Level level={level} setlevel={setlevel} setProfBonus={setProfBonus}/>
             <Races race={race} setRace={setRace} setraceBonus={setraceBonus} url={url+'races/'}/>
             {race && <Classes classType={classType} 
                         setClassType={setClassType} 
                         setsaving={setsaving} 
+                        profBonus={profBonus}
+                        setProf={setProf}
+                        prof={prof}
                         url={url+'classes/'}/>}
             {classType && <Ability raceBonus={raceBonus} 
-                            abilityMod={abilityMod} 
+                            abilityMod={abilityMod}
                             setabilityMod={setabilityMod} 
                             saving={saving} 
                             setTotalScore={setTotalScore} 

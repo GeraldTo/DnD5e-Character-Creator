@@ -17,7 +17,7 @@ export default function Classes(props) {
         <div>
             <h2>Class </h2>
             <ClassPick api={api} url={props.url} setClassType={props.setClassType}/>
-            <ClassInfo classType={props.classType} setsaving={props.setsaving}/>
+            <ClassInfo classType={props.classType} profBonus={props.profBonus} setProf={props.setProf} prof={props.prof} setsaving={props.setsaving}/>
         </div>
     )
 

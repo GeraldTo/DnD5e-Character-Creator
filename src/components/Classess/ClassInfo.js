@@ -14,15 +14,16 @@ export default function ClassInfo(props) {
                 : saves[5] =  saves[5]*1 /* needs a return statement in turnary*/ 
             }
             props.setsaving(saves)
+            let proficiencies = []
+            for (let i = 0; i < props.classType.proficiencies.length; i++) {
+                proficiencies.push(props.classType.proficiencies[i].index)
+            }
+            props.setProf(proficiencies)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.classType])
 
     if (props.classType) {
-        let proficiencies = []
-        for (let i = 0; i < props.classType.proficiencies.length; i++) {
-            proficiencies.push(props.classType.proficiencies[i].name)
-        }
         let saving = []
         for (let i = 0; i < props.classType.saving_throws.length; i++) {
             saving.push(props.classType.saving_throws[i].name)
@@ -33,9 +34,10 @@ export default function ClassInfo(props) {
                 <h3>{props.classType.name}</h3> 
                 <h4>Hit Dice:</h4> 1d{props.classType.hit_die}<br />
                 <h4>Saving Throws:</h4> {saving.join(', ')}<br/>
-                <h4>Proficiencies:</h4> {proficiencies.join(', ')}<br />
                 <h4>Suggested Ability Scores:</h4> {props.classType.scores_desc}<br />
-                <h4>Suggested Background:</h4> {props.classType.background}
+                <h4>Suggested Background:</h4> {props.classType.background} <br />
+                <h4>Proficiency Bonus:</h4> +{props.profBonus}<br />
+                <h4>Proficiencies:</h4> {props.prof.join(', ')}
             </div>
         )
     }
