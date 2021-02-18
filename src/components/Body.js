@@ -53,7 +53,7 @@ export default function Body() {
                             level={level}
                             sethp={sethp}
                             hp={hp}/>}
-            {hp? <Information setName={setName} url={url} alignment={alignment} setLang={setLang} lang={lang} setAlignment={setAlignment}/>:null}
+            {hp? <Information setName={setName} classType={classType} race={race} url={url} alignment={alignment} setLang={setLang} lang={lang} setAlignment={setAlignment}/>:null}
             {alignment && <Gear />}
             {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}
             

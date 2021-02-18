@@ -41,7 +41,8 @@ export default function AbilityScore(props) {
             <Rolls/>
             <h3>Allocate Rolls:</h3>
             Roll + Bonuses = Ability Score<br/>
-            <h4>Suggestions:</h4> {props.classType.scores}
+            <h4>Suggestions:</h4> {props.classType.scores_desc}
+            
             <div className="AbilityList">
                 {list}
             </div>

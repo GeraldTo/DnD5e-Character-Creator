@@ -31,6 +31,7 @@ export default function Alignment(props) {
         <div>
             <h3>Choose Allignment</h3>
             <div>{buttons}</div>
+            <h4>Alignment Suggestion:</h4> {props.race.alignment}<br />
             {props.alignment &&
             <div>
                 <h4> {props.alignment.name}</h4><br/>

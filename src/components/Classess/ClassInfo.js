@@ -33,8 +33,8 @@ export default function ClassInfo(props) {
             <div className="description">
                 <h3>{props.classType.name}</h3> 
                 <h4>Hit Dice:</h4> 1d{props.classType.hit_die}<br />
-                <h4>Saving Throws:</h4> {saving.join(', ')}<br/>
-                <h4>Suggested Ability Scores:</h4> {props.classType.scores_desc}<br />
+                <h4>Saving Throws:</h4> {saving.join(', ')} (Use Modifiers)<br/>
+                <h4>Suggested Ability Scores:</h4> {props.classType.scores}<br />
                 <h4>Suggested Background:</h4> {props.classType.background} <br />
                 <h4>Proficiency Bonus:</h4> +{props.profBonus}<br />
                 <h4>Proficiencies:</h4> {props.prof.join(', ')}
