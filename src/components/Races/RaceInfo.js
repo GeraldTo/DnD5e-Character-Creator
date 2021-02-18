@@ -16,7 +16,13 @@ export default function RaceInfo(props) {
                 : bonus[5] =  bonus[5]*1 /* needs a return statement in turnary*/ 
             }
             props.setraceBonus(bonus)
+            let languages = []
+            for (let i = 0; i < props.race.languages.length; i++) {
+                languages.push(props.race.languages[i].index)
+            }
+            props.setLang(languages)
         }
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.race])
     if (props.race) {
@@ -31,9 +37,9 @@ export default function RaceInfo(props) {
                 <h4>Race Bonus:</h4>  {bonusDesc.join(', ')} <br />
                 <h4>Size:</h4> {props.race.size}<br />
                 <h4>Description:</h4> {props.race.size_description}<br />
-                <label>Age:</label> {props.race.age}<br />
-                <label>Starting Languages:</label> {props.race.language_desc}<br />
-                <label>Alignment Suggestion:</label> {props.race.alignment}<br />
+                <h4>Age:</h4> {props.race.age}<br />
+                <h4>Starting Languages:</h4> {props.race.language_desc}<br />
+                <h4>Alignment Suggestion:</h4> {props.race.alignment}<br />
             </div>
         )
     }

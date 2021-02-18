@@ -29,7 +29,7 @@ export default function Hitdie(props) {
             <div>
                 <h3>Roll Hit Points:</h3> 
                 <button onClick={() => handleClick()}>
-                    Roll HP</button><br/>
+                    Roll HP</button>
                 {click && hpArr.reduce((a,b)=>{return a+b},0)+(hpArr.length*props.conMod)+' ('+hpArr.join(', ')+')'}<br/>
                 <h4>Description: </h4> HP = (Hit Die: 1d{props.hitdie} + Consitution Modifier: {props.conMod}) per level <br/>
                 <div><button className="IncDec" onClick={() => props.sethp(prev => prev>0 ? prev - 1: prev)}> - </button>

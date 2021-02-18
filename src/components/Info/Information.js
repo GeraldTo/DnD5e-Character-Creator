@@ -1,6 +1,7 @@
 import React from 'react'
 import Name from './Name'
 import Alignment from './Alignment'
+import Languages from './Languages'
 
 export default function Information(props) {
     return (
@@ -8,6 +9,7 @@ export default function Information(props) {
             <h2>Choose Information</h2>
             <Name setName={props.setName}/>
             <Alignment url={props.url+'alignments/'} alignment={props.alignment} setAlignment={props.setAlignment} />
+            <Languages setLang={props.setLang} lang={props.lang} />
         </div>
     )
 }
