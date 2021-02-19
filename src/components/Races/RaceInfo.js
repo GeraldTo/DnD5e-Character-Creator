@@ -16,11 +16,6 @@ export default function RaceInfo(props) {
                 : bonus[5] =  bonus[5]*1 /* needs a return statement in turnary*/ 
             }
             props.setraceBonus(bonus)
-            let languages = []
-            for (let i = 0; i < props.race.languages.length; i++) {
-                languages.push(props.race.languages[i].index)
-            }
-            props.setLang(languages)
         }
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -28,15 +23,17 @@ export default function RaceInfo(props) {
     if (props.race) {
         let bonusDesc = []
         for (let i = 0; i < props.race.ability_bonuses.length; i++) {
-            bonusDesc.push(props.race.ability_bonuses[i].ability_score.name)
+            bonusDesc.push('+'+props.race.ability_bonuses[i].bonus+' '+props.race.ability_bonuses[i].ability_score.name)
         }
         return (
             <div className="description">
                 <h3>{props.race.name}</h3> 
                 <h4>Description:</h4> {props.race.size_description}<br />
-                <h4>Speed:</h4> {props.race.speed}ft <h4>Race Bonus:</h4>  {bonusDesc.join(', ')} <h4>Size:</h4> {props.race.size}<br />
+                <h4>Speed:</h4> {props.race.speed}ft<br />
+                <h4>Race Bonus on Ability Score:</h4> {bonusDesc.join(', ')} <br />
+                <h4>Size:</h4> {props.race.size}<br />
                 <h4>Default Languages:</h4> {props.race.language_desc.split('. ')[0]}<br />
-                <h4>Alignment Suggestion:</h4> {props.race.alignment.split('. ')[0]}<br />
+                <h4>Usual Alignment:</h4> {props.race.alignment.split('. ')[0]}<br />
             </div>
         )
     }

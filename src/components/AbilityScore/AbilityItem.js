@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 
 export default function AbilityItem(props) {
-    const [val, setVal] = useState(0)
+    const [val, setVal] = useState(10)
     function mod(input) {
         return input < 0 ?  input :  '+' + input
     }

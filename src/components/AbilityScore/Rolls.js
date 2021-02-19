@@ -25,7 +25,7 @@ export default function Rolls() {
     return (
         <div>
             <h3>Roll Scores:</h3>
-            Drop the lowest roll: <br />
+            Roll 4d6 and drop the lowest roll: <br />
             <button onClick={() => setrandomRolls(randRoll)}>Roll Random</button> <br />
             {randomRolls}
             Or Use Default: 15, 14, 13, 12, 10, 8

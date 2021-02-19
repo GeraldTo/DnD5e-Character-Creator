@@ -9,7 +9,7 @@ import './AbilityScore.css'
 
 export default function AbilityScore(props) {    
     const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
-    const [score, setScore] = useState([0,0,0,0,0,0])
+    const [score, setScore] = useState([10,10,10,10,10,10])
     function abilityList() {
         let list = []
         for(let i=0;i<6;i++){
