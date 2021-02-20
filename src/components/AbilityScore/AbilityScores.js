@@ -42,12 +42,9 @@ export default function AbilityScore(props) {
             <h3>Allocate Rolls:</h3>
             Roll + Bonuses = Ability Score<br/>
             <h4>Suggestions:</h4> {props.classType.scores_desc}
-            
-            <div className="AbilityList">
-                {list}
-            </div>
-            <Saving saving={props.saving} abilityMod={props.abilityMod}/>
-            <h4>Initiative:</h4> {props.abilityMod[1]} (Dex)<br/>
+            <div className="AbilityList">{list}</div>
+            <Saving saving={props.saving} setsaving={props.setsaving} classType={props.classType} abilityMod={props.abilityMod}/>
+            <h4>Initiative:</h4> {props.abilityMod[1]} (Dex Mod)<br/>
             <Hitdie hitdie={props.classType? props.classType.hit_die:0} conMod={props.abilityMod[2]} level={props.level} sethp={props.sethp} hp={props.hp}/>
             <Skills />
         </div>

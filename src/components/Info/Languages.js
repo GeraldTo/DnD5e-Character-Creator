@@ -54,11 +54,11 @@ export default function Languages(props) {
     }
 
     return (
-        <div>
-            <h3>Choose Langauges</h3>
+        <div>            
+            <h3>Langauges</h3>
             <h4>Race Languages:</h4> {props.race.language_desc}<br />
-            <h4>Current Languages:</h4> {props.lang.join(', ')}<br/>
-            {multiLang()}<br/>
+            <h4>Total Languages:</h4> {props.lang.join(', ')}<br/>
+            {multiLang()}
         </div>
     )
 }

@@ -40,8 +40,7 @@ export default function Body() {
                     setLang={setLang}
                     url={url+'races/'}/>
             {race && <Classes classType={classType} 
-                        setClassType={setClassType} 
-                        setsaving={setsaving} 
+                        setClassType={setClassType}  
                         profBonus={profBonus}
                         setProf={setProf}
                         prof={prof}
@@ -50,6 +49,7 @@ export default function Body() {
                             abilityMod={abilityMod}
                             setabilityMod={setabilityMod} 
                             saving={saving} 
+                            setsaving={setsaving}
                             totalScore={totalScore}
                             setTotalScore={setTotalScore} 
                             classType={classType} 
