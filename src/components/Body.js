@@ -12,15 +12,15 @@ import Level from './Level'
 export default function Body() {
     const url = 'https://www.dnd5eapi.co/api/'
     const [level, setlevel] = useState(1)
+    const [profBonus, setProfBonus] = useState(2)
     const [race, setRace] = useState(null)
     const [raceBonus, setraceBonus] = useState([0, 0, 0, 0, 0, 0])
     const [lang, setLang] = useState([])
     const [classType, setClassType] = useState(null)
     const [saving, setsaving] = useState([0, 0, 0, 0, 0, 0])
-    const [profBonus, setProfBonus] = useState(2)
+    const [feats, setFeats] = useState([])
     const [prof, setProf] = useState([])
     // [str,dex,con,int,wis,cha]
-
     // const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
     const [totalScore, setTotalScore] = useState([0, 0, 0, 0, 0, 0])
     const [abilityMod, setabilityMod] = useState([0, 0, 0, 0, 0, 0])
@@ -45,8 +45,11 @@ export default function Body() {
                 setClassType={setClassType}
                 profBonus={profBonus}
                 setProf={setProf}
+                level={level}
                 prof={prof}
-                url={url + 'classes/'} />}
+                feats={feats}
+                setFeats={setFeats}
+                url={url} />}
             {classType && <Ability 
                 raceBonus={raceBonus}
                 abilityMod={abilityMod}

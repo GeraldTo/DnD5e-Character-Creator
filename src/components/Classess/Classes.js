@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import ClassInfo from "./ClassInfo"
 import ClassPick from './ClassPick'
+import Features from './Features'
 
 export default function Classes(props) {
     const [api, setapi] = useState(null)
     useEffect(() => {
-        axios.get(props.url)
+        axios.get(props.url + 'classes/')
             .then(response => {
                 setapi(response.data)
             })
@@ -16,8 +17,9 @@ export default function Classes(props) {
     return (
         <div>
             <h2>Class </h2>
-            <ClassPick api={api} url={props.url} setClassType={props.setClassType} />
-            <ClassInfo classType={props.classType} profBonus={props.profBonus} setProf={props.setProf} prof={props.prof} setsaving={props.setsaving} />
+            <ClassPick api={api} url={props.url + 'classes/'} setClassType={props.setClassType} />
+            <ClassInfo classType={props.classType}  setProf={props.setProf} prof={props.prof} setsaving={props.setsaving} />
+            {props.classType && <Features url={props.url} profBonus={props.profBonus} classType={props.classType} feats={props.feats} setFeats={props.setFeats}level={props.level}/>}
         </div>
     )
 

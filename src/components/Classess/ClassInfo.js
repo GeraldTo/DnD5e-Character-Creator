@@ -24,7 +24,6 @@ export default function ClassInfo(props) {
                 <h4>Saving Throws:</h4> {saving.join(', ')} (Use Modifiers)<br/>
                 <h4>Suggested Ability Scores:</h4> {props.classType.scores}<br />
                 <h4>Usual Background:</h4> {props.classType.background} <br />
-                <h4>Proficiency Bonus at Current Level:</h4> +{props.profBonus}<br />
                 <h4>Proficiencies:</h4> {props.prof.join(', ')}
             </div>
         )
