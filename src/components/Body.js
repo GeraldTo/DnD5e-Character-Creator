@@ -33,12 +33,12 @@ export default function Body() {
     return (
         <div className="bodyMain">
             <Level level={level} setlevel={setlevel} setProfBonus={setProfBonus} />
-            <Races 
+            <Races
                 race={race}
                 setRace={setRace}
                 setLang={setLang}
                 url={url} />
-            {race && <Classes 
+            {race && <Classes
                 classType={classType}
                 setClassType={setClassType}
                 race={race}
@@ -49,7 +49,7 @@ export default function Body() {
                 feats={feats}
                 setFeats={setFeats}
                 url={url} />}
-            {classType && <Ability 
+            {classType && <Ability
                 race={race}
                 abilityMod={abilityMod}
                 setabilityMod={setabilityMod}
@@ -62,14 +62,14 @@ export default function Body() {
                 sethp={sethp}
                 feats={feats}
                 hp={hp} />}
-            {hp ? <Information 
-                url={url} 
-                setName={setName} 
-                classType={classType} 
-                race={race} 
-                alignment={alignment} 
-                setLang={setLang} 
-                lang={lang} 
+            {hp ? <Information
+                url={url}
+                setName={setName}
+                classType={classType}
+                race={race}
+                alignment={alignment}
+                setLang={setLang}
+                lang={lang}
                 setAlignment={setAlignment} /> : null}
             {alignment && <Gear />}
             {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}

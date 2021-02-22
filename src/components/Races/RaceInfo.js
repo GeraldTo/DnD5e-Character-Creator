@@ -1,7 +1,6 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 
 export default function RaceInfo(props) {
-    
     if (props.race) {
         let bonusDesc = []
         for (let i = 0; i < props.race.ability_bonuses.length; i++) {
