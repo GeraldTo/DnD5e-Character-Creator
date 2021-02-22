@@ -39,7 +39,7 @@ export default function Body() {
                 setRace={setRace}
                 setraceBonus={setraceBonus}
                 setLang={setLang}
-                url={url + 'races/'} />
+                url={url} />
             {race && <Classes 
                 classType={classType}
                 setClassType={setClassType}

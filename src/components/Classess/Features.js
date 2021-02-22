@@ -29,8 +29,7 @@ export default function Features(props) {
             <h3>Features</h3>
             <h4>Currently at level:</h4> {props.level}<br />
             <h4>Proficiency Bonus:</h4> +{props.profBonus}<br />
-            <h4>Current Features:</h4> 
-                {display? 
+            <h4>Current Features: </h4> {display? 
                     props.feats.map((e,i)=><div key={i}> <h4>{e.name}:
                     </h4> {e.desc}</div>) : <label>{props.feats.map((e,i)=>e.name).join(', ')}<br/> </label> } 
             <button  onClick={() =>setDisplay(prev=>!prev)}>{display? 'Hide Details':'Display Details'}</button>
