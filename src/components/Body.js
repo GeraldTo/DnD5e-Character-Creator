@@ -61,6 +61,7 @@ export default function Body() {
                 classType={classType}
                 level={level}
                 sethp={sethp}
+                feats={feats}
                 hp={hp} />}
             {hp ? <Information 
                 url={url} 

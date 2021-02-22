@@ -8,6 +8,18 @@ body{
     text-align: center;
 }
 
+.start{
+    display: flex;
+    margin: auto;
+    appearance: none;
+    border: 0;
+    border-radius: 1rem;
+    background: #4676D7;
+    color: #fff;
+    padding: 1rem 3rem;
+    font-size: 4rem;
+}
+
 .bodyMain{
     margin: 10%;
     margin-top: 0%;
@@ -28,6 +40,7 @@ h4{
     margin-bottom: 0px;
     display: inline-block;
 }
+
 .buttonClass{
     grid-template-columns: repeat(6,1fr); 
 }

@@ -10,6 +10,7 @@ import './AbilityScore.css'
 export default function AbilityScore(props) {
     const abilities = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
     const [score, setScore] = useState([10, 10, 10, 10, 10, 10])
+    const [abilInc, setAbilInc] = useState(0)
     function abilityList() {
         let list = []
         for (let i = 0; i < 6; i++) {
@@ -24,6 +25,11 @@ export default function AbilityScore(props) {
         }
         return list
     }
+    useEffect(() => {
+        if(props.feats){
+            setAbilInc((props.feats.filter(e=> e.index.split('-')[1]==='ability')).length)
+        }
+    }, [props.feats])
     useEffect(() => {
         let newMod = []
         let newScore = []
@@ -42,7 +48,8 @@ export default function AbilityScore(props) {
             <Rolls />
             <h3>Allocate Rolls:</h3>
             Roll + Bonuses = Ability Score<br />
-            <h4>Suggestions:</h4> {props.classType.scores_desc}
+            <h4>Suggestions:</h4> {props.classType.scores_desc}<br />
+            {abilInc>0&& <label><h4>Can Increase Score by:</h4> {abilInc} (Can't increse past 20)</label>}
             <div className="AbilityList">{list}</div>
             <Saving saving={props.saving} setsaving={props.setsaving} classType={props.classType} abilityMod={props.abilityMod} />
             <h4>Initiative:</h4> {props.abilityMod[1] < 0 ? props.abilityMod[1] : '+' + props.abilityMod[1]} (Dex Mod)<br />

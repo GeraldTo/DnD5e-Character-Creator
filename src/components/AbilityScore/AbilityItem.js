@@ -16,7 +16,7 @@ export default function AbilityItem(props) {
             <div className="AbilityNames">{props.ability}</div>
             <div><button className="IncDec" onClick={() => setVal(prev => prev>0 ? prev - 1: prev)}> - </button>
                 {val}
-            <button className="IncDec" onClick={() => setVal(prev => prev + 1)}> + </button> </div>
+            <button className="IncDec" onClick={() => setVal(prev => (prev+props.bonus)<20 ? prev + 1:prev)}> + </button> </div>
             <div>+ {props.bonus} (Bonus) </div>
             <div className="Score">{val+props.bonus}</div>
             <div>{mod(props.abilityMod[props.index])} (Mod)</div>
