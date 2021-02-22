@@ -19,7 +19,7 @@ export default function Races(props) {
         <div className="Races">
             <h2>Race </h2>
             <RacePick api={api} url={props.url + 'races/'} setRace={props.setRace} />
-            <RaceInfo race={props.race} setraceBonus={props.setraceBonus} />
+            <RaceInfo race={props.race}/>
             {props.race && <Traits url={props.url} race={props.race} traits={traits} setTraits={setTraits}/>}
         </div>
     )

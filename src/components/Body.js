@@ -14,7 +14,6 @@ export default function Body() {
     const [level, setlevel] = useState(1)
     const [profBonus, setProfBonus] = useState(2)
     const [race, setRace] = useState(null)
-    const [raceBonus, setraceBonus] = useState([0, 0, 0, 0, 0, 0])
     const [lang, setLang] = useState([])
     const [classType, setClassType] = useState(null)
     const [saving, setsaving] = useState([0, 0, 0, 0, 0, 0])
@@ -22,7 +21,7 @@ export default function Body() {
     const [prof, setProf] = useState([])
     // [str,dex,con,int,wis,cha]
     // const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
-    const [totalScore, setTotalScore] = useState([0, 0, 0, 0, 0, 0])
+    const [totalScore, setTotalScore] = useState([10, 10, 10, 10, 10, 10])
     const [abilityMod, setabilityMod] = useState([0, 0, 0, 0, 0, 0])
     const [hp, sethp] = useState(0)
     const [name, setName] = useState('')
@@ -37,12 +36,12 @@ export default function Body() {
             <Races 
                 race={race}
                 setRace={setRace}
-                setraceBonus={setraceBonus}
                 setLang={setLang}
                 url={url} />
             {race && <Classes 
                 classType={classType}
                 setClassType={setClassType}
+                race={race}
                 profBonus={profBonus}
                 setProf={setProf}
                 level={level}
@@ -51,7 +50,7 @@ export default function Body() {
                 setFeats={setFeats}
                 url={url} />}
             {classType && <Ability 
-                raceBonus={raceBonus}
+                race={race}
                 abilityMod={abilityMod}
                 setabilityMod={setabilityMod}
                 saving={saving}
