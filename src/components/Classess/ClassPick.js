@@ -3,22 +3,22 @@ import axios from 'axios'
 
 export default function ClassPick(props) {
     const buttons = []
-    if(props.api){
+    if (props.api) {
         const more_data = require('./suggestion.json');
-        function setter(response,index) {
+        function setter(response, index) {
             let data = response.data
-            data = Object.assign(data,more_data.results[index])
+            data = Object.assign(data, more_data.results[index])
             props.setClassType(data)
         }
-        for(let i = 0; i < props.api.count;i++){
+        for (let i = 0; i < props.api.count; i++) {
             let current = props.api.results[i]
             buttons.push(
-                <button 
-                    className="buttonItem" 
-                    key={i} 
-                    onClick={() => axios.get(props.url+current.index)
-                                    .then(response=>setter(response,i))
-                            } > 
+                <button
+                    className="buttonItem"
+                    key={i}
+                    onClick={() => axios.get(props.url + current.index)
+                        .then(response => setter(response, i))
+                    } >
                     {current.name}
                 </button>)
         }

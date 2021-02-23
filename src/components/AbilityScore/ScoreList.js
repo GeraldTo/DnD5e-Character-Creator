@@ -1,47 +1,33 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import AbilityItem from "./AbilityItem";
 
 export default function ScoreList(props) {
     const [score, setScore] = useState([10, 10, 10, 10, 10, 10])
     const [raceBonus, setraceBonus] = useState([0, 0, 0, 0, 0, 0])
-    function abilityList() {
-        let list = []
-        for (let i = 0; i < 6; i++) {
-            list.push(<AbilityItem key={i} bonus={raceBonus[i]} abilityMod={props.abilityMod} score={score} setScore={setScore} index={i} />)
-        }
-        return list
-    }
+    let list = Array.apply(null, Array(6))
+    list = list.map(function (x, i) {
+        return (<AbilityItem key={i} bonus={raceBonus[i]} abilityMod={props.abilityMod} score={score} setScore={setScore} index={i} />)
+    })
     useEffect(() => {
-        let newMod = []
-        let newScore = []
-        for (let i = 0; i < 6; i++) {
-            newMod[i] = Math.floor((score[i] + raceBonus[i] - 10) / 2)
-            newScore[i] = raceBonus[i] + score[i]
-        }
-        props.setabilityMod(newMod)
-        props.setTotalScore(newScore)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        props.setabilityMod(score.map((e, i) => { return Math.floor((e + raceBonus[i] - 10) / 2) }))
+        props.setTotalScore(score.map((e, i) => { return e + raceBonus[i] }))
     }, [score, raceBonus])
     useEffect(() => {
-        if (props.race) {
-            const { ability_bonuses } = props.race
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            let bonus = [0, 0, 0, 0, 0, 0]
-            for (let i = 0; i < props.race.ability_bonuses.length; i++) {
-                const current = ability_bonuses[i]
-                current.ability_score.index === "str" ? bonus[0] = current.bonus
-                    : current.ability_score.index === "dex" ? bonus[1] = current.bonus
-                        : current.ability_score.index === "con" ? bonus[2] = current.bonus
-                            : current.ability_score.index === "int" ? bonus[3] = current.bonus
-                                : current.ability_score.index === "wis" ? bonus[4] = current.bonus
-                                    : current.ability_score.index === "cha" ? bonus[5] = current.bonus
-                                        : bonus[5] = bonus[5] * 1 /* needs a return statement in turnary*/
-            }
-            setraceBonus(bonus)
+        const { ability_bonuses } = props.race
+        let bonus = [0, 0, 0, 0, 0, 0]
+        for (let i = 0; i < props.race.ability_bonuses.length; i++) {
+            const current = ability_bonuses[i]
+            current.ability_score.index === "str" ? bonus[0] = current.bonus
+                : current.ability_score.index === "dex" ? bonus[1] = current.bonus
+                    : current.ability_score.index === "con" ? bonus[2] = current.bonus
+                        : current.ability_score.index === "int" ? bonus[3] = current.bonus
+                            : current.ability_score.index === "wis" ? bonus[4] = current.bonus
+                                : current.ability_score.index === "cha" ? bonus[5] = current.bonus
+                                    : bonus[5] = bonus[5] * 1 /* needs a return statement in turnary*/
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        setraceBonus(bonus)
     }, [props.race])
-    const list = abilityList()
     return (
         <div>
             <h3>Allocate Rolls:</h3>

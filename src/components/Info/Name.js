@@ -8,7 +8,7 @@ export default function Name(props) {
                 type="text"
                 onKeyPress={event => (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)}
                 placeholder="Enter Name (Letters Only)"
-                onChange={event=>props.setName(event.target.value)}
+                onChange={event => props.setName(event.target.value)}
             />
         </div>
     )

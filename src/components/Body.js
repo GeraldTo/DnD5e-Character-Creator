@@ -37,19 +37,22 @@ export default function Body() {
                 race={race}
                 setRace={setRace}
                 setLang={setLang}
-                url={url} />
-            {race && <Classes
+                url={url}
+            />
+            <Classes
                 classType={classType}
                 setClassType={setClassType}
                 race={race}
+                prof={prof}
                 profBonus={profBonus}
                 setProf={setProf}
                 level={level}
-                prof={prof}
                 feats={feats}
                 setFeats={setFeats}
-                url={url} />}
-            {classType && <Ability
+                url={url}
+            />
+            <Ability
+                classType={classType}
                 race={race}
                 abilityMod={abilityMod}
                 setabilityMod={setabilityMod}
@@ -57,11 +60,11 @@ export default function Body() {
                 setsaving={setsaving}
                 totalScore={totalScore}
                 setTotalScore={setTotalScore}
-                classType={classType}
                 level={level}
-                sethp={sethp}
                 feats={feats}
-                hp={hp} />}
+                hp={hp}
+                sethp={sethp}
+            />
             {hp ? <Information
                 url={url}
                 setName={setName}

@@ -4,11 +4,11 @@ export default function RaceInfo(props) {
     if (props.race) {
         let bonusDesc = []
         for (let i = 0; i < props.race.ability_bonuses.length; i++) {
-            bonusDesc.push('+'+props.race.ability_bonuses[i].bonus+' '+props.race.ability_bonuses[i].ability_score.name)
+            bonusDesc.push('+' + props.race.ability_bonuses[i].bonus + ' ' + props.race.ability_bonuses[i].ability_score.name)
         }
         return (
             <div className="description">
-                <h3>{props.race.name}</h3> 
+                <h3>{props.race.name}</h3>
                 <h4>Description:</h4> {props.race.size_description}<br />
                 <h4>Speed:</h4> {props.race.speed}ft<br />
                 <h4>Race Bonus on Ability Score:</h4> {bonusDesc.join(', ')} <br />
