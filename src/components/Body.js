@@ -15,20 +15,17 @@ export default function Body() {
     const [race, setRace] = useState(null)
     const [lang, setLang] = useState([])
     const [classType, setClassType] = useState(null)
-    const [saving, setsaving] = useState([0, 0, 0, 0, 0, 0])
     const [feats, setFeats] = useState([])
     const [prof, setProf] = useState([])
     // [str,dex,con,int,wis,cha]
     // const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
-    const [totalScore, setTotalScore] = useState([10, 10, 10, 10, 10, 10])
-    const [abilityMod, setabilityMod] = useState([0, 0, 0, 0, 0, 0])
+    const [totalScore, setTotalScore] = useState(null)
     const [skills, setSkills] = useState([])
     const [hp, sethp] = useState(0)
     const [name, setName] = useState('')
     const [alignment, setAlignment] = useState(null)
     const [data, setData] = useState(0)
-    useEffect(() => {
-    }, [skills])
+
     return (
         <div className="bodyMain">
             <Level level={level} setlevel={setlevel} />
@@ -53,10 +50,6 @@ export default function Body() {
                 classType={classType}
                 race={race}
                 url={url}
-                abilityMod={abilityMod}
-                setabilityMod={setabilityMod}
-                saving={saving}
-                setsaving={setsaving}
                 totalScore={totalScore}
                 setTotalScore={setTotalScore}
                 level={level}

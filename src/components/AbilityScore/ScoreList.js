@@ -7,24 +7,21 @@ export default function ScoreList(props) {
     const [raceBonus, setraceBonus] = useState([0, 0, 0, 0, 0, 0])
     let list = Array.apply(null, Array(6))
     list = list.map(function (x, i) {
-        return (<AbilityItem key={i} bonus={raceBonus[i]} abilityMod={props.abilityMod} score={score} setScore={setScore} index={i} />)
+        return (<AbilityItem key={i} bonus={raceBonus} totalScore={props.totalScore} score={score} setScore={setScore} index={i} />)
     })
     useEffect(() => {
-        props.setabilityMod(score.map((e, i) => { return Math.floor((e + raceBonus[i] - 10) / 2) }))
-        props.setTotalScore(score.map((e, i) => { return e + raceBonus[i] }))
+        props.setTotalScore(props.totalScore.map(function (e, i) {
+            e.total = score[i] + raceBonus[i]
+            e.mod = Math.floor((e.total - 10) / 2)
+            return e
+        }))
     }, [score, raceBonus])
     useEffect(() => {
         const { ability_bonuses } = props.race
         let bonus = [0, 0, 0, 0, 0, 0]
         for (let i = 0; i < props.race.ability_bonuses.length; i++) {
-            const current = ability_bonuses[i]
-            current.ability_score.index === "str" ? bonus[0] = current.bonus
-                : current.ability_score.index === "dex" ? bonus[1] = current.bonus
-                    : current.ability_score.index === "con" ? bonus[2] = current.bonus
-                        : current.ability_score.index === "int" ? bonus[3] = current.bonus
-                            : current.ability_score.index === "wis" ? bonus[4] = current.bonus
-                                : current.ability_score.index === "cha" ? bonus[5] = current.bonus
-                                    : bonus[5] = bonus[5] * 1 /* needs a return statement in turnary*/
+            const index = (props.totalScore.map(e => e.index)).indexOf(ability_bonuses[i].ability_score.index)
+            bonus[index] = ability_bonuses[i].bonus
         }
         setraceBonus(bonus)
     }, [props.race])

@@ -8,17 +8,23 @@ import ScoreList from './ScoreList'
 import './AbilityScore.css'
 
 export default function AbilityScore(props) {
+    useEffect(() => {
+        const abilities = ["str", "dex", "con", "int", "wis", "cha"];
+        const fullName = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
+        props.setTotalScore([...Array(6)].map(function (_, i) { return { index: abilities[i], fullName: fullName[i], total: 10, mod: 0, saving: false } }))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     if (props.classType) {
         return (
             <div className="Ability">
                 <h2>Ability Scores and Modifiers:</h2>
                 <Rolls />
-                <ScoreList race={props.race} classType={props.classType} feats={props.feats} abilityMod={props.abilityMod} setabilityMod={props.setabilityMod}
-                    totalScore={props.totalScore} setTotalScore={props.setTotalScore} />
-                <Saving saving={props.saving} setsaving={props.setsaving} classType={props.classType} abilityMod={props.abilityMod} />
-                <h4>Initiative:</h4> {props.abilityMod[1] < 0 ? props.abilityMod[1] : '+' + props.abilityMod[1]} (Dex Mod)<br />
-                <Hitdie hitdie={props.classType ? props.classType.hit_die : 0} conMod={props.abilityMod[2]} level={props.level} sethp={props.sethp} hp={props.hp} />
-                <Skills url={props.url} classType={props.classType} abilityMod={props.abilityMod} level={props.level} skills={props.skills} setSkills={props.setSkills} />
+                <ScoreList race={props.race} classType={props.classType} feats={props.feats} totalScore={props.totalScore} setTotalScore={props.setTotalScore} />
+                <Saving totalScore={props.totalScore} setTotalScore={props.setTotalScore} classType={props.classType} />
+                <h4>Initiative:</h4> {props.totalScore[1].mod < 0 ? props.totalScore[1].mod : '+' + props.totalScore[1].mod} (Dex Mod)<br />
+                <Hitdie hitdie={props.classType.hit_die} conMod={props.totalScore[2].mod} level={props.level} sethp={props.sethp} hp={props.hp} />
+                <Skills url={props.url} classType={props.classType} totalScore={props.totalScore} level={props.level} skills={props.skills} setSkills={props.setSkills} />
             </div>
         )
     }

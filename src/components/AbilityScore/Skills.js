@@ -32,9 +32,7 @@ export default function Skills(props) {
                 handleInit(response)
             })
     }, [])
-    useEffect(() => {
 
-    }, [props.abilityMod])
     return (
         <div>
             <h3>Skills</h3>
@@ -43,7 +41,7 @@ export default function Skills(props) {
             <h4>Options:</h4> found in traits, features, class, and background<br />
             {props.skills.map((e, i) =>
                 <SkillItem key={i} skills={props.skills} setSkills={props.setSkills} index={i} display={display}
-                    abilityMod={props.abilityMod} profBonus={1 + Math.ceil(props.level / 4)} />)
+                    totalScore={props.totalScore} profBonus={1 + Math.ceil(props.level / 4)} />)
             }
             <button onClick={() => setDisplay(prev => !prev)}>{display ? 'Hide Details' : 'Display Details'}</button>
             <div><h4>Passive Wisdom:</h4> {props.skills.length > 0 ? (props.skills[11].total < 0 ? props.skills[11].total : '+' + props.skills[11].total) : +0}</div>
