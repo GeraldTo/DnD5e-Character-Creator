@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Races from "./Races/Races";
 import Classes from './Classess/Classes'
 import Ability from './AbilityScore/AbilityScores'
-import { ExportCSV } from './ExportCSV';
+import ExportCSV from './ExportCSV';
 import Gear from './Gear/Gear'
 import Information from './Info/Information'
 import Level from './Level'
@@ -12,7 +12,6 @@ import Level from './Level'
 export default function Body() {
     const url = 'https://www.dnd5eapi.co/api/'
     const [level, setlevel] = useState(1)
-    const [profBonus, setProfBonus] = useState(2)
     const [race, setRace] = useState(null)
     const [lang, setLang] = useState([])
     const [classType, setClassType] = useState(null)
@@ -23,16 +22,16 @@ export default function Body() {
     // const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
     const [totalScore, setTotalScore] = useState([10, 10, 10, 10, 10, 10])
     const [abilityMod, setabilityMod] = useState([0, 0, 0, 0, 0, 0])
+    const [skills, setSkills] = useState([])
     const [hp, sethp] = useState(0)
     const [name, setName] = useState('')
     const [alignment, setAlignment] = useState(null)
     const [data, setData] = useState(0)
     useEffect(() => {
-
-    }, [classType, race])
+    }, [skills])
     return (
         <div className="bodyMain">
-            <Level level={level} setlevel={setlevel} setProfBonus={setProfBonus} />
+            <Level level={level} setlevel={setlevel} />
             <Races
                 race={race}
                 setRace={setRace}
@@ -44,7 +43,6 @@ export default function Body() {
                 setClassType={setClassType}
                 race={race}
                 prof={prof}
-                profBonus={profBonus}
                 setProf={setProf}
                 level={level}
                 feats={feats}
@@ -54,6 +52,7 @@ export default function Body() {
             <Ability
                 classType={classType}
                 race={race}
+                url={url}
                 abilityMod={abilityMod}
                 setabilityMod={setabilityMod}
                 saving={saving}
@@ -62,10 +61,13 @@ export default function Body() {
                 setTotalScore={setTotalScore}
                 level={level}
                 feats={feats}
+                skills={skills}
+                setSkills={setSkills}
                 hp={hp}
                 sethp={sethp}
             />
-            {hp ? <Information
+
+            {/* <Information
                 url={url}
                 setName={setName}
                 classType={classType}
@@ -73,10 +75,9 @@ export default function Body() {
                 alignment={alignment}
                 setLang={setLang}
                 lang={lang}
-                setAlignment={setAlignment} /> : null}
+                setAlignment={setAlignment} /> */}
             {alignment && <Gear />}
             {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}
-
         </div>
     )
 }

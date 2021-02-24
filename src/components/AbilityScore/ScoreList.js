@@ -32,7 +32,7 @@ export default function ScoreList(props) {
         <div>
             <h3>Allocate Rolls:</h3>
             Roll + Bonuses = Ability Score<br />
-            <h4>Suggestions:</h4> {props.classType.scores_desc}<br />
+            <h4>Suggestions:</h4> {props.classType.scores}<br />
             <h4>Can Distribute {(props.feats.filter(e => e.index.split('-')[1] === 'ability')).length} Points to any Score(s)</h4>  (Can't increse past 20)
             <div className="AbilityList">{list}</div>
         </div>

@@ -3,62 +3,50 @@
   "results": [
     {
       "index": "barbarian",
-      "scores_desc": "First, put your highest ability score in Strength, followed by Constitution.",
       "scores": "First Strength. Second Constitution.",
       "background":"outlander background." },
     {
       "index": "bard",
-      "scores_desc": "First, Charisma should be your highest ability score, followed by Dexterity.",
       "scores": "First Charisma. Second Dexterity.",
       "background": "entertainer background."  },
     {
       "index": "cleric",
-      "scores_desc": "First, Wisdom should be your highest ability score, followed by Strength or Constitution.",
       "scores": "First Wisdom. Second Strength or Constitution.",
       "background":"acolyte background."    },
     {
       "index": "druid",
-      "scores_desc": "First, Wisdom should be your highest ability score, followed by Constitution.",
       "scores": "First Wisdom. Second Constitution.",
       "background":"hermit background."    },
     {
       "index": "fighter",
-      "scores_desc": "First, make Strength or Dexterity your highest ability score, depending on whether you want to focus on melee weapons or on archery (or finesse weapons). Your next-highest score should be Constitution, or Intelligence if you plan to adopt the Eldritch Knight martial archetype.",
-      "scores": "First Strength or Dexterity. Second Constitution or Intelligence.",
+      "scores": "First Strength (melee) or Dexterity (finesse). Second Constitution.",
       "background":"soldier background."    },
     {
       "index": "monk",
-      "scores_desc": "First, make Dexterity your highest ability score, followed by Wisdom.",
       "scores": "First Dexterity. Second Wisdom.",
       "background":"hermit background."    },
     {
       "index": "paladin",
-      "scores_desc": "First, Strength should be your highest ability score, followed by Charisma.",
       "scores": "First Strength. Second Charisma.",
       "background":"noble background."    },
     {
       "index": "ranger",
-      "scores_desc": "First, make Dexterity your highest ability score, followed by Wisdom. (Some rangers who focus on two-weapon fighting make Strength higher than Dexterity.)",
-      "scores": "First Dexterity. Second Wisdom.",
+      "scores": "First Dexterity or Strength (two-weapon). Second Wisdom.",
       "background":"outlander background."    },
     {
       "index": "rogue",
-      "scores_desc": "First. Dexterity should be your highest ability score. Make Intelligence your next-highest if you want to excel at Investigation or plan to take up the Arcane Trickster archetype. Choose Charisma instead if you plan to emphasize deception and social interaction. ",
-      "scores": "First Dexterity. Second Intelligence.",
+      "scores": "First Dexterity. Second Intelligence (investigation) or Charisma (deception/social).",
       "background":"charlatan background."    },
     {
       "index": "sorcerer",
-      "scores_desc": "First, Charisma should be your highest ability score, followed by Constitution,",
       "scores": "First Charisma. Second Constitution.",
       "background":"hermit background."    },
     {
       "index": "warlock",
-      "scores_desc": "First, Charisma should be your highest ability score, followed by Constitution.",
       "scores": "First Charisma. Second Constitution.",
       "background":"charlatan background."    },
     {
       "index": "wizard",
-      "scores_desc": "First, Intelligence should be your highest ability score, followed by Constitution or Dexterity. If you plan to join the School of Enchantment, make Charisma your next-best score.",
       "scores": "First Intelligence. Second Constitution or Dexterity.",
       "background":"sage background." }
   ]
