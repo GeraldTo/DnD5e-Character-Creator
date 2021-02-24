@@ -35,7 +35,7 @@ export default function Skills(props) {
 
     return (
         <div>
-            <h3>Skills</h3>
+            <h3>Choose Your Skills</h3>
             <h4>Description: </h4> A skill represents a specific aspect of an ability score by using its modifier.<br />
             <h4>Proficiency Bonus: </h4> +{1 + Math.ceil(props.level / 4)}<br />
             <h4>Options:</h4> found in traits, features, class, and background<br />

@@ -46,9 +46,19 @@ export default function Body() {
                 setFeats={setFeats}
                 url={url}
             />
+            <Information
+                url={url}
+                setName={setName}
+                classType={classType}
+                race={race}
+                alignment={alignment}
+                setLang={setLang}
+                lang={lang}
+                setAlignment={setAlignment} />
             <Ability
                 classType={classType}
                 race={race}
+                alignment={alignment}
                 url={url}
                 totalScore={totalScore}
                 setTotalScore={setTotalScore}
@@ -60,16 +70,7 @@ export default function Body() {
                 sethp={sethp}
             />
 
-            {/* <Information
-                url={url}
-                setName={setName}
-                classType={classType}
-                race={race}
-                alignment={alignment}
-                setLang={setLang}
-                lang={lang}
-                setAlignment={setAlignment} /> */}
-            {alignment && <Gear />}
+            {/* {alignment && <Gear />} */}
             {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}
         </div>
     )

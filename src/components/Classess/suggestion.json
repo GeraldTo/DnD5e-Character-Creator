@@ -4,50 +4,50 @@
     {
       "index": "barbarian",
       "scores": "First Strength. Second Constitution.",
-      "background":"outlander background." },
+      "background":"outlander" },
     {
       "index": "bard",
       "scores": "First Charisma. Second Dexterity.",
-      "background": "entertainer background."  },
+      "background": "entertainer"  },
     {
       "index": "cleric",
       "scores": "First Wisdom. Second Strength or Constitution.",
-      "background":"acolyte background."    },
+      "background":"acolyte"    },
     {
       "index": "druid",
       "scores": "First Wisdom. Second Constitution.",
-      "background":"hermit background."    },
+      "background":"hermit"    },
     {
       "index": "fighter",
       "scores": "First Strength (melee) or Dexterity (finesse). Second Constitution.",
-      "background":"soldier background."    },
+      "background":"soldier"    },
     {
       "index": "monk",
       "scores": "First Dexterity. Second Wisdom.",
-      "background":"hermit background."    },
+      "background":"hermit"    },
     {
       "index": "paladin",
       "scores": "First Strength. Second Charisma.",
-      "background":"noble background."    },
+      "background":"noble"    },
     {
       "index": "ranger",
       "scores": "First Dexterity or Strength (two-weapon). Second Wisdom.",
-      "background":"outlander background."    },
+      "background":"outlander"    },
     {
       "index": "rogue",
       "scores": "First Dexterity. Second Intelligence (investigation) or Charisma (deception/social).",
-      "background":"charlatan background."    },
+      "background":"charlatan"    },
     {
       "index": "sorcerer",
       "scores": "First Charisma. Second Constitution.",
-      "background":"hermit background."    },
+      "background":"hermit"    },
     {
       "index": "warlock",
       "scores": "First Charisma. Second Constitution.",
-      "background":"charlatan background."    },
+      "background":"charlatan"    },
     {
       "index": "wizard",
       "scores": "First Intelligence. Second Constitution or Dexterity.",
-      "background":"sage background." }
+      "background":"sage" }
   ]
 }

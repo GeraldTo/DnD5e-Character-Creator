@@ -15,7 +15,7 @@ export default function AbilityScore(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    if (props.classType) {
+    if (props.classType && props.alignment) {
         return (
             <div className="Ability">
                 <h2>Ability Scores and Modifiers:</h2>
