@@ -25,9 +25,9 @@ export default function Languages(props) {
             langCount = props.race.language_options ? props.race.language_options.choose : 0
         }
         let selectedLang = []
-        selectedLang.length = langCount
+        selectedLang.length = langCount + props.langNum
         setLangCounter(selectedLang)
-    }, [props.race])
+    }, [props.race, props.langNum])
 
     function handleAdd(e, i) {
         let all = [...langCounter]
@@ -55,8 +55,10 @@ export default function Languages(props) {
 
     return (
         <div>
-            <h3>Langauges</h3>
+            <h3>Languages</h3>
+            <h4>Disclaimer:</h4> resets when race or background info changes <br />
             <h4>Race Languages:</h4> {props.race.language_desc}<br />
+            <h4>Background Languages:</h4> {props.langNum}<br />
             <h4>Total Languages:</h4> {props.lang.join(', ')}<br />
             {multiLang()}
         </div>

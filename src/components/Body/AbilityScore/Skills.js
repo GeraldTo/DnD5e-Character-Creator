@@ -38,7 +38,7 @@ export default function Skills(props) {
             <h3>Choose Your Skills</h3>
             <h4>Description: </h4> A skill represents a specific aspect of an ability score by using its modifier.<br />
             <h4>Proficiency Bonus: </h4> +{1 + Math.ceil(props.level / 4)}<br />
-            <h4>Options:</h4> found in traits, features, class, and background<br />
+            <h4>Options:</h4> found in traits, features, class skills, and background<br />
             {props.skills.map((e, i) =>
                 <SkillItem key={i} skills={props.skills} setSkills={props.setSkills} index={i} display={display}
                     totalScore={props.totalScore} profBonus={1 + Math.ceil(props.level / 4)} />)

@@ -1,0 +1,11 @@
+.App{
+    margin: 10%;
+    margin-top: 2%;
+}
+
+.Start{
+    display: flex;
+    margin: auto;
+    margin-top: 5%;
+    font-size: 3rem;
+}

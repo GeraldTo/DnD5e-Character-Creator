@@ -5,10 +5,12 @@ import RacePick from './RacePick'
 import Traits from './Traits'
 
 export default function Races(props) {
+    const urlBase = process.env.REACT_APP_API
+    const raceUrl = process.env.REACT_APP_RACE
     const [api, setapi] = useState(null)
     const [traits, setTraits] = useState([])
     useEffect(() => {
-        axios.get(props.url + 'races/')
+        axios.get(urlBase + raceUrl)
             .then(response => {
                 setapi(response.data)
             })
@@ -18,9 +20,13 @@ export default function Races(props) {
     return (
         <div className="Races">
             <h2>Race </h2>
-            <RacePick api={api} url={props.url + 'races/'} setRace={props.setRace} />
-            <RaceInfo race={props.race} />
-            {props.race && <Traits url={props.url} race={props.race} traits={traits} setTraits={setTraits} />}
+            <RacePick api={api} url={urlBase + raceUrl} setRace={props.setRace} />
+            {props.race &&
+                <div>
+                    <RaceInfo race={props.race} />
+                    <Traits race={props.race} traits={traits} setTraits={setTraits} />
+                </div>}
+
         </div>
     )
 }
