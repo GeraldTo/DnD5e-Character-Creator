@@ -1,32 +1,34 @@
 import React from 'react'
 import axios from 'axios'
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 export default function ClassPick(props) {
-    const buttons = []
-    if (props.api) {
+    function setter(data, index) {
         const more_data = require('./suggestion.json');
-        function setter(response, index) {
-            let data = response.data
-            data = Object.assign(data, more_data.results[index])
-            props.setClassType(data)
-        }
-        for (let i = 0; i < props.api.count; i++) {
-            let current = props.api.results[i]
-            buttons.push(
-                <button
-                    className="buttonItem"
-                    key={i}
-                    onClick={() => axios.get(props.url + current.index)
-                        .then(response => setter(response, i))
-                    } >
-                    {current.name}
-                </button>)
-        }
+        props.setClassType(Object.assign(data, more_data.results[index]))
     }
+    const buttons = props.api ? props.api.results.map((current, i) => (
+        <Button
+            variant="outline-dark"
+            key={i}
+            onClick={() => axios.get(props.url + current.index)
+                .then(response => {
+                    setter(response.data, i)
+                })
+            } >
+            {current.name}
+        </Button>
+
+    )) : []
+
     return (
         <div className="buttonClass">
             <h3>Choose Class: </h3>
-            {buttons}
+            <ButtonGroup
+                size="lg"
+            >
+                {buttons}
+            </ButtonGroup>
         </div>
     )
 }

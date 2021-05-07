@@ -6,25 +6,21 @@ import Features from './Features'
 
 export default function Classes(props) {
     const [api, setapi] = useState(null)
+    const url = process.env.REACT_APP_API
+
     useEffect(() => {
-        axios.get(props.url + 'classes/')
+        axios.get(url + 'classes/')
             .then(response => {
                 setapi(response.data)
             })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    if (props.race) {
-        return (
-            <div>
-                <h2>Class </h2>
-                <ClassPick api={api} url={props.url + 'classes/'} setClassType={props.setClassType} />
-                <ClassInfo classType={props.classType} setProf={props.setProf} prof={props.prof} setsaving={props.setsaving} />
-                {props.classType && <Features url={props.url} classType={props.classType} feats={props.feats} setFeats={props.setFeats} level={props.level} />}
-            </div>
-        )
-    } else {
-        return <div></div>
-    }
-
-
+    return (
+        <div>
+            <h2>Class </h2>
+            <ClassPick api={api} url={url + 'classes/'} setClassType={props.setClassType} />
+            <ClassInfo classType={props.classType} setProf={props.setProf} prof={props.prof} setsaving={props.setsaving} />
+            {props.classType && <Features url={url} classType={props.classType} feats={props.feats} setFeats={props.setFeats} level={props.level} />}
+        </div>
+    )
 }

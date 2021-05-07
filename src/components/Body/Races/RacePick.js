@@ -6,7 +6,6 @@ import { Button, ButtonGroup } from 'react-bootstrap';
 export default function RacePick(props) {
     const buttons = props.api ? props.api.results.map((current, i) => (
         <Button
-            className="buttonItem"
             variant="outline-dark"
             key={i}
             onClick={() => axios.get(props.url + current.index)

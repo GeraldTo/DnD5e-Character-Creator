@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 export default function Alignment(props) {
     const [api, setapi] = useState(null)
-    const buttons = []
+
     useEffect(() => {
         axios.get(props.url)
             .then(response => {
@@ -11,27 +12,26 @@ export default function Alignment(props) {
             })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    if (api) {
-        for (let i = 0; i < api.count; i++) {
-            let current = api.results[i]
-
-            buttons.push(
-                <button
-                    className="buttonItem"
-                    key={i}
-                    onClick={() => axios.get(props.url + current.index)
-                        .then(response => {
-                            props.setAlignment(response.data)
-                        })
-                    }>
-                    {current.name}
-                </button>)
-        }
-    }
+    const buttons = api ? api.results.map((current, i) => (
+        <Button
+            variant="outline-dark"
+            key={i}
+            onClick={() => axios.get(props.url + current.index)
+                .then(response => {
+                    props.setAlignment(response.data)
+                })
+            } >
+            {current.name}
+        </Button>
+    )) : []
     return (
         <div>
             <h3>Choose Allignment</h3>
-            <div>{buttons}</div>
+            <ButtonGroup
+                size="lg"
+            >
+                {buttons}
+            </ButtonGroup>
             <h4>Alignment Suggestion:</h4> {props.race.alignment}<br />
             {props.alignment &&
                 <div>

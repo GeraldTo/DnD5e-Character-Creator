@@ -14,18 +14,18 @@ export default function Body() {
     const [level, setlevel] = useState(1)
     const [race, setRace] = useState(null)
     const [lang, setLang] = useState([])
-    // const [classType, setClassType] = useState(null)
-    // const [feats, setFeats] = useState([])
-    // const [prof, setProf] = useState([])
+    const [classType, setClassType] = useState(null)
+    const [feats, setFeats] = useState([])
+    const [prof, setProf] = useState([])
     // [str,dex,con,int,wis,cha]
-    // const abilities = ["Strength", "Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
-    // const [totalScore, setTotalScore] = useState(null)
-    // const [skills, setSkills] = useState([])
-    // const [hp, sethp] = useState(0)
-    // const [name, setName] = useState('')
-    // const [alignment, setAlignment] = useState(null)
-    // const [background, setBackground] = useState({ name: "", prof: [], langNum: 0, personalities: "", ideals: "", bonds: "", flaws: "" })
-    // const [data, setData] = useState(0)
+    const abilities = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
+    const [totalScore, setTotalScore] = useState(null)
+    const [skills, setSkills] = useState([])
+    const [hp, sethp] = useState(0)
+    const [name, setName] = useState('')
+    const [alignment, setAlignment] = useState(null)
+    const [background, setBackground] = useState({ name: "", prof: [], langNum: 0, personalities: "", ideals: "", bonds: "", flaws: "" })
+    const [data, setData] = useState(0)
     // useEffect(() => {
     //     console.log(url)
     // }, [url])
@@ -38,19 +38,17 @@ export default function Body() {
                 setRace={setRace}
                 setLang={setLang}
             />
-            {/*<Classes
-                classType={classType}
-                setClassType={setClassType}
-                race={race}
-                prof={prof}
-                setProf={setProf}
-                level={level}
-                feats={feats}
-                setFeats={setFeats}
-                url={url}
-            />
+            {race &&
+                <Classes
+                    classType={classType}
+                    setClassType={setClassType}
+                    prof={prof}
+                    setProf={setProf}
+                    level={level}
+                    feats={feats}
+                    setFeats={setFeats}
+                />}
             <Information
-                url={url}
                 setName={setName}
                 classType={classType}
                 race={race}
@@ -60,7 +58,7 @@ export default function Body() {
                 setAlignment={setAlignment}
                 background={background}
                 setBackground={setBackground} />
-            <Ability
+            {/*<Ability
                 classType={classType}
                 race={race}
                 alignment={alignment}
