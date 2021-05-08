@@ -18,7 +18,6 @@ export default function RacePick(props) {
     )) : []
     return (
         <div className="buttonRace">
-            <h3>Choose Race: </h3>
             <ButtonGroup
                 size="lg"
             >

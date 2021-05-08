@@ -1,32 +1,48 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import styles from '../Body.module.css'
+import { Table, Button } from 'react-bootstrap';
 
 export default function ClassInfo(props) {
+    const currentClass = props.classType
+    const [toggle, setToggle] = useState(false)
     useEffect(() => {
-        if (props.classType) {
-            let proficiencies = []
-            for (let i = 0; i < props.classType.proficiencies.length; i++) {
-                proficiencies.push(props.classType.proficiencies[i].index)
-            }
-            props.setProf(proficiencies)
+        if (currentClass) {
+            props.setProf(currentClass.proficiencies.map(e => (e.index)))
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.classType])
+    }, [currentClass])
 
-    if (props.classType) {
-        let saving = []
-        for (let i = 0; i < props.classType.saving_throws.length; i++) {
-            saving.push(props.classType.saving_throws[i].name)
-        }
-        return (
-            <div className="description">
-                <h3>{props.classType.name}</h3>
-                <h4>Hit Dice:</h4> 1d{props.classType.hit_die}<br />
-                <h4>Saving Throws:</h4> {saving.join(', ')} (Use Modifiers)<br />
-                <h4>Suggested Ability Scores:</h4> {props.classType.scores}<br />
-                <h4>Usual Background:</h4> {props.classType.background} <br />
-                <h4>Proficiencies:</h4> {props.prof.join(', ')}
-            </div>
-        )
-    }
-    else { return (<div> </div>) }
+    let saving = currentClass ? currentClass.saving_throws.map(e => (e.name)) : []
+
+    const head = ["Selected Class", "Hit Die", "Saving Throws", "Proficiencies"]
+    const classTable =
+        <Table>
+            <thead>
+                <tr>
+                    {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><h3>{currentClass.name}</h3></td>
+                    <td>1d{currentClass.hit_die}</td>
+                    <td>{saving.join(', ')} (Uses Modifiers)</td>
+                    <td>{props.prof.join(', ')}</td>
+                </tr>
+            </tbody>
+        </Table>
+
+    const extra =
+        <div>
+            <h4>Suggested Ability Scores:</h4> {currentClass.scores}<br />
+            <h4>Usual Background:</h4> {currentClass.background} <br />
+        </div>
+    return (
+        <div className={styles.Description}>
+            {classTable}
+            <Button variant="secondary" onClick={() => setToggle(prev => !prev)}>More Info</Button>
+            {toggle && extra}
+        </div>
+    )
+
 }

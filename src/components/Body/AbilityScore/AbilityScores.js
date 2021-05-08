@@ -8,6 +8,7 @@ import ScoreList from './ScoreList'
 import './AbilityScore.css'
 
 export default function AbilityScore(props) {
+    const url = process.env.REACT_APP_API
     useEffect(() => {
         const abilities = ["str", "dex", "con", "int", "wis", "cha"];
         const fullName = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
@@ -24,7 +25,7 @@ export default function AbilityScore(props) {
                 <Saving totalScore={props.totalScore} setTotalScore={props.setTotalScore} classType={props.classType} />
                 <h4>Initiative:</h4> {props.totalScore[1].mod < 0 ? props.totalScore[1].mod : '+' + props.totalScore[1].mod} (Dex Mod)<br />
                 <Hitdie hitdie={props.classType.hit_die} conMod={props.totalScore[2].mod} level={props.level} sethp={props.sethp} hp={props.hp} />
-                <Skills url={props.url} classType={props.classType} totalScore={props.totalScore} level={props.level} skills={props.skills} setSkills={props.setSkills} />
+                <Skills url={url} classType={props.classType} totalScore={props.totalScore} level={props.level} skills={props.skills} setSkills={props.setSkills} />
             </div>
         )
     }

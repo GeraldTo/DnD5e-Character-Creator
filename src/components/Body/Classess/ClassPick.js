@@ -23,7 +23,6 @@ export default function ClassPick(props) {
 
     return (
         <div className="buttonClass">
-            <h3>Choose Class: </h3>
             <ButtonGroup
                 size="lg"
             >

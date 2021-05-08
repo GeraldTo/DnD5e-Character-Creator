@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import RaceInfo from './RaceInfo'
 import RacePick from './RacePick'
-import Traits from './Traits'
+
 
 export default function Races(props) {
     const urlBase = process.env.REACT_APP_API
@@ -23,8 +23,8 @@ export default function Races(props) {
             <RacePick api={api} url={urlBase + raceUrl} setRace={props.setRace} />
             {props.race &&
                 <div>
-                    <RaceInfo race={props.race} />
-                    <Traits race={props.race} traits={traits} setTraits={setTraits} />
+                    <RaceInfo race={props.race} traits={traits} setTraits={setTraits} />
+                    {/* <Traits race={props.race} traits={traits} setTraits={setTraits} /> */}
                 </div>}
 
         </div>

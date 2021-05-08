@@ -19,8 +19,11 @@ export default function Classes(props) {
         <div>
             <h2>Class </h2>
             <ClassPick api={api} url={url + 'classes/'} setClassType={props.setClassType} />
-            <ClassInfo classType={props.classType} setProf={props.setProf} prof={props.prof} setsaving={props.setsaving} />
-            {props.classType && <Features url={url} classType={props.classType} feats={props.feats} setFeats={props.setFeats} level={props.level} />}
+            {props.classType &&
+                <div>
+                    <ClassInfo classType={props.classType} setProf={props.setProf} prof={props.prof} />
+                    <Features url={url} classType={props.classType} feats={props.feats} setFeats={props.setFeats} level={props.level} />
+                </div>}
         </div>
     )
 }

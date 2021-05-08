@@ -58,11 +58,10 @@ export default function Body() {
                 setAlignment={setAlignment}
                 background={background}
                 setBackground={setBackground} />
-            {/*<Ability
+            <Ability
                 classType={classType}
                 race={race}
                 alignment={alignment}
-                url={url}
                 totalScore={totalScore}
                 setTotalScore={setTotalScore}
                 level={level}
@@ -71,7 +70,7 @@ export default function Body() {
                 setSkills={setSkills}
                 hp={hp}
                 sethp={sethp}
-            /> */}
+            />
 
             {/* {alignment && <Gear />} */}
             {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}
