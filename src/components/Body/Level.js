@@ -6,7 +6,7 @@ export default function Level(props) {
 
     return (
         <div>
-            <h2>Set Starting Level:</h2>
+            <h2>Character Level:</h2>
             <Button variant="secondary" className={styles.IncDec} onClick={() => props.setlevel(prev => prev > 1 ? prev - 1 : prev)}> - </Button>
             {" "}<h2 style={{ "display": "inline" }}>{props.level}</h2>{" "}
             <Button variant="secondary" className={styles.IncDec} onClick={() => props.setlevel(prev => prev < 20 ? prev + 1 : prev)}> + </Button>

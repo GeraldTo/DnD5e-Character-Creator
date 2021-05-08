@@ -17,28 +17,27 @@ export default function Traits(props) {
                 })
             .catch(console.log)
     }, [props.race])
-    const head = ["Trait", "Description"]
-    const traitTable =
-        <Table>
-            <thead>
-                <tr>
-                    {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
-                </tr>
-            </thead>
-            <tbody>
-                {currentTraits.map((current, i) =>
-                    <tr key={i}>
-                        <td>{current.name}</td>
-                        <td>{current.desc}</td>
-                    </tr>
-                )}
-            </tbody>
-        </Table>
-
+    const head = ["Feature", "Description"]
     return (
         <div >
             <h4>Traits:</h4>
-            {currentTraits.length ? traitTable : ' None'}
+            {currentTraits.length ?
+                <Table>
+                    <thead>
+                        <tr>
+                            {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {currentTraits.map((current, i) =>
+                            <tr key={i}>
+                                <td>{current.name}</td>
+                                <td>{current.desc}</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </Table>
+                : ' None'}
         </div>
     )
 }

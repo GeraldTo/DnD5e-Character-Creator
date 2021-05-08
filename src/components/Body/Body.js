@@ -16,7 +16,7 @@ export default function Body() {
     const [lang, setLang] = useState([])
     const [classType, setClassType] = useState(null)
     const [feats, setFeats] = useState([])
-    const [prof, setProf] = useState([])
+    // const [prof, setProf] = useState([])
     // [str,dex,con,int,wis,cha]
     const abilities = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
     const [totalScore, setTotalScore] = useState(null)
@@ -42,8 +42,6 @@ export default function Body() {
                 <Classes
                     classType={classType}
                     setClassType={setClassType}
-                    prof={prof}
-                    setProf={setProf}
                     level={level}
                     feats={feats}
                     setFeats={setFeats}
