@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import axios from 'axios'
-import styles from '../Body.module.css'
 import { Table } from 'react-bootstrap';
 
 
