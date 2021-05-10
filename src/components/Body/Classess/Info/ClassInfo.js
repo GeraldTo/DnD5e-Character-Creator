@@ -10,7 +10,7 @@ export default function ClassInfo(props) {
     return (
         <div className={styles.Description}>
             <ClassTable level={props.level} classType={props.classType} setFeats={props.setFeats} feats={props.feats} />
-            <Button variant="secondary" onClick={() => setToggle(prev => !prev)}>More Info</Button>
+            <Button variant="secondary" onClick={() => setToggle(prev => !prev)}>More Info {toggle ? '^' : 'v'}</Button>
             {toggle && <ClassExtra classType={props.classType} feats={props.feats} />}
         </div>
     )

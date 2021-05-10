@@ -17,13 +17,12 @@ export default function Body() {
     const [classType, setClassType] = useState(null)
     const [feats, setFeats] = useState([])
     // const [prof, setProf] = useState([])
+    const [info, setInfo] = useState(null)
     // [str,dex,con,int,wis,cha]
     const abilities = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
     const [totalScore, setTotalScore] = useState(null)
     const [skills, setSkills] = useState([])
     const [hp, sethp] = useState(0)
-    const [name, setName] = useState('')
-    const [alignment, setAlignment] = useState(null)
     const [background, setBackground] = useState({ name: "", prof: [], langNum: 0, personalities: "", ideals: "", bonds: "", flaws: "" })
     const [data, setData] = useState(0)
     // useEffect(() => {
@@ -32,11 +31,9 @@ export default function Body() {
     return (
         <div >
             <Level level={level} setlevel={setlevel} />
-
             <Races
                 race={race}
                 setRace={setRace}
-                setLang={setLang}
             />
             {race &&
                 <Classes
@@ -46,20 +43,19 @@ export default function Body() {
                     feats={feats}
                     setFeats={setFeats}
                 />}
-            <Information
-                setName={setName}
+            {classType && <Information
                 classType={classType}
                 race={race}
-                alignment={alignment}
-                setLang={setLang}
+                info={info}
+                setInfo={setInfo}
                 lang={lang}
-                setAlignment={setAlignment}
+                setLang={setLang}
                 background={background}
-                setBackground={setBackground} />
-            <Ability
+                setBackground={setBackground} />}
+            {info && <Ability
                 classType={classType}
                 race={race}
-                alignment={alignment}
+                info={info}
                 totalScore={totalScore}
                 setTotalScore={setTotalScore}
                 level={level}
@@ -68,7 +64,7 @@ export default function Body() {
                 setSkills={setSkills}
                 hp={hp}
                 sethp={sethp}
-            />
+            />}
 
             {/* {alignment && <Gear />} */}
             {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}

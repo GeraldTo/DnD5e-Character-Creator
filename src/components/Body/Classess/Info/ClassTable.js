@@ -25,7 +25,7 @@ export default function ClassTable(props) {
             })
     }, [currentClass, props.level])
     let saving = currentClass ? currentClass.saving_throws.map(e => (e.name)) : []
-    const head = ["Selected Class", "Hit Die", "Saving Throws", "Proficiency Bonus", "Proficiencies", "Features"]
+    const head = ["Selected Class", "Hit Die", "Saving Throws", "Proficiency Bonus", "Features"]
     return (
         <Table>
             <thead>
@@ -39,9 +39,6 @@ export default function ClassTable(props) {
                     <td>1d{currentClass.hit_die}</td>
                     <td>{saving.join(', ')} (Uses Modifiers)</td>
                     <td>+{1 + Math.ceil(props.level / 4)}</td>
-                    <td><ListGroup variant="flush">
-                        {currentClass.proficiencies.map((e, i) => <ListGroup.Item key={i}>{e.name}</ListGroup.Item>)}
-                    </ListGroup> </td>
                     <td><ListGroup variant="flush">
                         {props.feats.map((e, i) => <ListGroup.Item key={i}>{e.name}</ListGroup.Item>)}
                     </ListGroup> </td>
