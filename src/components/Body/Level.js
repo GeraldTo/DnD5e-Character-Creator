@@ -11,7 +11,7 @@ export default function Level(props) {
                 variant="secondary"
                 className={styles.IncDec}
                 onClick={() => props.setlevel(prev => prev > 1 ? prev - 1 : prev)}> - </Button>
-            {" "}<h2 style={{ "display": "inline" }}>{props.level}</h2>{" "}
+            {" "}<h3 style={{ "display": "inline" }}>{props.level}</h3>{" "}
             <Button
                 variant="secondary"
                 className={styles.IncDec}

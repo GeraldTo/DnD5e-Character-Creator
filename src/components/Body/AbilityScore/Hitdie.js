@@ -1,6 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react"
 import React from 'react'
+import styles from '../Body.module.css'
+import { Button } from 'react-bootstrap';
+
 
 export default function Hitdie(props) {
     const [click, setClick] = useState(false)
@@ -28,19 +31,25 @@ export default function Hitdie(props) {
         return (
             <div>
                 <h3>Roll Hit Points:</h3>
-                <button onClick={() => handleClick()}>
-                    Roll HP</button>
-                {click && hpArr.reduce((a, b) => { return a + b }, 0) + (hpArr.length * props.conMod) + ' (' + hpArr.join(', ') + ')'}<br />
-                <h4>Description: </h4> HP = (Hit Die: 1d{props.hitdie} + Consitution Modifier: {props.conMod}) per level <br />
-                <div>
-                    <button
-                        className="IncDec"
-                        onClick={() => { props.setFirst(true); props.sethp(prev => prev > 0 ? prev - 1 : prev) }}> - </button>
-                    {props.hp}
-                    <button
-                        className="IncDec"
-                        onClick={() => { props.setFirst(true); props.sethp(prev => prev + 1) }}> + </button>
+                <div className={styles.Description}>
+                    <Button variant="secondary" onClick={() => handleClick()}>
+                        Roll HP
+                    </Button> {' '}
+                    {click && hpArr.reduce((a, b) => { return a + b }, 0) + (hpArr.length * props.conMod) + ' (' + hpArr.join(', ') + ')'}<br />
+                    HP = [Hit Die (1d{props.hitdie}) + Consitution Modifier ({props.conMod})] per level <br />
+                    <div>
+                        <Button variant="secondary"
+                            className={styles.IncDec}
+                            onClick={() => { props.setFirst(true); props.sethp(prev => prev > 0 ? prev - 1 : prev) }}>
+                            - </Button>
+                        <h3 style={{ "display": "inline" }}>{props.hp}</h3>
+                        <Button variant="secondary"
+                            className={styles.IncDec}
+                            onClick={() => { props.setFirst(true); props.sethp(prev => prev + 1) }}>
+                            + </Button>
+                    </div>
                 </div>
+
             </div>
         )
     }

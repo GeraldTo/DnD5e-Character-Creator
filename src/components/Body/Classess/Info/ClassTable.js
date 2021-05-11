@@ -27,7 +27,7 @@ export default function ClassTable(props) {
     let saving = currentClass ? currentClass.saving_throws.map(e => (e.name)) : []
     const head = ["Selected Class", "Hit Die", "Saving Throws", "Proficiency Bonus", "Features"]
     return (
-        <Table>
+        <Table >
             <thead>
                 <tr>
                     {head.map((el, i) => { return (<th key={i}>{el}</th>) })}

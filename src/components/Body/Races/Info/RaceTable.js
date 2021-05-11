@@ -6,7 +6,7 @@ export default function RaceTable(props) {
     const bonusDesc = currentRace.ability_bonuses.map(current => ('+' + current.bonus + ' ' + current.ability_score.name))
     const head = ["Selected Race", "Speed", "Size", "Race Bonus", "Traits"]
     return (
-        <Table>
+        <Table >
             <thead>
                 <tr>
                     {head.map((el, i) => { return (<th key={i}>{el}</th>) })}

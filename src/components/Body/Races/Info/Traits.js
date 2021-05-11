@@ -22,7 +22,7 @@ export default function Traits(props) {
         <div >
             <h4>Traits:</h4>
             {traits.length ?
-                <Table>
+                <Table striped>
                     <thead>
                         <tr>
                             {head.map((el, i) => { return (<th key={i}>{el}</th>) })}

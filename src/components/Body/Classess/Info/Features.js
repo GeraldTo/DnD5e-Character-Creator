@@ -8,7 +8,7 @@ export default function Features(props) {
     return (
         <div>
             <h4>Features:</h4>
-            <Table>
+            <Table striped>
                 <thead>
                     <tr>
                         {head.map((el, i) => { return (<th key={i}>{el}</th>) })}

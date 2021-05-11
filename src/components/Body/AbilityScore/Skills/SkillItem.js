@@ -16,12 +16,30 @@ export default function SkillItem(props) {
         !skillNum[props.index].prof && setExpert(false)
     }, [props.totalScore[ability].mod, props.profBonus, props.skills[props.index].prof, expert])
     return (
-        <div >
-            <input type="checkbox" onChange={() => handleCheck()} />
-            <div className="saveNum">
+        <tr >
+            <td  >
+                <input
+                    style={{ marginLeft: "1rem" }}
+                    type="checkbox"
+                    onChange={() => handleCheck()} />
+            </td>
+            <td >
                 {props.skills[props.index].total < 0 ? props.skills[props.index].total : '+' + props.skills[props.index].total}
-            </div> {props.skills[props.index].data.name} ({props.skills[props.index].data.ability_score.name}) {props.skills[props.index].prof && <>Expert<input type="checkbox" onChange={() => setExpert(prev => !prev)} /></>}
-            {props.display && <div><h4>Description:</h4> {props.skills[props.index].data.desc}</div>}
-        </div>
+            </td>
+            <td >
+                {props.skills[props.index].data.name}
+            </td>
+            <td>
+                ({props.skills[props.index].data.ability_score.name})
+            </td>
+            <td style={{ width: "3rem" }}>
+                {props.skills[props.index].prof && <input
+                    style={{ marginLeft: "1rem" }}
+                    type="checkbox"
+                    onChange={() => setExpert(prev => !prev)} />}
+            </td>
+
+            {props.display && <td>{props.skills[props.index].data.desc}</td>}
+        </tr>
     )
 }
