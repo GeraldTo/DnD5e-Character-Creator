@@ -19,10 +19,9 @@ export default function AbilityScore(props) {
         props.setTotalScore([...Array(6)].map(function (_, i) { return { index: abilities[i], fullName: fullName[i], total: 10, mod: 0, saving: false } }))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
     if (props.info.alignment) {
         return (
-            <div className="Ability">
+            <ListGroup.Item className="Ability">
                 <h2>Ability Scores and Modifiers:</h2>
                 <ListGroup variant="flush" className={styles.Description}>
                     <ListGroup.Item >
@@ -68,7 +67,7 @@ export default function AbilityScore(props) {
                     </React.Fragment>}
 
                 </ListGroup>
-            </div>
+            </ListGroup.Item>
         )
     }
     else {

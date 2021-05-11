@@ -46,16 +46,15 @@ export default function Languages(props) {
             {langList}</DropdownButton>
     })
     return (
-        <div >
-            {total > 0 && <div><h3>Languages</h3>
+        <React.Fragment >
+            {total > 0 && <ListGroup.Item><h3>Languages</h3>
                 <ListGroup variant="flush" className={styles.Description}>
                     <ListGroup.Item><h4>Race Languages:</h4> {props.race.language_desc} </ListGroup.Item>
                     <ListGroup.Item><h4>Addtitional Languages:</h4> {total} </ListGroup.Item>
                     <ListGroup.Item><h4>Total Languages:</h4> {props.lang.join(', ')} </ListGroup.Item>
                     <ListGroup.Item>{addLang}</ListGroup.Item>
                 </ListGroup>
-            </div>}
-
-        </div>
+            </ListGroup.Item>}
+        </React.Fragment>
     )
 }

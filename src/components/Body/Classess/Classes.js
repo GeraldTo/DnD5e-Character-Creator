@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import ClassInfo from "./Info/ClassInfo"
 import ClassPick from './ClassPick'
+import { ListGroup } from 'react-bootstrap';
+
 
 export default function Classes(props) {
     const [api, setapi] = useState(null)
@@ -15,12 +17,12 @@ export default function Classes(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
-        <div>
+        <ListGroup.Item>
             <h2>Class </h2>
             <ClassPick api={api} url={url + 'classes/'} setClassType={props.setClassType} />
             {props.classType &&
                 <ClassInfo classType={props.classType} setProf={props.setProf} level={props.level} feats={props.feats} setFeats={props.setFeats} />
             }
-        </div>
+        </ListGroup.Item>
     )
 }

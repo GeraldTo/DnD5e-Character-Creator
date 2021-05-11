@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styles from '../../Body.module.css'
 import SkillItem from './SkillItem'
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, ListGroup } from 'react-bootstrap';
 
 export default function Skills(props) {
     const [display, setDisplay] = useState(false)
@@ -34,34 +34,50 @@ export default function Skills(props) {
     return (
         <div>
             <h3>Choose Your Skills</h3>
-            <div className={styles.Description}>
-                <h4>Description: </h4> A skill represents a specific aspect of an ability score by using its modifier.<br />
-                <h4>Proficiency Bonus: </h4> +{1 + Math.ceil(props.level / 4)}<br />
+            <ListGroup variant="flush" className={styles.Description}>
+                <ListGroup.Item>
+                    <h4>Description: </h4> A skill represents a specific aspect of an ability score by using its modifier.
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <h4>Proficiency Bonus: </h4> +{1 + Math.ceil(props.level / 4)}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <h4>Choices:</h4>
+                    <ListGroup>
+                        <ListGroup.Item>
+                            Choose {props.classType.proficiency_choices[skillIndex].choose} {" "}
+                            from: {props.classType.proficiency_choices[skillIndex].from.map(e => (e.name.replace('Skill: ', ''))).join(', ')} <br />
+                        </ListGroup.Item>
+                        <ListGroup.Item>
 
-                <h4>Class:</h4>  Choose {props.classType.proficiency_choices[skillIndex].choose} {" "}
-                from: {props.classType.proficiency_choices[skillIndex].from.map(e => (e.name.replace('Skill: ', ''))).join(', ')} <br />
-                <h4>Options:</h4> Also check traits, features, and background<br />
-                <Button variant="secondary" onClick={() => setDisplay(prev => !prev)}>{display ? 'Hide Details' : 'Display Details'}</Button>
-                <Table striped size="sm">
-                    <thead>
-                        <tr>
-                            {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
-                            {display && <th>Description</th>}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {props.skills.map((e, i) =>
-                            <SkillItem key={i} skills={props.skills} setSkills={props.setSkills} index={i} display={display}
-                                totalScore={props.totalScore} profBonus={1 + Math.ceil(props.level / 4)} />)
-                        }
-                    </tbody>
-                </Table>
-                <div>
+                        </ListGroup.Item>
+                    </ListGroup>
+
+                    (Also check traits, features, and background)
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <Button variant="secondary" onClick={() => setDisplay(prev => !prev)}>{display ? 'Hide Details' : 'Display Details'}</Button>
+                    <Table striped size="sm">
+                        <thead>
+                            <tr>
+                                {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
+                                {display && <th>Description</th>}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {props.skills.map((e, i) =>
+                                <SkillItem key={i} skills={props.skills} setSkills={props.setSkills} index={i} display={display}
+                                    totalScore={props.totalScore} profBonus={1 + Math.ceil(props.level / 4)} />)
+                            }
+                        </tbody>
+                    </Table>
+                </ListGroup.Item>
+                <ListGroup.Item>
                     <h4>Passive Wisdom:</h4>{' '}
                     {props.skills.length > 0 ? (props.skills[11].total < 0 ? props.skills[11].total : '+' + props.skills[11].total) : +0} {' '}
                     (Perception)
-                </div>
-            </div>
+                </ListGroup.Item>
+            </ListGroup>
 
         </div>
     )

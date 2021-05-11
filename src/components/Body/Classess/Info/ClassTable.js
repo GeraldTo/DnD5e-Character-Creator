@@ -2,6 +2,8 @@
 import React, { useEffect } from 'react'
 import { Table, ListGroup } from 'react-bootstrap';
 import axios from 'axios'
+import styles from '../Class.module.css'
+
 
 // level classType setFeats feats
 export default function ClassTable(props) {
@@ -27,7 +29,7 @@ export default function ClassTable(props) {
     let saving = currentClass ? currentClass.saving_throws.map(e => (e.name)) : []
     const head = ["Selected Class", "Hit Die", "Saving Throws", "Proficiency Bonus", "Features"]
     return (
-        <Table >
+        <Table className={styles.Tables}>
             <thead>
                 <tr>
                     {head.map((el, i) => { return (<th key={i}>{el}</th>) })}

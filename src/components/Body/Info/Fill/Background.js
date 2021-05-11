@@ -17,12 +17,18 @@ export default function Background(props) {
             Flaws: {Math.floor(Math.random() * 6) + 1} (1d6)
         </div>)
     }
+    function handleProf(event, i) {
+        let prevProf = [...props.background.proficiencies]
+        prevProf[i] = event.target.value
+        props.setBackground(prev => ({ ...prev, proficiencies: prevProf }))
+    }
+
     return (
         <div className={styles.Description}>
             <Button variant="link" onClick={() => openInNewTab('https://d-n-d5e.fandom.com/wiki/Backgrounds')}>More Backgrounds</Button><br />
             <h4>Race Suggestion:</h4> {props.classType.background}<br />
             <h4>Background:</h4> <input type="text" onChange={event => props.setBackground(prev => ({ ...prev, name: event.target.value }))} /><br />
-            <h4>Proficiencies:</h4> <input /> <input /><br />
+            <h4>Proficiencies:</h4> <input value={props.background.proficiencies[0]} onChange={(e) => handleProf(e, 0)} /> <input value={props.background.proficiencies[1]} onChange={(e) => handleProf(e, 1)} /><br />
             <h4>Number of Languages:</h4> <input type="number" min="0" value={props.background.langNum} onFocus={e => e.target.select()} onChange={event =>
                 props.setBackground(prev => ({ ...prev, langNum: event.target.value ? Math.abs(parseInt(event.target.value)) : '' }))} /> (usually 0-3) <br />
             <button onClick={() => handleRoll()}>Roll Characteristics</button><br />

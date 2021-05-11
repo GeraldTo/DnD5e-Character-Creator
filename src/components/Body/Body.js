@@ -7,6 +7,7 @@ import ExportCSV from './ExportCSV';
 import Gear from './Gear/Gear'
 import Information from './Info/Information'
 import Level from './Level'
+import { ListGroup } from 'react-bootstrap';
 
 
 export default function Body() {
@@ -29,7 +30,7 @@ export default function Body() {
     //     console.log(url)
     // }, [url])
     return (
-        <div >
+        <ListGroup >
             <Level level={level} setlevel={setlevel} />
             <Races
                 race={race}
@@ -63,6 +64,7 @@ export default function Body() {
                     totalScore={totalScore}
                     setTotalScore={setTotalScore}
                     level={level}
+                    background={background}
                     skills={skills}
                     setSkills={setSkills}
                     hp={hp}
@@ -71,7 +73,7 @@ export default function Body() {
 
             {/* {alignment && <Gear />} */}
             {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}
-        </div>
+        </ListGroup>
     )
 }
 

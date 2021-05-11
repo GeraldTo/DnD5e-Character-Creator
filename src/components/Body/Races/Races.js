@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import RaceInfo from './Info/RaceInfo'
 import RacePick from './RacePick'
+import { ListGroup } from 'react-bootstrap';
 
 
 export default function Races(props) {
@@ -18,13 +19,13 @@ export default function Races(props) {
     }, [])
 
     return (
-        <div className="Races">
+        <ListGroup.Item className="Races">
             <h2>Race </h2>
             <RacePick api={api} url={urlBase + raceUrl} setRace={props.setRace} />
             {props.race &&
                 <RaceInfo race={props.race} />
             }
 
-        </div>
+        </ListGroup.Item>
     )
 }

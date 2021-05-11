@@ -5,7 +5,7 @@ import Alignment from './Fill/Alignment'
 import Languages from './Fill/Languages'
 import Background from './Fill/Background'
 import styles from '../Body.module.css'
-import { Button } from 'react-bootstrap';
+import { Button, ListGroup } from 'react-bootstrap';
 
 
 export default function Information(props) {
@@ -13,25 +13,27 @@ export default function Information(props) {
     const [toggle, setToggle] = useState(false)
     const [first, setFirst] = useState(false)
     useEffect(() => {
-        props.setBackground({ name: '', langNum: 0, personalities: '', ideals: '', bonds: '', flaws: '' })
+        props.setBackground({ name: '', langNum: '', personalities: '', ideals: '', bonds: '', flaws: '', proficiencies: ["", ""] })
         props.setInfo({ name: '', age: '', height: '', weight: '', eyes: '', skin: '', hair: '' })
     }, [])
     return (
-        <div>
+        <ListGroup.Item>
             <h2>Choose Information</h2>
             <div className={styles.Description}>
                 {props.info &&
-                    <div>
+                    <ListGroup variant="flush">
                         < Name setInfo={props.setInfo} info={props.info} race={props.race} setFirst={setFirst} />
-                        {first && <div>
-                            <Button variant="secondary" onClick={() => setToggle(prev => !prev)}>Backgrounds (optional) {toggle ? '^' : 'v'}</Button>
-                            {toggle && <Background classType={props.classType} background={props.background} setBackground={props.setBackground} />}
+                        {first && <React.Fragment>
+                            <ListGroup.Item>
+                                <Button variant="secondary" onClick={() => setToggle(prev => !prev)}>Backgrounds (optional) {toggle ? '^' : 'v'}</Button>
+                                {toggle && <Background classType={props.classType} background={props.background} setBackground={props.setBackground} />}
+                            </ListGroup.Item>
                             <Languages url={url + 'languages/'} race={props.race} background={props.background} setLang={props.setLang} lang={props.lang} />
                             <Alignment race={props.race} url={url + 'alignments/'} info={props.info} setInfo={props.setInfo} />
-                        </div>}
-                    </div>}
+                        </React.Fragment>}
+                    </ListGroup>}
             </div>
-        </div>
+        </ListGroup.Item>
     )
 
 }

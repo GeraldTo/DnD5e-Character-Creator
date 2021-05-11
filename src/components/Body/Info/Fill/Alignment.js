@@ -26,7 +26,7 @@ export default function Alignment(props) {
         </Button>
     )) : []
     return (
-        <div>
+        <ListGroup.Item>
             <h3>Allignments</h3>
             <div className={styles.Description}>
                 <h4>Suggestion:</h4> {props.race.alignment}<br />
@@ -40,6 +40,6 @@ export default function Alignment(props) {
                     </ListGroup>}
             </div>
 
-        </div>
+        </ListGroup.Item>
     )
 }
