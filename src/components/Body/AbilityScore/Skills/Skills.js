@@ -30,13 +30,17 @@ export default function Skills(props) {
     }, [])
 
     const head = ["Bonus", "Total", "Skill", "Mod", "Expert"]
+    const skillIndex = props.classType.proficiency_choices[0].from[0].index.indexOf('skill') === 0 ? 0 : 2
     return (
         <div>
             <h3>Choose Your Skills</h3>
             <div className={styles.Description}>
                 <h4>Description: </h4> A skill represents a specific aspect of an ability score by using its modifier.<br />
                 <h4>Proficiency Bonus: </h4> +{1 + Math.ceil(props.level / 4)}<br />
-                <h4>Options:</h4> found in traits, features, class skills, and background<br />
+
+                <h4>Class:</h4>  Choose {props.classType.proficiency_choices[skillIndex].choose} {" "}
+                from: {props.classType.proficiency_choices[skillIndex].from.map(e => (e.name.replace('Skill: ', ''))).join(', ')} <br />
+                <h4>Options:</h4> Also check traits, features, and background<br />
                 <Button variant="secondary" onClick={() => setDisplay(prev => !prev)}>{display ? 'Hide Details' : 'Display Details'}</Button>
                 <Table striped size="sm">
                     <thead>

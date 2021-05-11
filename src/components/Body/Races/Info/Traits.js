@@ -17,7 +17,7 @@ export default function Traits(props) {
                 })
             .catch(console.log)
     }, [props.race])
-    const head = ["Feature", "Description"]
+    const head = ["Trait", "Description"]
     return (
         <div >
             <h4>Traits:</h4>
