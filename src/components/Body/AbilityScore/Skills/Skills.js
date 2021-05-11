@@ -5,9 +5,10 @@ import SkillItem from './SkillItem'
 
 export default function Skills(props) {
     const [display, setDisplay] = useState(false)
+    const url = process.env.REACT_APP_API
     function handleInit(response) {
-        const urls = (response.data.results).map(e => props.url + 'skills/' + e.index)
-        let promiseArray = urls.map(url => axios.get(url));
+        const urls = (response.data.results).map(e => url + 'skills/' + e.index)
+        let promiseArray = urls.map(e => axios.get(e));
         Promise.all(promiseArray)
             .then(
                 results => {
@@ -27,7 +28,7 @@ export default function Skills(props) {
             .catch(console.log)
     }
     useEffect(() => {
-        axios.get(props.url + 'skills/')
+        axios.get(url + 'skills/')
             .then(response => {
                 handleInit(response)
             })

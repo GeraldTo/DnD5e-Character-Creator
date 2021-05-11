@@ -43,28 +43,31 @@ export default function Body() {
                     feats={feats}
                     setFeats={setFeats}
                 />}
-            {classType && <Information
-                classType={classType}
-                race={race}
-                info={info}
-                setInfo={setInfo}
-                lang={lang}
-                setLang={setLang}
-                background={background}
-                setBackground={setBackground} />}
-            {info && <Ability
-                classType={classType}
-                race={race}
-                info={info}
-                totalScore={totalScore}
-                setTotalScore={setTotalScore}
-                level={level}
-                feats={feats}
-                skills={skills}
-                setSkills={setSkills}
-                hp={hp}
-                sethp={sethp}
-            />}
+            {classType &&
+                <Information
+                    classType={classType}
+                    race={race}
+                    info={info}
+                    setInfo={setInfo}
+                    lang={lang}
+                    setLang={setLang}
+                    background={background}
+                    setBackground={setBackground}
+                />}
+            {info &&
+                <Ability
+                    classType={classType}
+                    race={race}
+                    feats={feats}
+                    info={info}
+                    totalScore={totalScore}
+                    setTotalScore={setTotalScore}
+                    level={level}
+                    skills={skills}
+                    setSkills={setSkills}
+                    hp={hp}
+                    sethp={sethp}
+                />}
 
             {/* {alignment && <Gear />} */}
             {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}

@@ -1,14 +1,18 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react'
-import Rolls from "./Rolls";
 import Saving from './Saving'
 import Hitdie from './Hitdie'
-import Skills from './Skills'
-import ScoreList from './ScoreList'
+import Skills from './Skills/Skills'
+import ScoreList from './Scores/ScoreList'
+import styles from '../Body.module.css'
 import './AbilityScore.css'
+import { ListGroup } from 'react-bootstrap';
+
 
 export default function AbilityScore(props) {
     const url = process.env.REACT_APP_API
+    const [firstScore, setFirstScore] = useState(false)
+    const [firstHP, setFirstHP] = useState(false)
     useEffect(() => {
         const abilities = ["str", "dex", "con", "int", "wis", "cha"];
         const fullName = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
@@ -20,12 +24,50 @@ export default function AbilityScore(props) {
         return (
             <div className="Ability">
                 <h2>Ability Scores and Modifiers:</h2>
-                <Rolls />
-                <ScoreList race={props.race} classType={props.classType} feats={props.feats} totalScore={props.totalScore} setTotalScore={props.setTotalScore} />
-                <Saving totalScore={props.totalScore} setTotalScore={props.setTotalScore} classType={props.classType} />
-                <h4>Initiative:</h4> {props.totalScore[1].mod < 0 ? props.totalScore[1].mod : '+' + props.totalScore[1].mod} (Dex Mod)<br />
-                <Hitdie hitdie={props.classType.hit_die} conMod={props.totalScore[2].mod} level={props.level} sethp={props.sethp} hp={props.hp} />
-                <Skills url={url} classType={props.classType} totalScore={props.totalScore} level={props.level} skills={props.skills} setSkills={props.setSkills} />
+                <ListGroup variant="flush" className={styles.Description}>
+                    <ListGroup.Item >
+                        <ScoreList
+                            race={props.race}
+                            classType={props.classType}
+                            feats={props.feats}
+                            setFirst={setFirstScore}
+                            totalScore={props.totalScore}
+                            setTotalScore={props.setTotalScore}
+                        />
+                    </ListGroup.Item>
+                    {firstScore && <React.Fragment>
+                        <ListGroup.Item >
+                            <Saving
+                                totalScore={props.totalScore}
+                                setTotalScore={props.setTotalScore}
+                                classType={props.classType}
+                            />
+                        </ListGroup.Item>
+                        <ListGroup.Item >
+                            <h4>Initiative:</h4> {props.totalScore[1].mod < 0 ? props.totalScore[1].mod : '+' + props.totalScore[1].mod} (Dex Mod)<br />
+                        </ListGroup.Item>
+                        <ListGroup.Item >
+                            <Hitdie
+                                hitdie={props.classType.hit_die}
+                                conMod={props.totalScore[2].mod}
+                                setFirst={setFirstHP}
+                                level={props.level}
+                                sethp={props.sethp}
+                                hp={props.hp} />
+                        </ListGroup.Item>
+                        {firstHP && <ListGroup.Item >
+                            <Skills
+                                url={url}
+                                classType={props.classType}
+                                totalScore={props.totalScore}
+                                level={props.level}
+                                skills={props.skills}
+                                setSkills={props.setSkills}
+                            />
+                        </ListGroup.Item>}
+                    </React.Fragment>}
+
+                </ListGroup>
             </div>
         )
     }

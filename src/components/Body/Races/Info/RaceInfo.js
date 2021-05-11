@@ -6,12 +6,11 @@ import RaceExtra from './RaceExtra'
 
 export default function RaceInfo(props) {
     const [toggle, setToggle] = useState(false)
-
     return (
         <div className={styles.Description}>
             <RaceTable race={props.race} />
             <Button variant="secondary" onClick={() => setToggle(prev => !prev)}>More Info {toggle ? '^' : 'v'}</Button>
-            {toggle && <RaceExtra race={props.race} traits={props.traits} setTraits={props.setTraits} />}
+            {toggle && <RaceExtra race={props.race} />}
         </div>
     )
 }

@@ -6,6 +6,7 @@ export default function AbilityItem(props) {
     }
 
     function handleChange(isDec) {
+        props.setFirst(true)
         props.setScore(props.score.map(function (e, i) {
             return i === props.index ? (isDec ? (e > 0 ? e - 1 : e) : ((e + props.bonus[props.index]) < 20 ? e + 1 : e)) : e
         }))

@@ -8,7 +8,7 @@ export default function Races(props) {
     const urlBase = process.env.REACT_APP_API
     const raceUrl = process.env.REACT_APP_RACE
     const [api, setapi] = useState(null)
-    const [traits, setTraits] = useState([])
+
     useEffect(() => {
         axios.get(urlBase + raceUrl)
             .then(response => {
@@ -22,10 +22,8 @@ export default function Races(props) {
             <h2>Race </h2>
             <RacePick api={api} url={urlBase + raceUrl} setRace={props.setRace} />
             {props.race &&
-                <div>
-                    <RaceInfo race={props.race} traits={traits} setTraits={setTraits} />
-                    {/* <Traits race={props.race} traits={traits} setTraits={setTraits} /> */}
-                </div>}
+                <RaceInfo race={props.race} />
+            }
 
         </div>
     )
