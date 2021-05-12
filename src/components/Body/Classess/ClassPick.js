@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, ButtonGroup } from 'react-bootstrap';
+import styles from './Class.module.css'
+
 
 export default function ClassPick(props) {
     function setter(data, index) {
@@ -25,6 +27,7 @@ export default function ClassPick(props) {
         <div className="buttonClass">
             <ButtonGroup
                 size="lg"
+                className={styles.Buttons}
             >
                 {buttons}
             </ButtonGroup>

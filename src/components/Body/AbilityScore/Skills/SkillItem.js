@@ -15,12 +15,20 @@ export default function SkillItem(props) {
         props.setSkills(skillNum)
         !skillNum[props.index].prof && setExpert(false)
     }, [props.totalScore[ability].mod, props.profBonus, props.skills[props.index].prof, expert])
+
+    function checked() {
+        return props.skills[props.index].prof
+            || props.proficiencies.indexOf(props.skills[props.index].data.index) > -1
+    }
+
     return (
         <tr >
             <td  >
                 <input
                     style={{ marginLeft: "1rem" }}
                     type="checkbox"
+                    checked={checked()}
+                    // disabled={props.proficiencies.indexOf(props.skills[props.index].data.index) > -1}
                     onChange={() => handleCheck()} />
             </td>
             <td >
@@ -33,12 +41,11 @@ export default function SkillItem(props) {
                 ({props.skills[props.index].data.ability_score.name})
             </td>
             <td style={{ width: "3rem" }}>
-                {props.skills[props.index].prof && <input
+                {checked() && <input
                     style={{ marginLeft: "1rem" }}
                     type="checkbox"
                     onChange={() => setExpert(prev => !prev)} />}
             </td>
-
             {props.display && <td>{props.skills[props.index].data.desc}</td>}
         </tr>
     )

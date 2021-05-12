@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Button, ButtonGroup } from 'react-bootstrap';
+import styles from './Race.module.css'
 
 
 export default function RacePick(props) {
@@ -11,19 +12,16 @@ export default function RacePick(props) {
             onClick={() => axios.get(props.url + current.index)
                 .then(response => {
                     props.setRace(response.data)
-                })
-            } >
+                })} >
             {current.name}
         </Button>
     )) : []
     return (
-        <div className="buttonRace">
-            <ButtonGroup
-                size="lg"
-            >
-                {buttons}
-            </ButtonGroup>
-
-        </div>
+        <ButtonGroup
+            size="lg"
+            className={styles.Buttons}
+        >
+            {buttons}
+        </ButtonGroup>
     )
 }

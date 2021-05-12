@@ -21,7 +21,7 @@ export default function AbilityItem(props) {
             </div>
             <div>
                 <Button variant="secondary" className={styles.IncDec} onClick={() => handleChange(true)}> - </Button>
-                <h4 style={{ "display": "inline" }}>{props.score[props.index]}</h4>
+                <h4 style={{ "display": "inline" }}>~{props.score[props.index]}~</h4>
                 <Button variant="secondary" className={styles.IncDec} onClick={() => handleChange(false)}> + </Button>
             </div>
             <div>

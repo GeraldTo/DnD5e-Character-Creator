@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import AbilityItem from "./AbilityItem";
 import Rolls from "./Rolls";
-import styles from '../../Body.module.css'
+import styles from '../AbilityScore.module.css'
 
 
 export default function ScoreList(props) {
@@ -31,7 +31,7 @@ export default function ScoreList(props) {
                 <h4>Feats:</h4> Can Distribute{' '}
                 {(props.feats.filter(e => e.index.split('-')[1] === 'ability')).length}{' '}
                 Point(s) to any Score(s)  (Can't increse past 20)
-                <div className="AbilityList">
+                <div className={styles.Buttons}>
                     {Array.apply(null, Array(6))
                         .map((x, i) => (<AbilityItem
                             key={i}

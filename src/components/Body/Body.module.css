@@ -1,7 +1,8 @@
 .IncDec{
-    margin: 5px;
-    height: 2em;
-    width: 2em;
+    margin: 1px;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
     font-size: x-large !important
 }
 
@@ -9,3 +10,4 @@
     margin-left: 5%;
     margin-right: 5%;
 }
+

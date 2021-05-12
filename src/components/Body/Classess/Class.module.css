@@ -2,3 +2,8 @@
     border: 1px solid black;
     margin:1rem
 }
+
+.Buttons{
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill,minmax(7rem,1fr));
+}

@@ -15,7 +15,7 @@ export default function AbilityScore(props) {
     const [firstHP, setFirstHP] = useState(false)
     useEffect(() => {
         const abilities = ["str", "dex", "con", "int", "wis", "cha"];
-        const fullName = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
+        const fullName = ["Str", "Dex", "Con", "Int", "Wis", "Cha"];
         props.setTotalScore([...Array(6)].map(function (_, i) { return { index: abilities[i], fullName: fullName[i], total: 10, mod: 0, saving: false } }))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -57,6 +57,7 @@ export default function AbilityScore(props) {
                         {firstHP && <ListGroup.Item >
                             <Skills
                                 url={url}
+                                proficiencies={props.background.proficiencies}
                                 classType={props.classType}
                                 totalScore={props.totalScore}
                                 level={props.level}

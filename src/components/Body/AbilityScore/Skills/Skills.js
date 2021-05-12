@@ -28,7 +28,7 @@ export default function Skills(props) {
                 handleInit(response.data)
             })
     }, [])
-
+    const currentProf = props.proficiencies.filter(e => e)
     const head = ["Bonus", "Total", "Skill", "Mod", "Expert"]
     const skillIndex = props.classType.proficiency_choices[0].from[0].index.indexOf('skill') === 0 ? 0 : 2
     return (
@@ -48,12 +48,14 @@ export default function Skills(props) {
                             Choose {props.classType.proficiency_choices[skillIndex].choose} {" "}
                             from: {props.classType.proficiency_choices[skillIndex].from.map(e => (e.name.replace('Skill: ', ''))).join(', ')} <br />
                         </ListGroup.Item>
-                        <ListGroup.Item>
-
-                        </ListGroup.Item>
+                        {currentProf.length > 0 &&
+                            <ListGroup.Item>
+                                Backgrounds: {currentProf.join(', ')}
+                            </ListGroup.Item>}
                     </ListGroup>
-
-                    (Also check traits, features, and background)
+                    <ListGroup.Item>
+                        (Also check traits and features for any extra skills)
+                    </ListGroup.Item>
                 </ListGroup.Item>
                 <ListGroup.Item>
                     <Button variant="secondary" onClick={() => setDisplay(prev => !prev)}>{display ? 'Hide Details' : 'Display Details'}</Button>
@@ -66,8 +68,14 @@ export default function Skills(props) {
                         </thead>
                         <tbody>
                             {props.skills.map((e, i) =>
-                                <SkillItem key={i} skills={props.skills} setSkills={props.setSkills} index={i} display={display}
-                                    totalScore={props.totalScore} profBonus={1 + Math.ceil(props.level / 4)} />)
+                                <SkillItem key={i}
+                                    skills={props.skills}
+                                    setSkills={props.setSkills}
+                                    index={i}
+                                    display={display}
+                                    proficiencies={currentProf}
+                                    totalScore={props.totalScore}
+                                    profBonus={1 + Math.ceil(props.level / 4)} />)
                             }
                         </tbody>
                     </Table>

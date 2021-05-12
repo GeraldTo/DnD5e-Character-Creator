@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import styles from '../../Body.module.css'
+import styles from '../Info.module.css'
 import { Button, ButtonGroup, ListGroup } from 'react-bootstrap';
 
 export default function Alignment(props) {
@@ -30,7 +30,7 @@ export default function Alignment(props) {
             <h3>Allignments</h3>
             <div className={styles.Description}>
                 <h4>Suggestion:</h4> {props.race.alignment}<br />
-                <ButtonGroup size="lg"  >
+                <ButtonGroup size="lg" className={styles.Buttons} >
                     {buttons}
                 </ButtonGroup>
                 {props.info.alignment &&
