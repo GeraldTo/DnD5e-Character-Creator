@@ -28,7 +28,7 @@ export default function SkillItem(props) {
                     style={{ marginLeft: "1rem" }}
                     type="checkbox"
                     checked={checked()}
-                    // disabled={props.proficiencies.indexOf(props.skills[props.index].data.index) > -1}
+                    disabled={props.proficiencies.indexOf(props.skills[props.index].data.index) > -1}
                     onChange={() => handleCheck()} />
             </td>
             <td >
