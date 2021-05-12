@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react'
+import { Table } from 'react-bootstrap';
+import styles from './AbilityScore.module.css'
+
 
 export default function Saving(props) {
     useEffect(() => {
@@ -15,22 +18,32 @@ export default function Saving(props) {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.classType])
-    let totalSaving = []
-    for (let i = 0; i < props.totalScore.length; i++) {
-        totalSaving.push(<div key={i}>
-            {props.totalScore[i].saving ?
-                (props.totalScore[i].mod < 0 ?
-                    <div className="saveNum">{props.totalScore[i].mod}</div>
-                    : <div className="saveNum">{'+' + props.totalScore[i].mod}</div>)
-                : <div className="saveNum">   </div>} {props.totalScore[i].fullName}
-        </div>)
-    }
+    const totalSaving = props.totalScore.map((e, i) => {
+        const score = e.mod + (e.saving ? (1 + Math.ceil(props.level / 4)) : 0)
+        return <tr>
+            <td><input type="checkbox" checked={e.saving} /></td>
+            <td >{score < 0 ? score : '+' + score}</td>
+            <td>{e.fullName}</td>
+        </tr>
+    })
+    const head = ["Proficient", "Score", "Type"]
     return (
         <div>
             <h4>Saving Throws:</h4>
-            {totalSaving}
+            <Table size="sm" className={styles.Saves}>
+                <thead>
+                    <tr>
+                        {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
+                    </tr>
+                </thead>
+                <tbody>
+                    {totalSaving}
+                </tbody>
+            </Table>
+
         </div>
     )
 
 
 }
+// +{1 + Math.ceil(props.level / 4)}
