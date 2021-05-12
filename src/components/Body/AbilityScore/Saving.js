@@ -20,8 +20,8 @@ export default function Saving(props) {
     }, [props.classType])
     const totalSaving = props.totalScore.map((e, i) => {
         const score = e.mod + (e.saving ? (1 + Math.ceil(props.level / 4)) : 0)
-        return <tr>
-            <td><input type="checkbox" checked={e.saving} /></td>
+        return <tr key={i}>
+            <td><input type="checkbox" checked={e.saving} readOnly /></td>
             <td >{score < 0 ? score : '+' + score}</td>
             <td>{e.fullName}</td>
         </tr>

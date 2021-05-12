@@ -19,6 +19,8 @@ export default function AbilityScore(props) {
         props.setTotalScore([...Array(6)].map(function (_, i) { return { index: abilities[i], fullName: fullName[i], total: 10, mod: 0, saving: false } }))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+
     if (props.info.alignment) {
         return (
             <ListGroup.Item className="Ability">

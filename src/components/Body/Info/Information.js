@@ -13,11 +13,10 @@ export default function Information(props) {
     const [toggle, setToggle] = useState(false)
     const [first, setFirst] = useState(false)
     useEffect(() => {
-        props.setInfo({ name: '', age: '', height: '', weight: '', eyes: '', skin: '', hair: '' })
-    }, [])
-    useEffect(() => {
         props.setBackground({ name: '', langNum: '', personalities: '', ideals: '', bonds: '', flaws: '', proficiencies: ["", ""] })
+        props.setInfo({ name: '', age: '', height: '', weight: '', eyes: '', skin: '', hair: '' })
     }, [props.race])
+
     return (
         <ListGroup.Item>
             <h2>Choose Information</h2>

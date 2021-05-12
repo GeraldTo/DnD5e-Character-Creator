@@ -5,37 +5,37 @@ export default function SkillItem(props) {
     const currentSkill = props.skills[props.index]
     const ability = (props.totalScore.map(e => e.index)).indexOf(currentSkill.data.ability_score.index)
     const [expert, setExpert] = useState(false)
+
     function handleCheck() {
         let skillNum = [...props.skills]
-        skillNum[props.index].prof =
-            props.proficiencies.indexOf(currentSkill.data.index) > -1 ?
-                true : !skillNum[props.index].prof
+        skillNum[props.index].prof = !skillNum[props.index].prof
         props.setSkills(skillNum)
     }
+
     useEffect(() => {
         let skillNum = [...props.skills]
-        skillNum[props.index].prof = checked() ? true : false
+        skillNum[props.index].prof = props.same
         props.setSkills(skillNum)
-    }, [])
+    }, [props.same])
+
     useEffect(() => {
         let skillNum = [...props.skills]
-        skillNum[props.index].total = skillNum[props.index].prof ? props.totalScore[ability].mod + (expert ? 2 * props.profBonus : props.profBonus) : props.totalScore[ability].mod
+        let total = expert ? 2 * props.profBonus : props.profBonus
+        skillNum[props.index].total =
+            skillNum[props.index].prof ?
+                props.totalScore[ability].mod + total :
+                props.totalScore[ability].mod
         props.setSkills(skillNum)
         !skillNum[props.index].prof && setExpert(false)
     }, [props.totalScore[ability].mod, props.profBonus, currentSkill.prof, expert])
 
-    function checked() {
-        return currentSkill.prof
-            || props.proficiencies.indexOf(currentSkill.data.index) > -1
-    }
     return (
         <tr >
             <td  >
                 <input
                     style={{ marginLeft: "1rem" }}
                     type="checkbox"
-                    checked={checked()}
-                    // disabled={props.proficiencies.indexOf(currentSkill.data.index) > -1}
+                    checked={currentSkill.prof}
                     onChange={() => handleCheck()} />
             </td>
             <td >
@@ -48,7 +48,7 @@ export default function SkillItem(props) {
                 ({currentSkill.data.ability_score.name})
             </td>
             <td style={{ width: "3rem" }}>
-                {checked() && <input
+                {currentSkill.prof && <input
                     style={{ marginLeft: "1rem" }}
                     type="checkbox"
                     onChange={() => setExpert(prev => !prev)} />}

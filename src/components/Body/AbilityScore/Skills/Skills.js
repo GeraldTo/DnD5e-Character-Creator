@@ -29,6 +29,7 @@ export default function Skills(props) {
             })
     }, [])
     const currentProf = props.proficiencies.filter(e => e)
+    const currentSkill = props.skills
     const head = ["Bonus", "Total", "Skill", "Mod", "Expert"]
     const skillIndex = props.classType.proficiency_choices[0].from[0].index.indexOf('skill') === 0 ? 0 : 2
     return (
@@ -67,13 +68,13 @@ export default function Skills(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.skills.map((e, i) =>
+                            {currentSkill.map((e, i) =>
                                 <SkillItem key={i}
-                                    skills={props.skills}
+                                    skills={currentSkill}
                                     setSkills={props.setSkills}
                                     index={i}
                                     display={display}
-                                    proficiencies={currentProf}
+                                    same={currentProf.indexOf(currentSkill[i].data.index) > -1}
                                     totalScore={props.totalScore}
                                     profBonus={1 + Math.ceil(props.level / 4)} />)
                             }
@@ -82,7 +83,7 @@ export default function Skills(props) {
                 </ListGroup.Item>
                 <ListGroup.Item>
                     <h4>Passive Wisdom:</h4>{' '}
-                    {props.skills.length > 0 ? (props.skills[11].total < 0 ? props.skills[11].total : '+' + props.skills[11].total) : +0} {' '}
+                    {currentSkill.length > 0 ? (currentSkill[11].total < 0 ? currentSkill[11].total : '+' + currentSkill[11].total) : +0} {' '}
                     (Perception)
                 </ListGroup.Item>
             </ListGroup>
