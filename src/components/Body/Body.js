@@ -71,7 +71,7 @@ export default function Body() {
                     sethp={sethp}
                 />}
 
-            {/* {alignment && <Gear />} */}
+            {skills.map(e => e.prof).indexOf(true) > -1 && <Gear />}
             {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}
         </ListGroup>
     )
