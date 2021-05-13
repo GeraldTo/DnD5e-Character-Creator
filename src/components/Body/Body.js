@@ -71,7 +71,7 @@ export default function Body() {
                     sethp={sethp}
                 />}
 
-            {skills.map(e => e.prof).indexOf(true) > -1 && <Gear totalScore={totalScore} level={level} />}
+            {skills.map(e => e.prof).indexOf(true) > -1 && <Gear totalScore={totalScore} level={level} classType={classType} />}
             {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}
         </ListGroup>
     )

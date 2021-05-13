@@ -69,7 +69,7 @@ export default function Weapons(props) {
     const [type, setType] = useState([true, true, true])
     function handleType(index, newType) {
         let currType = [...type]
-        currType[index] = !currType[index]
+        currType[index] = newType
         setType(currType)
     }
     function handleProf(index) {
@@ -110,7 +110,7 @@ export default function Weapons(props) {
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     {current.category_range} Weapon
-                        </ListGroup.Item>
+                                </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Form.Check
                                         label="Proficient"
@@ -142,7 +142,10 @@ export default function Weapons(props) {
                                         name="group1"
                                         label="DEX"
                                         checked={!current.strMod} /><br />
-                                    (Weapons with the fineese property can choose)
+                                    (Weapons with the fineese property can choose mod)
+                                </ListGroup.Item>
+                                <ListGroup.Item>
+                                    Weight: {current.weight}lb
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Button variant="outline-danger" onClick={() => handleRemove(i)}>Remove</Button>
@@ -152,8 +155,6 @@ export default function Weapons(props) {
                     </ListGroup.Item>
                 )}
             </ListGroup>
-
-
         </div>
     )
 }

@@ -42,7 +42,7 @@ export default function Hitdie(props) {
                             className={styles.IncDec}
                             onClick={() => { props.setFirst(true); props.sethp(prev => prev > 0 ? prev - 1 : prev) }}>
                             - </Button>
-                        <h3 style={{ "display": "inline" }}>{props.hp}</h3>
+                        <h3 style={{ "display": "inline" }}> {props.hp} </h3>
                         <Button variant="secondary"
                             className={styles.IncDec}
                             onClick={() => { props.setFirst(true); props.sethp(prev => prev + 1) }}>
