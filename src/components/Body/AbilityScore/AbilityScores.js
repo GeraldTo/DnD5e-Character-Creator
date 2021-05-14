@@ -78,6 +78,7 @@ export default function AbilityScore(props) {
 									conMod={props.totalScore[2].mod}
 									setFirst={setFirstHP}
 									level={props.level}
+									done={props.done}
 									sethp={props.sethp}
 									hp={props.hp}
 								/>
