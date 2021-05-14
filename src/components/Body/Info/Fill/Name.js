@@ -5,9 +5,12 @@ import Looks from './Looks'
 
 export default function Name(props) {
     const [toggle, setToggle] = useState(false)
-    const handleChange = (event) => {
+    const handleChangeC = (event) => {
+        props.setInfo(prev => ({ ...prev, cname: event.target.value }))
+    }
+    const handleChangeP = (event) => {
         props.setFirst(true)
-        props.setInfo(prev => ({ ...prev, name: event.target.value }))
+        props.setInfo(prev => ({ ...prev, pname: event.target.value }))
     }
     return (
         <ListGroup.Item>
@@ -17,14 +20,27 @@ export default function Name(props) {
                 </InputGroup.Prepend>
                 <FormControl
                     placeholder="Enter Name"
-                    value={props.info.name}
+                    value={props.info.cname}
                     onFocus={e => e.target.select()}
-                    onChange={handleChange} />
-                <InputGroup.Append>
+                    onChange={handleChangeC} />
+                {/* <InputGroup.Append>
                     <Button size="lg" variant="secondary" onClick={() => setToggle(prev => !prev)}>Change Looks (Optional) {toggle ? '^' : 'v'}</Button>
-                </InputGroup.Append>
+                </InputGroup.Append> */}
             </InputGroup>
-            {toggle && <Looks race={props.race} setInfo={props.setInfo} info={props.info} />}
+            <InputGroup size="lg">
+                <InputGroup.Prepend >
+                    <InputGroup.Text ><h4>Player Name</h4></InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl
+                    placeholder="Enter Name"
+                    value={props.info.pname}
+                    onFocus={e => e.target.select()}
+                    onChange={handleChangeP} />
+                {/* <InputGroup.Append>
+                    <Button size="lg" variant="secondary" onClick={() => setToggle(prev => !prev)}>Change Looks (Optional) {toggle ? '^' : 'v'}</Button>
+                </InputGroup.Append> */}
+            </InputGroup>
+            {/* {toggle && <Looks race={props.race} setInfo={props.setInfo} info={props.info} />} */}
         </ListGroup.Item>
 
     )

@@ -12,6 +12,7 @@ export default function RacePick(props) {
             onClick={() => axios.get(props.url + current.index)
                 .then(response => {
                     props.setRace(response.data)
+
                 })} >
             {current.name}
         </Button>

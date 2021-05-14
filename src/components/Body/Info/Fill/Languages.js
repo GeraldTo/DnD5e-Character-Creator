@@ -19,7 +19,8 @@ export default function Languages(props) {
             })
     }, [])
     useEffect(() => {
-        props.setLang(props.race.languages.map(e => e.name))
+        // props.setLang(props.race.languages.map(e => e.name))
+        props.setInfo(prev => ({ ...prev, languages: props.race.languages.map(e => e.name) }))
         setLangCounter(Array.apply(null, Array(total)))
     }, [props.race, props.background])
 
@@ -28,21 +29,27 @@ export default function Languages(props) {
         let langList = []
         langList.push(<Dropdown.Item key={-1} eventKey="">---</Dropdown.Item>)
         if (api) {
-            const available = api.results.filter((e) => props.lang.indexOf(e.name) < 0)
+            const available = api.results.filter((e) => props.info.languages.indexOf(e.name) < 0)
             langList = langList.concat(available.map((e, j) => (<Dropdown.Item key={j} eventKey={e.name}>{e.name}</Dropdown.Item>)))
         }
         function handleAdd(e, i) {
             let all = [...langCounter]
             const raceLang = props.race.languages.map(e => e.name)
             all[i] = e ? e : undefined
+
             setLangCounter(all)
-            props.setLang(raceLang.concat(all.filter(el => el)))
+            props.setInfo(prev => ({
+                ...prev,
+                languages: raceLang.concat(all.filter(el => el))
+            }))
+            // props.setLang(raceLang.concat(all.filter(el => el)))
         }
+
         return <DropdownButton
             key={i}
             onSelect={e => handleAdd(e, i)}
             variant="secondary"
-            title={langCounter[i] ? langCounter[i] : "Select Language"} >
+            title={langCounter[i] ? (langCounter[i].length ? "Select Language" : langCounter[i]) : "Select Language"} >
             {langList}</DropdownButton>
     })
     return (
@@ -51,7 +58,7 @@ export default function Languages(props) {
                 <ListGroup variant="flush" className={styles.Description}>
                     <ListGroup.Item><h4>Race Languages:</h4> {props.race.language_desc} </ListGroup.Item>
                     <ListGroup.Item><h4>Addtitional Languages:</h4> {total} </ListGroup.Item>
-                    <ListGroup.Item><h4>Total Languages:</h4> {props.lang.join(', ')} </ListGroup.Item>
+                    <ListGroup.Item><h4>Total Languages:</h4> {props.info.languages.join(', ')} </ListGroup.Item>
                     <ListGroup.Item>{addLang}</ListGroup.Item>
                 </ListGroup>
             </ListGroup.Item>}

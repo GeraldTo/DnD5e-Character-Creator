@@ -14,7 +14,7 @@ export default function Information(props) {
     const [first, setFirst] = useState(false)
     useEffect(() => {
         props.setBackground({ name: '', langNum: '', personalities: '', ideals: '', bonds: '', flaws: '', proficiencies: ["", ""] })
-        props.setInfo({ name: '', age: '', height: '', weight: '', eyes: '', skin: '', hair: '' })
+        props.setInfo({ cname: '', pname: '', alignment: '', languages: [] })
     }, [props.race])
 
     return (
@@ -29,7 +29,7 @@ export default function Information(props) {
                                 <Button variant="secondary" onClick={() => setToggle(prev => !prev)}>Backgrounds (optional) {toggle ? '^' : 'v'}</Button>
                                 {toggle && <Background classType={props.classType} background={props.background} setBackground={props.setBackground} />}
                             </ListGroup.Item>
-                            <Languages url={url + 'languages/'} race={props.race} background={props.background} setLang={props.setLang} lang={props.lang} />
+                            <Languages url={url + 'languages/'} race={props.race} background={props.background} setInfo={props.setInfo} info={props.info} />
                             <Alignment race={props.race} url={url + 'alignments/'} info={props.info} setInfo={props.setInfo} />
                         </React.Fragment>}
                     </ListGroup>}

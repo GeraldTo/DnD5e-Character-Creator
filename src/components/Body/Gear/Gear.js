@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Inventory from './Inventory'
+// import Inventory from './Inventory'
 import Armor from './Armor'
 import Weapons from './Weapons'
 import styles from './Gear.module.css'
@@ -14,13 +14,12 @@ export default function Gear(props) {
     return (
         <ListGroup.Item >
             <h2>Pick Gear</h2>
-
             <div className={styles.Description}>
                 <h3>Proficiencies: {props.classType.proficiencies.map((e, i) => e.name).join(', ')}</h3>
                 (Choose from your proficiencies or you'll have disadvantages)
                 <Weapons inventory={inventory} setInventory={setInventory} url={url} totalScore={props.totalScore} level={props.level} />
                 <Armor inventory={inventory} setInventory={setInventory} url={url} totalScore={props.totalScore} setAc={setAc} ac={ac} />
-                <Inventory />
+                {/* <Inventory /> */}
             </div>
         </ListGroup.Item>
     )

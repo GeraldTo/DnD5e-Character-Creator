@@ -31,13 +31,12 @@ export default function Weapons(props) {
     }, [])
 
     useEffect(() => {
-        const newObj = totalWeapons.filter(e => e).map((e, i) => ({
-            weapon: e,
+        const newObj = totalWeapons.filter(e => e).map((e, i) => (Object.assign(e, {
             atk: (e.prof ? (1 + Math.ceil(props.level / 4)) : 0)
                 + (e.strMod ? props.totalScore[0].mod : props.totalScore[1].mod),
             dmg: e.damage ? e.damage.damage_dice
                 + ' ' + e.damage.damage_type.name : 'None'
-        }))
+        })))
         props.setInventory(prev => ({ ...prev, weapons: newObj }))
     }, [totalWeapons, props.totalScore[0].mod, props.totalScore[1].mod, props.level])
 
