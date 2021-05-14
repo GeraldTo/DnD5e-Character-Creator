@@ -49,6 +49,7 @@ export default function AbilityScore(props) {
 								feats={props.feats}
 								setFirst={setFirstScore}
 								totalScore={props.totalScore}
+								done={props.done}
 								setTotalScore={props.setTotalScore}
 							/>
 						)}

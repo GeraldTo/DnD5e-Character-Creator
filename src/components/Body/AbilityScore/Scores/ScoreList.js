@@ -37,6 +37,7 @@ export default function ScoreList(props) {
 				<div className={styles.Buttons}>
 					{Array.apply(null, Array(6)).map((x, i) => (
 						<AbilityItem
+							done={props.done}
 							key={i}
 							bonus={raceBonus}
 							totalScore={props.totalScore}

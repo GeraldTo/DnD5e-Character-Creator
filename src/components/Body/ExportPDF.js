@@ -83,7 +83,11 @@ export default function ExportPDF(props) {
 											<input
 												name="Strengthmod"
 												className="statmod"
-												defaultValue={props.totalScore[0].mod}
+												defaultValue={
+													props.totalScore[0].mod < 0
+														? props.totalScore[0].mod
+														: "+" + props.totalScore[0].mod
+												}
 											/>
 										</div>
 									</li>
@@ -100,7 +104,11 @@ export default function ExportPDF(props) {
 											<input
 												name="Dexteritymod"
 												className="statmod"
-												defaultValue={props.totalScore[1].mod}
+												defaultValue={
+													props.totalScore[1].mod < 0
+														? props.totalScore[1].mod
+														: "+" + props.totalScore[1].mod
+												}
 											/>
 										</div>
 									</li>
@@ -117,7 +125,11 @@ export default function ExportPDF(props) {
 											<input
 												name="Constitutionmod"
 												className="statmod"
-												defaultValue={props.totalScore[2].mod}
+												defaultValue={
+													props.totalScore[2].mod < 0
+														? props.totalScore[2].mod
+														: "+" + props.totalScore[2].mod
+												}
 											/>
 										</div>
 									</li>
@@ -135,7 +147,11 @@ export default function ExportPDF(props) {
 											<input
 												name="Intelligencemod"
 												className="statmod"
-												defaultValue={props.totalScore[3].mod}
+												defaultValue={
+													props.totalScore[3].mod < 0
+														? props.totalScore[3].mod
+														: "+" + props.totalScore[3].mod
+												}
 											/>
 										</div>
 									</li>
@@ -152,7 +168,11 @@ export default function ExportPDF(props) {
 											<input
 												name="Wisdommod"
 												className="statmod"
-												defaultValue={props.totalScore[4].mod}
+												defaultValue={
+													props.totalScore[4].mod < 0
+														? props.totalScore[4].mod
+														: "+" + props.totalScore[4].mod
+												}
 											/>
 										</div>
 									</li>
@@ -169,7 +189,11 @@ export default function ExportPDF(props) {
 											<input
 												name="Charismamod"
 												className="statmod"
-												defaultValue={props.totalScore[5].mod}
+												defaultValue={
+													props.totalScore[5].mod < 0
+														? props.totalScore[5].mod
+														: "+" + props.totalScore[5].mod
+												}
 											/>
 										</div>
 									</li>
@@ -188,7 +212,7 @@ export default function ExportPDF(props) {
 									</div>
 									<input
 										name="proficiencybonus"
-										defaultValue={1 + Math.ceil(props.level / 4)}
+										defaultValue={"+" + (1 + Math.ceil(props.level / 4))}
 									/>
 								</div>
 								<div className="saves list-section box">
@@ -465,7 +489,10 @@ export default function ExportPDF(props) {
 							<label htmlFor="otherprofs">
 								Other Proficiencies and Languages
 							</label>
-							<textarea name="otherprofs"></textarea>
+							<textarea
+								name="otherprofs"
+								defaultValue={props.info.languages.join("\n")}
+							></textarea>
 						</div>
 					</section>
 					<section>
@@ -482,7 +509,11 @@ export default function ExportPDF(props) {
 									<input
 										name="initiative"
 										type="text"
-										defaultValue={props.totalScore[1].mod}
+										defaultValue={
+											props.totalScore[1].mod < 0
+												? props.totalScore[1].mod
+												: "+" + props.totalScore[1].mod
+										}
 									/>
 								</div>
 							</div>
@@ -500,7 +531,7 @@ export default function ExportPDF(props) {
 								<div className="regular">
 									<div className="max">
 										<label htmlFor="maxhp">Hit Point Maximum</label>
-										<input name="maxhp" type="text" readOnly />
+										<input name="maxhp" type="text" defaultValue={props.hp} />
 									</div>
 									<div className="current">
 										<label htmlFor="currenthp">Current Hit Points</label>
@@ -516,16 +547,15 @@ export default function ExportPDF(props) {
 								<div>
 									<div className="total">
 										<label htmlFor="totalhd">Total</label>
-										<input readOnly name="totalhd" type="text" />
+										<input
+											name="totalhd"
+											type="text"
+											defaultValue={"1d" + props.classType.hit_die}
+										/>
 									</div>
 									<div className="remaining">
 										<label htmlFor="remaininghd">Hit Dice</label>
-										<input
-											readOnly
-											name="remaininghd"
-											type="text"
-											value={"1d" + props.classType.hit_die}
-										/>
+										<input readOnly name="remaininghd" type="text" />
 									</div>
 								</div>
 							</div>
