@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.sass";
 import Pdf from "react-to-pdf";
+import { Button } from "react-bootstrap";
 
 export default function ExportPDF(props) {
 	const ref = React.createRef();
@@ -14,7 +15,11 @@ export default function ExportPDF(props) {
 				y={5}
 				scale={0.85}
 			>
-				{({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+				{({ toPdf }) => (
+					<Button style={{ marginLeft: "30%" }} onClick={toPdf}>
+						Generate Pdf
+					</Button>
+				)}
 			</Pdf>
 			<form className="charsheet" ref={ref}>
 				<header>
@@ -71,19 +76,39 @@ export default function ExportPDF(props) {
 									<li>
 										<div className="score">
 											<label htmlFor="Strengthscore">Strength</label>
-											<input readOnly name="Strengthscore" className="stat" />
+											<input
+												readOnly
+												name="Strengthscore"
+												className="stat"
+												value={props.totalScore[0].total}
+											/>
 										</div>
 										<div className="modifier">
-											<input readOnly name="Strengthmod" className="statmod" />
+											<input
+												readOnly
+												name="Strengthmod"
+												className="statmod"
+												value={props.totalScore[0].mod}
+											/>
 										</div>
 									</li>
 									<li>
 										<div className="score">
 											<label htmlFor="Dexterityscore">Dexterity</label>
-											<input readOnly name="Dexterityscore" className="stat" />
+											<input
+												readOnly
+												name="Dexterityscore"
+												className="stat"
+												value={props.totalScore[1].total}
+											/>
 										</div>
 										<div className="modifier">
-											<input name="Dexteritymod" readOnly className="statmod" />
+											<input
+												name="Dexteritymod"
+												readOnly
+												className="statmod"
+												value={props.totalScore[1].mod}
+											/>
 										</div>
 									</li>
 									<li>
@@ -93,6 +118,7 @@ export default function ExportPDF(props) {
 												readOnly
 												name="Constitutionscore"
 												className="stat"
+												value={props.totalScore[2].total}
 											/>
 										</div>
 										<div className="modifier">
@@ -100,18 +126,11 @@ export default function ExportPDF(props) {
 												name="Constitutionmod"
 												readOnly
 												className="statmod"
+												value={props.totalScore[2].mod}
 											/>
 										</div>
 									</li>
-									<li>
-										<div className="score">
-											<label htmlFor="Wisdomscore">Wisdom</label>
-											<input readOnly name="Wisdomscore" className="stat" />
-										</div>
-										<div className="modifier">
-											<input readOnly name="Wisdommod" />
-										</div>
-									</li>
+
 									<li>
 										<div className="score">
 											<label htmlFor="Intelligencescore">Intelligence</label>
@@ -119,6 +138,7 @@ export default function ExportPDF(props) {
 												readOnly
 												name="Intelligencescore"
 												className="stat"
+												value={props.totalScore[3].total}
 											/>
 										</div>
 										<div className="modifier">
@@ -126,16 +146,45 @@ export default function ExportPDF(props) {
 												name="Intelligencemod"
 												className="statmod"
 												readOnly
+												value={props.totalScore[3].mod}
+											/>
+										</div>
+									</li>
+									<li>
+										<div className="score">
+											<label htmlFor="Wisdomscore">Wisdom</label>
+											<input
+												readOnly
+												name="Wisdomscore"
+												className="stat"
+												value={props.totalScore[4].total}
+											/>
+										</div>
+										<div className="modifier">
+											<input
+												readOnly
+												name="Wisdommod"
+												value={props.totalScore[4].mod}
 											/>
 										</div>
 									</li>
 									<li>
 										<div className="score">
 											<label htmlFor="Charismascore">Charisma</label>
-											<input name="Charismascore" className="stat" readOnly />
+											<input
+												name="Charismascore"
+												className="stat"
+												readOnly
+												value={props.totalScore[5].total}
+											/>
 										</div>
 										<div className="modifier">
-											<input name="Charismamod" className="statmod" readOnly />
+											<input
+												name="Charismamod"
+												className="statmod"
+												readOnly
+												value={props.totalScore[5].mod}
+											/>
 										</div>
 									</li>
 								</ul>
@@ -161,52 +210,119 @@ export default function ExportPDF(props) {
 									<ul>
 										<li>
 											<label htmlFor="Strength-save">Strength</label>
-											<input name="Strength-save" type="text" />
+											<input
+												name="Strength-save"
+												type="text"
+												value={
+													props.totalScore[0].mod +
+													(props.totalScore[0].saving
+														? 1 + Math.ceil(props.level / 4) + 2
+														: 0)
+												}
+											/>
 											<input
 												name="Strength-save-prof"
 												type="checkbox"
+												checked={props.totalScore[0].saving}
 												readOnly
 											/>
 										</li>
 										<li>
 											<label htmlFor="Dexterity-save">Dexterity</label>
-											<input name="Dexterity-save" type="text" />
+											<input
+												name="Dexterity-save"
+												type="text"
+												value={
+													props.totalScore[1].mod +
+													(props.totalScore[1].saving
+														? 1 + Math.ceil(props.level / 4)
+														: 0)
+												}
+											/>
 											<input
 												name="Dexterity-save-prof"
 												type="checkbox"
+												checked={props.totalScore[1].saving}
 												readOnly
 											/>
 										</li>
 										<li>
 											<label htmlFor="Constitution-save">Constitution</label>
-											<input name="Constitution-save" type="text" />
+											<input
+												name="Constitution-save"
+												type="text"
+												value={
+													props.totalScore[2].mod +
+													(props.totalScore[2].saving
+														? 1 + Math.ceil(props.level / 4)
+														: 0)
+												}
+											/>
 											<input
 												name="Constitution-save-prof"
 												type="checkbox"
 												readOnly
+												checked={props.totalScore[2].saving}
 											/>
 										</li>
 										<li>
-											<label htmlFor="Wisdom-save">Wisdom</label>
-											<input name="Wisdom-save" type="text" readOnly />
-											<input name="Wisdom-save-prof" type="checkbox" readOnly />
-										</li>
-										<li>
 											<label htmlFor="Intelligence-save">Intelligence</label>
-											<input name="Intelligence-save" readOnly type="text" />
+											<input
+												name="Intelligence-save"
+												readOnly
+												type="text"
+												value={
+													props.totalScore[3].mod +
+													(props.totalScore[3].saving
+														? 1 + Math.ceil(props.level / 4)
+														: 0)
+												}
+											/>
 											<input
 												name="Intelligence-save-prof"
 												type="checkbox"
 												readOnly
+												checked={props.totalScore[3].saving}
+											/>
+										</li>
+										<li>
+											<label htmlFor="Wisdom-save">Wisdom</label>
+											<input
+												name="Wisdom-save"
+												type="text"
+												readOnly
+												value={
+													props.totalScore[4].mod +
+													(props.totalScore[4].saving
+														? 1 + Math.ceil(props.level / 4)
+														: 0)
+												}
+											/>
+											<input
+												name="Wisdom-save-prof"
+												type="checkbox"
+												readOnly
+												checked={props.totalScore[4].saving}
 											/>
 										</li>
 										<li>
 											<label htmlFor="Charisma-save">Charisma</label>
-											<input name="Charisma-save" readOnly type="text" />
+											<input
+												name="Charisma-save"
+												readOnly
+												type="text"
+												value={
+													props.totalScore[5].mod +
+													(props.totalScore[5].saving
+														? 1 + Math.ceil(props.level / 4)
+														: 0)
+												}
+											/>
 											<input
 												name="Charisma-save-prof"
 												type="checkbox"
 												readOnly
+												checked={props.totalScore[5].saving}
 											/>
 										</li>
 									</ul>
@@ -387,7 +503,11 @@ export default function ExportPDF(props) {
 							<div className="initiative">
 								<div>
 									<label htmlFor="initiative">Initiative</label>
-									<input readOnly name="initiative" type="text" />
+									<input
+										name="initiative"
+										type="text"
+										defaultValue={props.totalScore[1].mod}
+									/>
 								</div>
 							</div>
 							<div className="speed">
@@ -425,7 +545,12 @@ export default function ExportPDF(props) {
 									</div>
 									<div className="remaining">
 										<label htmlFor="remaininghd">Hit Dice</label>
-										<input readOnly name="remaininghd" type="text" />
+										<input
+											readOnly
+											name="remaininghd"
+											type="text"
+											value={"1d" + props.classType.hit_die}
+										/>
 									</div>
 								</div>
 							</div>
@@ -572,6 +697,12 @@ export default function ExportPDF(props) {
 								<label htmlFor="features">Features & Traits</label>
 								<div name="features">
 									{props.race.traits.map((e) => (
+										<>
+											{e.name}
+											<br />
+										</>
+									))}
+									{props.feats.map((e) => (
 										<>
 											{e.name}
 											<br />
