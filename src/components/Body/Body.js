@@ -7,8 +7,7 @@ import ExportPDF from './ExportPDF'
 import Gear from './Gear/Gear'
 import Information from './Info/Information'
 import Level from './Level'
-import { ListGroup } from 'react-bootstrap';
-import Pdf from "react-to-pdf";
+import { ListGroup, Button } from 'react-bootstrap';
 
 export default function Body() {
 
@@ -31,51 +30,44 @@ export default function Body() {
     // }, [url])
 
     const ref = React.createRef();
-    return (
-        <ListGroup >
-            <Level level={level} setlevel={setlevel} />
-            <Races
-                race={race}
-                setRace={setRace}
-            />
-            {race &&
-                <Classes
-                    classType={classType}
-                    setClassType={setClassType}
-                    level={level}
-                    feats={feats}
-                    setFeats={setFeats}
-                />}
-
-            {classType &&
-                <React.Fragment>
-                    <Information
+    const [done, setDone] = useState(false)
+    if (!done) {
+        return (
+            <ListGroup >
+                <Level level={level} setlevel={setlevel} />
+                <Races
+                    race={race}
+                    setRace={setRace}
+                />
+                {race &&
+                    <Classes
                         classType={classType}
-                        race={race}
-                        info={info}
-                        setInfo={setInfo}
-                        background={background}
-                        setBackground={setBackground}
-                    />
-                </React.Fragment>
-            }
-
-            {
-                info &&
-                <div>
-                    <Pdf targetRef={ref} filename="code-example.pdf" x={15} y={5} scale={.85}>
-                        {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
-                    </Pdf>
-                    <ExportPDF
-                        refer={ref}
+                        setClassType={setClassType}
                         level={level}
-                        race={race}
-                        info={info}
-                        classType={classType}
-                    />
-                </div>
-            }
-            {/* {info &&
+                        feats={feats}
+                        setFeats={setFeats}
+                    />}
+
+                {classType &&
+                    <React.Fragment>
+                        <Information
+                            classType={classType}
+                            race={race}
+                            info={info}
+                            setInfo={setInfo}
+                            background={background}
+                            setBackground={setBackground}
+                        />
+                    </React.Fragment>
+                }
+
+                {
+                    info &&
+                    <Button variant="success" onClick={() => setDone(true)}>
+                        Done (No Going Back)
+                    </Button>
+                }
+                {/* {info &&
                 <React.Fragment>
                     <Ability
                         classType={classType}
@@ -96,8 +88,20 @@ export default function Body() {
                 </React.Fragment>
             } */}
 
-            {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}
-        </ListGroup>
-    )
+                {/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}
+            </ListGroup>
+        )
+    }
+    else {
+        return (
+            <ExportPDF
+                refer={ref}
+                level={level}
+                race={race}
+                info={info}
+                background={background}
+                classType={classType}
+            />)
+    }
 }
 

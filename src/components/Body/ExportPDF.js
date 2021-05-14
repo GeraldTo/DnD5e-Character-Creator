@@ -1,11 +1,18 @@
 import React from 'react'
 import './style.sass'
+import Pdf from "react-to-pdf";
+
 
 export default function ExportPDF(props) {
+    const ref = React.createRef();
+    const currb = props.background
     return (
-        <div ref={props.refer} >
-            <form className="charsheet">
-                <header ref={props.refer}>
+        <div  >
+            <Pdf targetRef={ref} filename={props.info.cname} x={15} y={5} scale={.85}>
+                {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+            </Pdf>
+            <form className="charsheet" ref={ref}>
+                <header >
                     <section className="charname" >
                         <label htmlFor="charname">Character Name</label><input name="charname" value={props.info.cname} readOnly />
                     </section>
@@ -15,7 +22,7 @@ export default function ExportPDF(props) {
                                 <label htmlFor="classlevel">Class & Level</label><input readOnly name="classlevel" value={props.classType.name + " lvl " + props.level} />
                             </li>
                             <li>
-                                <label htmlFor="background">Background</label><input readOnly name="background" />
+                                <label htmlFor="background">Background</label><input readOnly name="background" value={currb.name ? currb.name : ''} />
                             </li>
                             <li>
                                 <label htmlFor="playername">Player Name</label><input readOnly value={props.info.pname} name="playername" />
@@ -380,22 +387,22 @@ export default function ExportPDF(props) {
                     <section>
                         <section className="flavor">
                             <div className="personality">
-                                <label htmlFor="personality">Personality</label><textarea name="personality"></textarea>
+                                <label htmlFor="personality">Personality</label><textarea name="personality" value={currb.personalities ? currb.personalities : ''}></textarea>
                             </div>
                             <div className="ideals">
-                                <label htmlFor="ideals">Ideals</label><textarea name="ideals"></textarea>
+                                <label htmlFor="ideals">Ideals</label><textarea name="ideals" value={currb.ideals ? currb.ideals : ''}></textarea>
                             </div>
                             <div className="bonds">
-                                <label htmlFor="bonds">Bonds</label><textarea name="bonds"></textarea>
+                                <label htmlFor="bonds">Bonds</label><textarea name="bonds" value={currb.bonds ? currb.bonds : ''}></textarea>
                             </div>
                             <div className="flaws">
-                                <label htmlFor="flaws">Flaws</label><textarea name="flaws"></textarea>
+                                <label htmlFor="flaws">Flaws</label><textarea name="flaws" value={currb.flaws ? currb.flaws : ''}></textarea>
                             </div>
                         </section>
                         <section className="features">
                             <div>
                                 <label htmlFor="features">Features & Traits</label>
-                                <textarea name="features" value={props.race.traits.map(e => e.name + '\n').join('')}></textarea>
+                                <div name="features">{props.race.traits.map(e => <>{e.name}<br /></>)}</div>
                             </div>
                         </section>
                     </section>

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { InputGroup, ListGroup, FormControl, Button } from 'react-bootstrap';
-import Looks from './Looks'
+import React from 'react'
+import { InputGroup, ListGroup, FormControl } from 'react-bootstrap';
+// import Looks from './Looks'
 
 
 export default function Name(props) {
-    const [toggle, setToggle] = useState(false)
+    // const [toggle, setToggle] = useState(false)
     const handleChangeC = (event) => {
         props.setInfo(prev => ({ ...prev, cname: event.target.value }))
     }
