@@ -32,20 +32,21 @@ export default function Body() {
 	const [done, setDone] = useState(false);
 	return (
 		<ListGroup>
-			<ListGroup.Item>
-				{done && (
+			{done && (
+				<ListGroup.Item>
 					<ExportPDF
 						refer={ref}
 						level={level}
 						race={race}
 						info={info}
+						hp={hp}
 						background={background}
 						classType={classType}
 						feats={feats}
 						totalScore={totalScore}
 					/>
-				)}
-			</ListGroup.Item>
+				</ListGroup.Item>
+			)}
 			{done && (
 				<Button
 					variant="success"
@@ -75,6 +76,7 @@ export default function Body() {
 						classType={classType}
 						race={race}
 						info={info}
+						done={done}
 						setInfo={setInfo}
 						background={background}
 						setBackground={setBackground}
@@ -93,6 +95,7 @@ export default function Body() {
 								skills={skills}
 								setSkills={setSkills}
 								hp={hp}
+								done={done}
 								sethp={sethp}
 							/>
 							{/* {skills.map((e) => e.prof).indexOf(true) > -1 && (
@@ -115,7 +118,7 @@ export default function Body() {
 						setDone(true);
 					}}
 				>
-					{"Done"}
+					Done
 				</Button>
 			) : (
 				""

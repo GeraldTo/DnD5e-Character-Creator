@@ -25,45 +25,42 @@ export default function ExportPDF(props) {
 				<header>
 					<section className="charname">
 						<label htmlFor="charname">Character Name</label>
-						<input name="charname" value={props.info.cname} readOnly />
+						<input name="charname" defaultValue={props.info.cname} />
 					</section>
 					<section className="misc">
 						<ul>
 							<li>
 								<label htmlFor="classlevel">Class & Level</label>
 								<input
-									readOnly
 									name="classlevel"
-									value={props.classType.name + " lvl " + props.level}
+									defaultValue={props.classType.name + " lvl " + props.level}
 								/>
 							</li>
 							<li>
 								<label htmlFor="background">Background</label>
 								<input
-									readOnly
 									name="background"
-									value={currb.name ? currb.name : ""}
+									defaultValue={currb.name ? currb.name : ""}
 								/>
 							</li>
 							<li>
 								<label htmlFor="playername">Player Name</label>
-								<input readOnly value={props.info.pname} name="playername" />
+								<input defaultValue={props.info.pname} name="playername" />
 							</li>
 							<li>
 								<label htmlFor="race">Race</label>
-								<input name="race" readOnly value={props.race.name} />
+								<input name="race" defaultValue={props.race.name} />
 							</li>
 							<li>
 								<label htmlFor="alignment">Alignment</label>
 								<input
-									readOnly
 									name="alignment"
-									value={props.info.alignment.name}
+									defaultValue={props.info.alignment.name}
 								/>
 							</li>
 							<li>
 								<label htmlFor="experiencepoints">Experience Points</label>
-								<input readOnly name="experiencepoints" />
+								<input name="experiencepoints" defaultValue="" />
 							</li>
 						</ul>
 					</section>
@@ -77,18 +74,16 @@ export default function ExportPDF(props) {
 										<div className="score">
 											<label htmlFor="Strengthscore">Strength</label>
 											<input
-												readOnly
 												name="Strengthscore"
 												className="stat"
-												value={props.totalScore[0].total}
+												defaultValue={props.totalScore[0].total}
 											/>
 										</div>
 										<div className="modifier">
 											<input
-												readOnly
 												name="Strengthmod"
 												className="statmod"
-												value={props.totalScore[0].mod}
+												defaultValue={props.totalScore[0].mod}
 											/>
 										</div>
 									</li>
@@ -96,18 +91,16 @@ export default function ExportPDF(props) {
 										<div className="score">
 											<label htmlFor="Dexterityscore">Dexterity</label>
 											<input
-												readOnly
 												name="Dexterityscore"
 												className="stat"
-												value={props.totalScore[1].total}
+												defaultValue={props.totalScore[1].total}
 											/>
 										</div>
 										<div className="modifier">
 											<input
 												name="Dexteritymod"
-												readOnly
 												className="statmod"
-												value={props.totalScore[1].mod}
+												defaultValue={props.totalScore[1].mod}
 											/>
 										</div>
 									</li>
@@ -115,18 +108,16 @@ export default function ExportPDF(props) {
 										<div className="score">
 											<label htmlFor="Constitutionscore">Constitution</label>
 											<input
-												readOnly
 												name="Constitutionscore"
 												className="stat"
-												value={props.totalScore[2].total}
+												defaultValue={props.totalScore[2].total}
 											/>
 										</div>
 										<div className="modifier">
 											<input
 												name="Constitutionmod"
-												readOnly
 												className="statmod"
-												value={props.totalScore[2].mod}
+												defaultValue={props.totalScore[2].mod}
 											/>
 										</div>
 									</li>
@@ -135,18 +126,16 @@ export default function ExportPDF(props) {
 										<div className="score">
 											<label htmlFor="Intelligencescore">Intelligence</label>
 											<input
-												readOnly
 												name="Intelligencescore"
 												className="stat"
-												value={props.totalScore[3].total}
+												defaultValue={props.totalScore[3].total}
 											/>
 										</div>
 										<div className="modifier">
 											<input
 												name="Intelligencemod"
 												className="statmod"
-												readOnly
-												value={props.totalScore[3].mod}
+												defaultValue={props.totalScore[3].mod}
 											/>
 										</div>
 									</li>
@@ -154,17 +143,16 @@ export default function ExportPDF(props) {
 										<div className="score">
 											<label htmlFor="Wisdomscore">Wisdom</label>
 											<input
-												readOnly
 												name="Wisdomscore"
 												className="stat"
-												value={props.totalScore[4].total}
+												defaultValue={props.totalScore[4].total}
 											/>
 										</div>
 										<div className="modifier">
 											<input
-												readOnly
 												name="Wisdommod"
-												value={props.totalScore[4].mod}
+												className="statmod"
+												defaultValue={props.totalScore[4].mod}
 											/>
 										</div>
 									</li>
@@ -174,16 +162,14 @@ export default function ExportPDF(props) {
 											<input
 												name="Charismascore"
 												className="stat"
-												readOnly
-												value={props.totalScore[5].total}
+												defaultValue={props.totalScore[5].total}
 											/>
 										</div>
 										<div className="modifier">
 											<input
 												name="Charismamod"
 												className="statmod"
-												readOnly
-												value={props.totalScore[5].mod}
+												defaultValue={props.totalScore[5].mod}
 											/>
 										</div>
 									</li>
@@ -202,8 +188,7 @@ export default function ExportPDF(props) {
 									</div>
 									<input
 										name="proficiencybonus"
-										value={1 + Math.ceil(props.level / 4)}
-										readOnly
+										defaultValue={1 + Math.ceil(props.level / 4)}
 									/>
 								</div>
 								<div className="saves list-section box">
@@ -213,7 +198,7 @@ export default function ExportPDF(props) {
 											<input
 												name="Strength-save"
 												type="text"
-												value={
+												defaultValue={
 													props.totalScore[0].mod +
 													(props.totalScore[0].saving
 														? 1 + Math.ceil(props.level / 4) + 2
@@ -223,8 +208,7 @@ export default function ExportPDF(props) {
 											<input
 												name="Strength-save-prof"
 												type="checkbox"
-												checked={props.totalScore[0].saving}
-												readOnly
+												defaultChecked={props.totalScore[0].saving}
 											/>
 										</li>
 										<li>
@@ -232,7 +216,7 @@ export default function ExportPDF(props) {
 											<input
 												name="Dexterity-save"
 												type="text"
-												value={
+												defaultValue={
 													props.totalScore[1].mod +
 													(props.totalScore[1].saving
 														? 1 + Math.ceil(props.level / 4)
@@ -242,8 +226,7 @@ export default function ExportPDF(props) {
 											<input
 												name="Dexterity-save-prof"
 												type="checkbox"
-												checked={props.totalScore[1].saving}
-												readOnly
+												defaultChecked={props.totalScore[1].saving}
 											/>
 										</li>
 										<li>
@@ -251,7 +234,7 @@ export default function ExportPDF(props) {
 											<input
 												name="Constitution-save"
 												type="text"
-												value={
+												defaultValue={
 													props.totalScore[2].mod +
 													(props.totalScore[2].saving
 														? 1 + Math.ceil(props.level / 4)
@@ -261,17 +244,15 @@ export default function ExportPDF(props) {
 											<input
 												name="Constitution-save-prof"
 												type="checkbox"
-												readOnly
-												checked={props.totalScore[2].saving}
+												defaultChecked={props.totalScore[2].saving}
 											/>
 										</li>
 										<li>
 											<label htmlFor="Intelligence-save">Intelligence</label>
 											<input
 												name="Intelligence-save"
-												readOnly
 												type="text"
-												value={
+												defaultValue={
 													props.totalScore[3].mod +
 													(props.totalScore[3].saving
 														? 1 + Math.ceil(props.level / 4)
@@ -281,8 +262,7 @@ export default function ExportPDF(props) {
 											<input
 												name="Intelligence-save-prof"
 												type="checkbox"
-												readOnly
-												checked={props.totalScore[3].saving}
+												defaultChecked={props.totalScore[3].saving}
 											/>
 										</li>
 										<li>
@@ -290,8 +270,7 @@ export default function ExportPDF(props) {
 											<input
 												name="Wisdom-save"
 												type="text"
-												readOnly
-												value={
+												defaultValue={
 													props.totalScore[4].mod +
 													(props.totalScore[4].saving
 														? 1 + Math.ceil(props.level / 4)
@@ -301,17 +280,15 @@ export default function ExportPDF(props) {
 											<input
 												name="Wisdom-save-prof"
 												type="checkbox"
-												readOnly
-												checked={props.totalScore[4].saving}
+												defaultChecked={props.totalScore[4].saving}
 											/>
 										</li>
 										<li>
 											<label htmlFor="Charisma-save">Charisma</label>
 											<input
 												name="Charisma-save"
-												readOnly
 												type="text"
-												value={
+												defaultValue={
 													props.totalScore[5].mod +
 													(props.totalScore[5].saving
 														? 1 + Math.ceil(props.level / 4)
@@ -321,8 +298,7 @@ export default function ExportPDF(props) {
 											<input
 												name="Charisma-save-prof"
 												type="checkbox"
-												readOnly
-												checked={props.totalScore[5].saving}
+												defaultChecked={props.totalScore[5].saving}
 											/>
 										</li>
 									</ul>
@@ -514,10 +490,9 @@ export default function ExportPDF(props) {
 								<div>
 									<label htmlFor="speed">Speed</label>
 									<input
-										readOnly
 										name="speed"
 										type="text"
-										value={0 + props.race.speed + "ft"}
+										defaultValue={0 + props.race.speed + "ft"}
 									/>
 								</div>
 							</div>
@@ -667,48 +642,42 @@ export default function ExportPDF(props) {
 								<label htmlFor="personality">Personality</label>
 								<textarea
 									name="personality"
-									value={currb.personalities ? currb.personalities : ""}
+									defaultValue={currb.personalities ? currb.personalities : ""}
 								></textarea>
 							</div>
 							<div className="ideals">
 								<label htmlFor="ideals">Ideals</label>
 								<textarea
 									name="ideals"
-									value={currb.ideals ? currb.ideals : ""}
+									defaultValue={currb.ideals ? currb.ideals : ""}
 								></textarea>
 							</div>
 							<div className="bonds">
 								<label htmlFor="bonds">Bonds</label>
 								<textarea
 									name="bonds"
-									value={currb.bonds ? currb.bonds : ""}
+									defaultValue={currb.bonds ? currb.bonds : ""}
 								></textarea>
 							</div>
 							<div className="flaws">
 								<label htmlFor="flaws">Flaws</label>
 								<textarea
 									name="flaws"
-									value={currb.flaws ? currb.flaws : ""}
+									defaultValue={currb.flaws ? currb.flaws : ""}
 								></textarea>
 							</div>
 						</section>
 						<section className="features">
 							<div>
 								<label htmlFor="features">Features & Traits</label>
-								<div name="features">
-									{props.race.traits.map((e) => (
-										<>
-											{e.name}
-											<br />
-										</>
-									))}
-									{props.feats.map((e) => (
-										<>
-											{e.name}
-											<br />
-										</>
-									))}
-								</div>
+								<textarea
+									name="features"
+									defaultValue={
+										props.race.traits.map((e, i) => e.name).join("\n") +
+										"\n" +
+										props.feats.map((e, i) => e.name).join("\n")
+									}
+								></textarea>
 							</div>
 						</section>
 					</section>
