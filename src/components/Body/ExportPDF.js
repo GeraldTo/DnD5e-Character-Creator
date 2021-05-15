@@ -334,17 +334,38 @@ export default function ExportPDF(props) {
 											<label htmlFor="Acrobatics">
 												Acrobatics <span className="skill">(Dex)</span>
 											</label>
-											<input name="Acrobatics" type="text" readOnly />
-											<input name="Acrobatics-prof" type="checkbox" readOnly />
+											<input
+												name="Acrobatics"
+												type="text"
+												defaultValue={
+													props.skills[0].total < 0
+														? props.skills[0].total
+														: "+" + props.skills[0].total
+												}
+											/>
+											<input
+												name="Acrobatics-prof"
+												type="checkbox"
+												readOnly
+												defaultChecked={props.skills[0].prof}
+											/>
 										</li>
 										<li>
 											<label htmlFor="Animal Handling">
 												Animal Handling <span className="skill">(Wis)</span>
 											</label>
-											<input name="Animal Handling" type="text" readOnly />
+											<input
+												name="Animal Handling"
+												type="text"
+												defaultValue={
+													props.skills[1].total < 0
+														? props.skills[1].total
+														: "+" + props.skills[1].total
+												}
+											/>
 											<input
 												name="Animal Handling-prof"
-												readOnly
+												defaultChecked={props.skills[1].prof}
 												type="checkbox"
 											/>
 										</li>
@@ -352,44 +373,112 @@ export default function ExportPDF(props) {
 											<label htmlFor="Arcana">
 												Arcana <span className="skill">(Int)</span>
 											</label>
-											<input readOnly name="Arcana" type="text" />
-											<input name="Arcana-prof" readOnly type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[2].total < 0
+														? props.skills[2].total
+														: "+" + props.skills[2].total
+												}
+												name="Arcana"
+												type="text"
+											/>
+											<input
+												name="Arcana-prof"
+												defaultChecked={props.skills[2].prof}
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="Athletics">
 												Athletics <span className="skill">(Str)</span>
 											</label>
-											<input readOnly name="Athletics" type="text" />
-											<input readOnly name="Athletics-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[3].total < 0
+														? props.skills[3].total
+														: "+" + props.skills[3].total
+												}
+												name="Athletics"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[3].prof}
+												name="Athletics-prof"
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="Deception">
 												Deception <span className="skill">(Cha)</span>
 											</label>
-											<input readOnly name="Deception" type="text" />
-											<input readOnly name="Deception-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[4].total < 0
+														? props.skills[4].total
+														: "+" + props.skills[4].total
+												}
+												name="Deception"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[4].prof}
+												name="Deception-prof"
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="History">
 												History <span className="skill">(Int)</span>
 											</label>
-											<input readOnly name="History" type="text" />
-											<input readOnly name="History-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[5].total < 0
+														? props.skills[5].total
+														: "+" + props.skills[5].total
+												}
+												name="History"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[5].prof}
+												name="History-prof"
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="Insight">
 												Insight <span className="skill">(Wis)</span>
 											</label>
-											<input readOnly name="Insight" type="text" />
-											<input readOnly name="Insight-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[6].total < 0
+														? props.skills[6].total
+														: "+" + props.skills[6].total
+												}
+												name="Insight"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[6].prof}
+												name="Insight-prof"
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="Intimidation">
 												Intimidation <span className="skill">(Cha)</span>
 											</label>
-											<input readOnly name="Intimidation" type="text" />
 											<input
-												readOnly
+												defaultValue={
+													props.skills[7].total < 0
+														? props.skills[7].total
+														: "+" + props.skills[7].total
+												}
+												name="Intimidation"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[7].prof}
 												name="Intimidation-prof"
 												type="checkbox"
 											/>
@@ -398,9 +487,17 @@ export default function ExportPDF(props) {
 											<label htmlFor="Investigation">
 												Investigation <span className="skill">(Int)</span>
 											</label>
-											<input readOnly name="Investigation" type="text" />
 											<input
-												readOnly
+												defaultValue={
+													props.skills[8].total < 0
+														? props.skills[8].total
+														: "+" + props.skills[8].total
+												}
+												name="Investigation"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[8].prof}
 												name="Investigation-prof"
 												type="checkbox"
 											/>
@@ -409,51 +506,131 @@ export default function ExportPDF(props) {
 											<label htmlFor="Medicine">
 												Medicine <span className="skill">(Wis)</span>
 											</label>
-											<input readOnly name="Medicine" type="text" />
-											<input readOnly name="Medicine-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[9].total < 0
+														? props.skills[9].total
+														: "+" + props.skills[9].total
+												}
+												name="Medicine"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[9].prof}
+												name="Medicine-prof"
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="Nature">
 												Nature <span className="skill">(Int)</span>
 											</label>
-											<input readOnly name="Nature" type="text" />
-											<input readOnly name="Nature-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[10].total < 0
+														? props.skills[10].total
+														: "+" + props.skills[10].total
+												}
+												name="Nature"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[10].prof}
+												name="Nature-prof"
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="Perception">
 												Perception <span className="skill">(Wis)</span>
 											</label>
-											<input readOnly name="Perception" type="text" />
-											<input readOnly name="Perception-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[11].total < 0
+														? props.skills[11].total
+														: "+" + props.skills[11].total
+												}
+												name="Perception"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[11].prof}
+												name="Perception-prof"
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="Performance">
 												Performance <span className="skill">(Cha)</span>
 											</label>
-											<input readOnly name="Performance" type="text" />
-											<input readOnly name="Performance-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[12].total < 0
+														? props.skills[12].total
+														: "+" + props.skills[12].total
+												}
+												name="Performance"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[12].prof}
+												name="Performance-prof"
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="Persuasion">
 												Persuasion <span className="skill">(Cha)</span>
 											</label>
-											<input readOnly name="Persuasion" type="text" />
-											<input readOnly name="Persuasion-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[13].total < 0
+														? props.skills[13].total
+														: "+" + props.skills[13].total
+												}
+												name="Persuasion"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[13].prof}
+												name="Persuasion-prof"
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="Religion">
 												Religion <span className="skill">(Int)</span>
 											</label>
-											<input readOnly name="Religion" type="text" />
-											<input readOnly name="Religion-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[14].total < 0
+														? props.skills[14].total
+														: "+" + props.skills[14].total
+												}
+												name="Religion"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[14].prof}
+												name="Religion-prof"
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="Sleight of Hand">
 												Sleight of Hand <span className="skill">(Dex)</span>
 											</label>
-											<input readOnly name="Sleight of Hand" type="text" />
 											<input
-												readOnly
+												defaultValue={
+													props.skills[15].total < 0
+														? props.skills[15].total
+														: "+" + props.skills[15].total
+												}
+												name="Sleight of Hand"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[15].prof}
 												name="Sleight of Hand-prof"
 												type="checkbox"
 											/>
@@ -462,15 +639,39 @@ export default function ExportPDF(props) {
 											<label htmlFor="Stealth">
 												Stealth <span className="skill">(Dex)</span>
 											</label>
-											<input readOnly name="Stealth" type="text" />
-											<input readOnly name="Stealth-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[16].total < 0
+														? props.skills[16].total
+														: "+" + props.skills[16].total
+												}
+												name="Stealth"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[16].prof}
+												name="Stealth-prof"
+												type="checkbox"
+											/>
 										</li>
 										<li>
 											<label htmlFor="Survival">
 												Survival <span className="skill">(Wis)</span>
 											</label>
-											<input readOnly name="Survival" type="text" />
-											<input readOnly name="Survival-prof" type="checkbox" />
+											<input
+												defaultValue={
+													props.skills[17].total < 0
+														? props.skills[17].total
+														: "+" + props.skills[17].total
+												}
+												name="Survival"
+												type="text"
+											/>
+											<input
+												defaultChecked={props.skills[17].prof}
+												name="Survival-prof"
+												type="checkbox"
+											/>
 										</li>
 									</ul>
 									<div className="label">Skills</div>
@@ -483,7 +684,14 @@ export default function ExportPDF(props) {
 									Passive Wisdom (Perception)
 								</label>
 							</div>
-							<input name="passiveperception" readOnly />
+							<input
+								name="passiveperception"
+								defaultValue={
+									props.skills[11].total < 0
+										? props.skills[11].total
+										: "+" + props.skills[11].total
+								}
+							/>
 						</div>
 						<div className="otherprofs box textblock">
 							<label htmlFor="otherprofs">
@@ -703,9 +911,9 @@ export default function ExportPDF(props) {
 								<textarea
 									name="features"
 									defaultValue={
-										props.race.traits.map((e, i) => e.name).join("\n") +
+										props.race.traits.map((e, i) => e.name) +
 										"\n" +
-										props.feats.map((e, i) => e.name).join("\n")
+										props.feats.map((e, i) => e.name)
 									}
 								></textarea>
 							</div>

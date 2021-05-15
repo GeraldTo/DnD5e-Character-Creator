@@ -2,16 +2,13 @@
 import React, { useState, useEffect } from "react";
 import Saving from "./Saving";
 import Hitdie from "./Hitdie";
-import Skills from "./Skills/Skills";
 import ScoreList from "./Scores/ScoreList";
 import styles from "../Body.module.css";
 import "./AbilityScore.css";
 import { ListGroup } from "react-bootstrap";
 
 export default function AbilityScore(props) {
-	const url = process.env.REACT_APP_API;
 	const [firstScore, setFirstScore] = useState(false);
-	const [firstHP, setFirstHP] = useState(false);
 	useEffect(() => {
 		const abilities = ["str", "dex", "con", "int", "wis", "cha"];
 		const fullName = [
@@ -76,26 +73,12 @@ export default function AbilityScore(props) {
 								<Hitdie
 									hitdie={props.classType.hit_die}
 									conMod={props.totalScore[2].mod}
-									setFirst={setFirstHP}
 									level={props.level}
 									done={props.done}
 									sethp={props.sethp}
 									hp={props.hp}
 								/>
 							</ListGroup.Item>
-							{firstHP && (
-								<ListGroup.Item>
-									<Skills
-										url={url}
-										proficiencies={props.background.proficiencies}
-										classType={props.classType}
-										totalScore={props.totalScore}
-										level={props.level}
-										skills={props.skills}
-										setSkills={props.setSkills}
-									/>
-								</ListGroup.Item>
-							)}
 						</React.Fragment>
 					)}
 				</ListGroup>

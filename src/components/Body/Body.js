@@ -7,10 +7,12 @@ import ExportPDF from "./ExportPDF";
 import Gear from "./Gear/Gear";
 import Information from "./Info/Information";
 import Level from "./Level";
+import Skills from "./Skills/Skills";
+
 import { ListGroup, Button } from "react-bootstrap";
 
 export default function Body() {
-	const [level, setlevel] = useState(1);
+	const [level, setlevel] = useState(0);
 	const [race, setRace] = useState(null);
 	const [lang, setLang] = useState([]);
 	const [classType, setClassType] = useState(null);
@@ -44,6 +46,7 @@ export default function Body() {
 						classType={classType}
 						feats={feats}
 						totalScore={totalScore}
+						skills={skills}
 					/>
 				</ListGroup.Item>
 			)}
@@ -58,7 +61,7 @@ export default function Body() {
 				</Button>
 			)}
 			<Level level={level} setlevel={setlevel} done={done} />
-			<Races race={race} setRace={setRace} done={done} />
+			{level > 0 ? <Races race={race} setRace={setRace} done={done} /> : <></>}
 			{race && (
 				<Classes
 					classType={classType}
@@ -98,6 +101,19 @@ export default function Body() {
 								done={done}
 								sethp={sethp}
 							/>
+							{hp > 0 ? (
+								<Skills
+									proficiencies={background.proficiencies}
+									classType={classType}
+									totalScore={totalScore}
+									level={level}
+									done={done}
+									skills={skills}
+									setSkills={setSkills}
+								/>
+							) : (
+								<></>
+							)}
 							{/* {skills.map((e) => e.prof).indexOf(true) > -1 && (
 									<Gear
 										totalScore={totalScore}
@@ -110,7 +126,7 @@ export default function Body() {
 				</React.Fragment>
 			)}
 
-			{hp > 0 ? (
+			{skills.length > 0 ? (
 				<Button
 					variant="success"
 					onClick={() => {
