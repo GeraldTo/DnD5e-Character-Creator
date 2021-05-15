@@ -888,31 +888,39 @@ export default function ExportPDF(props) {
 						<section className="flavor">
 							<div className="personality">
 								<label htmlFor="personality">Personality</label>
-								<textarea
+								<div
 									name="personality"
-									defaultValue={currb.personalities ? currb.personalities : ""}
-								></textarea>
+									// defaultValue={currb.personalities ? currb.personalities : ""}
+								>
+									{currb.personalities ? currb.personalities : ""}
+								</div>
 							</div>
 							<div className="ideals">
 								<label htmlFor="ideals">Ideals</label>
-								<textarea
+								<div
 									name="ideals"
-									defaultValue={currb.ideals ? currb.ideals : ""}
-								></textarea>
+									// defaultValue={currb.ideals ? currb.ideals : ""}
+								>
+									{currb.ideals ? currb.ideals : ""}
+								</div>
 							</div>
 							<div className="bonds">
 								<label htmlFor="bonds">Bonds</label>
-								<textarea
+								<div
 									name="bonds"
-									defaultValue={currb.bonds ? currb.bonds : ""}
-								></textarea>
+									// defaultValue={currb.bonds ? currb.bonds : ""}
+								>
+									{currb.bonds ? currb.bonds : ""}
+								</div>
 							</div>
 							<div className="flaws">
 								<label htmlFor="flaws">Flaws</label>
-								<textarea
+								<div
 									name="flaws"
-									defaultValue={currb.flaws ? currb.flaws : ""}
-								></textarea>
+									// defaultValue={currb.flaws ? currb.flaws : ""}
+								>
+									{currb.flaws ? currb.flaws : ""}
+								</div>
 							</div>
 						</section>
 						<section className="features">
