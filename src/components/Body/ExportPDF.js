@@ -6,6 +6,8 @@ import { Button } from "react-bootstrap";
 export default function ExportPDF(props) {
 	const ref = React.createRef();
 	const currb = props.background;
+	let currentFeats = 0;
+	let currentProf = 0;
 	return (
 		<div>
 			<Pdf
@@ -697,10 +699,18 @@ export default function ExportPDF(props) {
 							<label htmlFor="otherprofs">
 								Other Proficiencies and Languages
 							</label>
-							<textarea
-								name="otherprofs"
-								defaultValue={props.info.languages.join("\n")}
-							></textarea>
+							{props.info.languages.map((e) => {
+								currentProf++;
+								return <input name="otherprofs" defaultValue={e} />;
+							})}
+							{props.classType.proficiencies.map((e) => {
+								currentProf++;
+								return <input name="otherprofs" defaultValue={e.name} />;
+							})}
+							{currentProf < 14 &&
+								[...Array(14 - currentProf - 1)].map((_) => (
+									<input name="otherprofs" />
+								))}
 						</div>
 					</section>
 					<section>
@@ -908,14 +918,26 @@ export default function ExportPDF(props) {
 						<section className="features">
 							<div>
 								<label htmlFor="features">Features & Traits</label>
-								<textarea
+								{props.race.traits.map((e, i) => {
+									currentFeats++;
+									return <input name="features" defaultValue={e.name} />;
+								})}
+								{props.feats.map((e, i) => {
+									currentFeats++;
+									return <input name="features" defaultValue={e.name} />;
+								})}
+								{currentFeats < 28 &&
+									[...Array(28 - currentFeats - 1)].map((_) => (
+										<input name="features" />
+									))}
+								{/* <textarea
 									name="features"
 									defaultValue={
 										props.race.traits.map((e, i) => e.name) +
 										"\n" +
 										props.feats.map((e, i) => e.name)
 									}
-								></textarea>
+								></textarea> */}
 							</div>
 						</section>
 					</section>

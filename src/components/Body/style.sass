@@ -48,16 +48,6 @@ form.charsheet
     width: 100%
     align-items: center
 
-    label
-      text-align: center
-      border: 1px solid black
-      border-top: 0
-      font-size: 10px
-      width: calc(100% - #{$radius*2} - 2px)
-      border-radius: 0 0 $radius $radius
-      padding: 4px 0
-      font-weight: bold
-
     textarea
       border: 1px solid black
 
@@ -297,8 +287,17 @@ form.charsheet
           text-align: center
           border: 1px solid black
           border-radius: $radius
-      div.otherprofs textarea
-        height: 21em
+      div.otherprofs
+        padding: $gutter
+        border: 1px solid black
+        border-radius: $radius
+        display: flex
+        height: 22em
+        flex-direction: column
+        input
+          border: 0
+          text-align: top
+          height: 1.5em
 
     section.combat
       background-color: $faded-light
@@ -616,15 +615,14 @@ form.charsheet
       margin-right: .5em
       div
         padding: $gutter
-
         border: 1px solid black
         border-radius: $radius
         display: flex
-        height: 42em
+        height: 42.5em
         flex-direction: column
         label
           text-align: center
-        textarea
+        input
           border: 0
           text-align: top
-          height: 46em
+          height: 1.5em
