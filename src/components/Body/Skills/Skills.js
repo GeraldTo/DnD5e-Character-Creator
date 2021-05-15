@@ -8,7 +8,6 @@ import { Table, Button, ListGroup } from "react-bootstrap";
 export default function Skills(props) {
 	const [display, setDisplay] = useState(false);
 	const url = process.env.REACT_APP_API;
-	console.log(props.skills);
 	function handleInit(response) {
 		const urls = response.results.map((e) => url + "skills/" + e.index);
 		let promiseArray = urls.map((e) => axios.get(e));

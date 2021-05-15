@@ -145,7 +145,7 @@ form.charsheet
 
       section.attributes
         $attr-width: 70px
-        $attr-height: 80px
+        $attr-height: 100px
         $attr-gutter: 31px
         width: 100%
         display: flex
@@ -154,8 +154,6 @@ form.charsheet
 
         div.scores
           width: $attr-width + $attr-gutter
-          background-color: $faded-dark
-          border-radius: $radius
           padding-bottom: $gutter / 2
 
           label
@@ -177,7 +175,7 @@ form.charsheet
               text-align: center
               display: flex
               flex-direction: column
-              border-radius: $radius
+              // border-radius: $radius
 
               input
                 width: 100%
@@ -193,12 +191,11 @@ form.charsheet
                   background: $bg
 
               div.modifier
-                margin-top: 3px
-
                 input
                   background: $bg
-                  width: $radius*3
-                  height: $radius*2
+                  width: $radius*4
+                  height: $radius*3
+                  font-size: 1.4em
                   border: 1px inset black
                   border-radius: $radius*2
                   margin: -1px
@@ -296,14 +293,13 @@ form.charsheet
         flex-direction: column
         input
           border: 0
+          width: 100%
           text-align: top
           height: 1.5em
 
     section.combat
-      background-color: $faded-light
       display: flex
       flex-wrap: wrap
-      border-radius: $radius
 
       > div
         overflow: hidden
@@ -510,7 +506,6 @@ form.charsheet
         flex-direction: column
 
         > label
-          order: 3
           text-align: center
 
         > table
@@ -534,6 +529,7 @@ form.charsheet
       border: 1px solid black
       border-radius: $radius
       margin-top: $gutter
+      height: 21em
 
       > div
         padding: $gutter
@@ -569,7 +565,6 @@ form.charsheet
                 text-align: center
 
         > label
-          order: 3
           text-align: center
           flex: 100%
 

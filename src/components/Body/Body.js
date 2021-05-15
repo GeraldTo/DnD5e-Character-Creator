@@ -14,18 +14,15 @@ import { ListGroup, Button } from "react-bootstrap";
 export default function Body() {
 	const [level, setlevel] = useState(0);
 	const [race, setRace] = useState(null);
-	const [lang, setLang] = useState([]);
 	const [classType, setClassType] = useState(null);
 	const [feats, setFeats] = useState([]);
-	// const [prof, setProf] = useState([])
 	const [info, setInfo] = useState(null);
 	// [str,dex,con,int,wis,cha]
 	const [totalScore, setTotalScore] = useState(null);
 	const [skills, setSkills] = useState([]);
 	const [hp, sethp] = useState(0);
 	const [background, setBackground] = useState(null);
-	const [data, setData] = useState({});
-
+	const [inventory, setInventory] = useState(null);
 	// useEffect(() => {
 	//     console.log(url)
 	// }, [url])
@@ -102,25 +99,29 @@ export default function Body() {
 								sethp={sethp}
 							/>
 							{hp > 0 ? (
-								<Skills
-									proficiencies={background.proficiencies}
-									classType={classType}
-									totalScore={totalScore}
-									level={level}
-									done={done}
-									skills={skills}
-									setSkills={setSkills}
-								/>
+								<React.Fragment>
+									<Skills
+										proficiencies={background.proficiencies}
+										classType={classType}
+										totalScore={totalScore}
+										level={level}
+										done={done}
+										skills={skills}
+										setSkills={setSkills}
+									/>
+									{skills.map((e) => e.prof).indexOf(true) > -1 && (
+										<React.Fragment>
+											<Gear
+												totalScore={totalScore}
+												level={level}
+												classType={classType}
+											/>
+										</React.Fragment>
+									)}
+								</React.Fragment>
 							) : (
 								<></>
 							)}
-							{/* {skills.map((e) => e.prof).indexOf(true) > -1 && (
-									<Gear
-										totalScore={totalScore}
-										level={level}
-										classType={classType}
-									/>
-								)} */}
 						</React.Fragment>
 					)}
 				</React.Fragment>
@@ -137,7 +138,7 @@ export default function Body() {
 					Done
 				</Button>
 			) : (
-				""
+				<></>
 			)}
 
 			{/* {info &&

@@ -699,17 +699,36 @@ export default function ExportPDF(props) {
 							<label htmlFor="otherprofs">
 								Other Proficiencies and Languages
 							</label>
-							{props.info.languages.map((e) => {
-								currentProf++;
-								return <input name="otherprofs" defaultValue={e} />;
-							})}
-							{props.classType.proficiencies.map((e) => {
-								currentProf++;
-								return <input name="otherprofs" defaultValue={e.name} />;
-							})}
-							{currentProf < 14 &&
-								[...Array(14 - currentProf - 1)].map((_) => (
-									<input name="otherprofs" />
+							<input
+								name="otherprofs"
+								defaultValue={props.info.languages.join(", ")}
+							/>
+							<input name="otherprofs" />
+							{props.classType.proficiencies.length > 7
+								? props.classType.proficiencies
+										.filter((_, i) => i % 2 === 0)
+										.map((e, i) => {
+											currentProf++;
+											const next = props.classType.proficiencies[i + 1]
+												? props.classType.proficiencies[i + 1].name
+												: "";
+											return (
+												<input
+													key={i}
+													name="otherprofs"
+													defaultValue={e.name + ", " + next}
+												/>
+											);
+										})
+								: props.classType.proficiencies.map((e, i) => {
+										currentProf++;
+										return (
+											<input key={i} name="otherprofs" defaultValue={e.name} />
+										);
+								  })}
+							{currentProf < 12 &&
+								[...Array(12 - currentProf - 1)].map((_, i) => (
+									<input key={i} name="otherprofs" />
 								))}
 						</div>
 					</section>
@@ -928,24 +947,20 @@ export default function ExportPDF(props) {
 								<label htmlFor="features">Features & Traits</label>
 								{props.race.traits.map((e, i) => {
 									currentFeats++;
-									return <input name="features" defaultValue={e.name} />;
+									return (
+										<input key={i} name="features" defaultValue={e.name} />
+									);
 								})}
 								{props.feats.map((e, i) => {
 									currentFeats++;
-									return <input name="features" defaultValue={e.name} />;
+									return (
+										<input key={i} name="features" defaultValue={e.name} />
+									);
 								})}
 								{currentFeats < 28 &&
-									[...Array(28 - currentFeats - 1)].map((_) => (
-										<input name="features" />
+									[...Array(28 - currentFeats - 1)].map((_, i) => (
+										<input key={i} name="features" />
 									))}
-								{/* <textarea
-									name="features"
-									defaultValue={
-										props.race.traits.map((e, i) => e.name) +
-										"\n" +
-										props.feats.map((e, i) => e.name)
-									}
-								></textarea> */}
 							</div>
 						</section>
 					</section>
