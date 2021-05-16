@@ -21,6 +21,7 @@ export default function Body() {
 	const [totalScore, setTotalScore] = useState(null);
 	const [skills, setSkills] = useState([]);
 	const [hp, sethp] = useState(0);
+	const [ac, setAc] = useState(null);
 	const [background, setBackground] = useState(null);
 	const [inventory, setInventory] = useState(null);
 	// useEffect(() => {
@@ -44,6 +45,8 @@ export default function Body() {
 						feats={feats}
 						totalScore={totalScore}
 						skills={skills}
+						inventory={inventory}
+						ac={ac}
 					/>
 				</ListGroup.Item>
 			)}
@@ -81,7 +84,7 @@ export default function Body() {
 						background={background}
 						setBackground={setBackground}
 					/>
-					{info && info.alignment.name && (
+					{info && info.alignment && (
 						<React.Fragment>
 							<Ability
 								classType={classType}
@@ -115,7 +118,22 @@ export default function Body() {
 												totalScore={totalScore}
 												level={level}
 												classType={classType}
+												inventory={inventory}
+												setInventory={setInventory}
+												ac={ac}
+												setAc={setAc}
 											/>
+											{inventory && inventory.weapons && (
+												<Button
+													variant="success"
+													onClick={() => {
+														window.scrollTo(0, 0);
+														setDone(true);
+													}}
+												>
+													Done
+												</Button>
+											)}
 										</React.Fragment>
 									)}
 								</React.Fragment>
@@ -125,20 +143,6 @@ export default function Body() {
 						</React.Fragment>
 					)}
 				</React.Fragment>
-			)}
-
-			{skills.length > 0 ? (
-				<Button
-					variant="success"
-					onClick={() => {
-						window.scrollTo(0, 0);
-						setDone(true);
-					}}
-				>
-					Done
-				</Button>
-			) : (
-				<></>
 			)}
 
 			{/* {info &&

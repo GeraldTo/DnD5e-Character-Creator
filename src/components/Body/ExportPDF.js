@@ -8,6 +8,7 @@ export default function ExportPDF(props) {
 	const currb = props.background;
 	let currentFeats = 0;
 	let currentProf = 0;
+	let currentItems = 0;
 	return (
 		<div>
 			<Pdf
@@ -737,7 +738,7 @@ export default function ExportPDF(props) {
 							<div className="armorclass">
 								<div>
 									<label htmlFor="ac">Armor Class</label>
-									<input readOnly name="ac" type="text" />
+									<input defaultValue={props.ac} name="ac" type="text" />
 								</div>
 							</div>
 							<div className="initiative">
@@ -836,45 +837,129 @@ export default function ExportPDF(props) {
 									<tbody>
 										<tr>
 											<td>
-												<input name="atkname1" type="text" readOnly />
+												<input
+													name="atkname1"
+													className="atkname"
+													type="text"
+													defaultValue={
+														props.inventory.weapons[0]
+															? props.inventory.weapons[0].name
+															: ""
+													}
+												/>
 											</td>
 											<td>
-												<input name="atkbonus1" type="text" readOnly />
+												<input
+													name="atkbonus1"
+													className="atkbonus"
+													type="text"
+													defaultValue={
+														props.inventory.weapons[0]
+															? props.inventory.weapons[0].atk < 0
+																? props.inventory.weapons[0].atk
+																: "+" + props.inventory.weapons[0].atk
+															: ""
+													}
+												/>
 											</td>
 											<td>
-												<input name="atkdamage1" type="text" readOnly />
+												<input
+													name="atkdamage1"
+													type="text"
+													defaultValue={
+														props.inventory.weapons[0]
+															? props.inventory.weapons[0].dmg
+															: ""
+													}
+												/>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<input name="atkname2" type="text" readOnly />
+												<input
+													name="atkname2"
+													className="atkname"
+													type="text"
+													defaultValue={
+														props.inventory.weapons[1]
+															? props.inventory.weapons[1].name
+															: ""
+													}
+												/>
 											</td>
 											<td>
-												<input name="atkbonus2" type="text" readOnly />
+												<input
+													name="atkbonus2"
+													className="atkbonus"
+													type="text"
+													defaultValue={
+														props.inventory.weapons[1]
+															? props.inventory.weapons[1].atk < 0
+																? props.inventory.weapons[1].atk
+																: "+" + props.inventory.weapons[1].atk
+															: ""
+													}
+												/>
 											</td>
 											<td>
-												<input name="atkdamage2" type="text" readOnly />
+												<input
+													name="atkdamage2"
+													type="text"
+													defaultValue={
+														props.inventory.weapons[1]
+															? props.inventory.weapons[1].dmg
+															: ""
+													}
+												/>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<input name="atkname3" type="text" readOnly />
+												<input
+													name="atkname3"
+													className="atkname"
+													type="text"
+													defaultValue={
+														props.inventory.weapons[2]
+															? props.inventory.weapons[2].name
+															: ""
+													}
+												/>
 											</td>
 											<td>
-												<input name="atkbonus3" type="text" readOnly />
+												<input
+													name="atkbonus3"
+													className="atkbonus"
+													type="text"
+													defaultValue={
+														props.inventory.weapons[2]
+															? props.inventory.weapons[2].atk < 0
+																? props.inventory.weapons[2].atk
+																: "+" + props.inventory.weapons[2].atk
+															: ""
+													}
+												/>
 											</td>
 											<td>
-												<input name="atkdamage3" type="text" readOnly />
+												<input
+													name="atkdamage3"
+													type="text"
+													defaultValue={
+														props.inventory.weapons[2]
+															? props.inventory.weapons[2].dmg
+															: ""
+													}
+												/>
 											</td>
 										</tr>
 									</tbody>
 								</table>
-								<textarea></textarea>
+								<div className="Spell"></div>
 							</div>
 						</section>
 						<section className="equipment">
+							<label>Equipment</label>
 							<div>
-								<label>Equipment</label>
 								<div className="money">
 									<ul>
 										<li>
@@ -899,7 +984,20 @@ export default function ExportPDF(props) {
 										</li>
 									</ul>
 								</div>
-								<textarea></textarea>
+								<div className="items">
+									{props.inventory.weapons.map((e, i) => {
+										currentItems++;
+										return <input key={i} defaultValue={e.name} />;
+									})}
+									{props.inventory.armor.map((e, i) => {
+										currentItems++;
+										return <input key={i} defaultValue={e.name} />;
+									})}
+									{currentItems < 12 &&
+										[...Array(12 - currentItems - 1)].map((_, i) => (
+											<input key={i} name="equipment" />
+										))}
+								</div>
 							</div>
 						</section>
 					</section>

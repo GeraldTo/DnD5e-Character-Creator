@@ -516,30 +516,39 @@ form.charsheet
             color: $faded
 
           input
-            width: calc(100% - 4px)
             border: 0
             background-color: $faded-light
             font-size: 10px
             padding: 3px
 
-        textarea
-          border: 0
+          input.atkbonus
+            width: 5em
+            text-align: center
+
+          input.atkname
+            width: 100%
+            text-align: center
+
+        div
+          height: 11em
 
     section.equipment
       border: 1px solid black
       border-radius: $radius
       margin-top: $gutter
       height: 21em
+      text-align: center
 
       > div
         padding: $gutter
         display: flex
         flex-direction: row
-        flex-wrap: wrap
+        margin-top: -.5em
 
         > div.money
           $labelwidth: 20px
           $labelpadding: 3px
+          margin-left: -.5em
           ul
             display: flex
             flex-direction: column
@@ -564,13 +573,11 @@ form.charsheet
                 font-size: 12px
                 text-align: center
 
-        > label
-          text-align: center
-          flex: 100%
+        > div.items
+          height: 18em
 
-        > textarea
-          flex: 1
-          border: 0
+          input
+            border: 0
 
     section.flavor
       padding: $gutter
