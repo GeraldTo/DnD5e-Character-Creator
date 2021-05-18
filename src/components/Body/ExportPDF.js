@@ -9,6 +9,11 @@ export default function ExportPDF(props) {
 	let currentFeats = 0;
 	let currentProf = 0;
 	let currentItems = 0;
+
+	function posNeg(input) {
+		return input < 0 ? input : "+" + input
+
+	}
 	return (
 		<div>
 			<Pdf
@@ -68,635 +73,106 @@ export default function ExportPDF(props) {
 						</ul>
 					</section>
 				</header>
+
 				<main>
 					<section>
 						<section className="attributes">
 							<div className="scores">
 								<ul>
-									<li>
-										<div className="score">
-											<label htmlFor="Strengthscore">Strength</label>
-											<input
-												name="Strengthscore"
-												className="stat"
-												defaultValue={props.totalScore[0].total}
-											/>
-										</div>
-										<div className="modifier">
-											<input
-												name="Strengthmod"
-												className="statmod"
-												defaultValue={
-													props.totalScore[0].mod < 0
-														? props.totalScore[0].mod
-														: "+" + props.totalScore[0].mod
-												}
-											/>
-										</div>
-									</li>
-									<li>
-										<div className="score">
-											<label htmlFor="Dexterityscore">Dexterity</label>
-											<input
-												name="Dexterityscore"
-												className="stat"
-												defaultValue={props.totalScore[1].total}
-											/>
-										</div>
-										<div className="modifier">
-											<input
-												name="Dexteritymod"
-												className="statmod"
-												defaultValue={
-													props.totalScore[1].mod < 0
-														? props.totalScore[1].mod
-														: "+" + props.totalScore[1].mod
-												}
-											/>
-										</div>
-									</li>
-									<li>
-										<div className="score">
-											<label htmlFor="Constitutionscore">Constitution</label>
-											<input
-												name="Constitutionscore"
-												className="stat"
-												defaultValue={props.totalScore[2].total}
-											/>
-										</div>
-										<div className="modifier">
-											<input
-												name="Constitutionmod"
-												className="statmod"
-												defaultValue={
-													props.totalScore[2].mod < 0
-														? props.totalScore[2].mod
-														: "+" + props.totalScore[2].mod
-												}
-											/>
-										</div>
-									</li>
-
-									<li>
-										<div className="score">
-											<label htmlFor="Intelligencescore">Intelligence</label>
-											<input
-												name="Intelligencescore"
-												className="stat"
-												defaultValue={props.totalScore[3].total}
-											/>
-										</div>
-										<div className="modifier">
-											<input
-												name="Intelligencemod"
-												className="statmod"
-												defaultValue={
-													props.totalScore[3].mod < 0
-														? props.totalScore[3].mod
-														: "+" + props.totalScore[3].mod
-												}
-											/>
-										</div>
-									</li>
-									<li>
-										<div className="score">
-											<label htmlFor="Wisdomscore">Wisdom</label>
-											<input
-												name="Wisdomscore"
-												className="stat"
-												defaultValue={props.totalScore[4].total}
-											/>
-										</div>
-										<div className="modifier">
-											<input
-												name="Wisdommod"
-												className="statmod"
-												defaultValue={
-													props.totalScore[4].mod < 0
-														? props.totalScore[4].mod
-														: "+" + props.totalScore[4].mod
-												}
-											/>
-										</div>
-									</li>
-									<li>
-										<div className="score">
-											<label htmlFor="Charismascore">Charisma</label>
-											<input
-												name="Charismascore"
-												className="stat"
-												defaultValue={props.totalScore[5].total}
-											/>
-										</div>
-										<div className="modifier">
-											<input
-												name="Charismamod"
-												className="statmod"
-												defaultValue={
-													props.totalScore[5].mod < 0
-														? props.totalScore[5].mod
-														: "+" + props.totalScore[5].mod
-												}
-											/>
-										</div>
-									</li>
+									{props.totalScore.map(ability =>
+										<li>
+											<div className="score">
+												<label htmlFor={ability.fullName + "score"}>{ability.fullName}</label>
+												<input
+													name={ability.fullName + "score"}
+													className="stat"
+													defaultValue={ability.total}
+												/>
+											</div>
+											<div className="modifier">
+												<input
+													name={ability.fullName + "mod"}
+													className="statmod"
+													defaultValue={posNeg(ability.mod)}
+												/>
+											</div>
+										</li>)}
 								</ul>
 							</div>
 							<div className="attr-applications">
 								<div className="inspiration box">
+									<input name="inspiration" type="checkbox" readOnly />
 									<div className="label-container">
 										<label htmlFor="inspiration">Inspiration</label>
 									</div>
-									<input name="inspiration" type="checkbox" readOnly />
+
 								</div>
 								<div className="proficiencybonus box">
-									<div className="label-container">
-										<label htmlFor="proficiencybonus">Proficiency Bonus</label>
-									</div>
 									<input
 										name="proficiencybonus"
 										defaultValue={"+" + (1 + Math.ceil(props.level / 4))}
 									/>
+									<div className="label-container">
+										<label htmlFor="proficiencybonus">Proficiency Bonus</label>
+									</div>
 								</div>
 								<div className="saves list-section box">
 									<ul>
-										<li>
-											<label htmlFor="Strength-save">Strength</label>
-											<input
-												name="Strength-save"
-												type="text"
-												defaultValue={
-													props.totalScore[0].mod +
-													(props.totalScore[0].saving
-														? 1 + Math.ceil(props.level / 4) + 2
-														: 0)
-												}
-											/>
-											<input
-												name="Strength-save-prof"
-												type="checkbox"
-												defaultChecked={props.totalScore[0].saving}
-											/>
-										</li>
-										<li>
-											<label htmlFor="Dexterity-save">Dexterity</label>
-											<input
-												name="Dexterity-save"
-												type="text"
-												defaultValue={
-													props.totalScore[1].mod +
-													(props.totalScore[1].saving
-														? 1 + Math.ceil(props.level / 4)
-														: 0)
-												}
-											/>
-											<input
-												name="Dexterity-save-prof"
-												type="checkbox"
-												defaultChecked={props.totalScore[1].saving}
-											/>
-										</li>
-										<li>
-											<label htmlFor="Constitution-save">Constitution</label>
-											<input
-												name="Constitution-save"
-												type="text"
-												defaultValue={
-													props.totalScore[2].mod +
-													(props.totalScore[2].saving
-														? 1 + Math.ceil(props.level / 4)
-														: 0)
-												}
-											/>
-											<input
-												name="Constitution-save-prof"
-												type="checkbox"
-												defaultChecked={props.totalScore[2].saving}
-											/>
-										</li>
-										<li>
-											<label htmlFor="Intelligence-save">Intelligence</label>
-											<input
-												name="Intelligence-save"
-												type="text"
-												defaultValue={
-													props.totalScore[3].mod +
-													(props.totalScore[3].saving
-														? 1 + Math.ceil(props.level / 4)
-														: 0)
-												}
-											/>
-											<input
-												name="Intelligence-save-prof"
-												type="checkbox"
-												defaultChecked={props.totalScore[3].saving}
-											/>
-										</li>
-										<li>
-											<label htmlFor="Wisdom-save">Wisdom</label>
-											<input
-												name="Wisdom-save"
-												type="text"
-												defaultValue={
-													props.totalScore[4].mod +
-													(props.totalScore[4].saving
-														? 1 + Math.ceil(props.level / 4)
-														: 0)
-												}
-											/>
-											<input
-												name="Wisdom-save-prof"
-												type="checkbox"
-												defaultChecked={props.totalScore[4].saving}
-											/>
-										</li>
-										<li>
-											<label htmlFor="Charisma-save">Charisma</label>
-											<input
-												name="Charisma-save"
-												type="text"
-												defaultValue={
-													props.totalScore[5].mod +
-													(props.totalScore[5].saving
-														? 1 + Math.ceil(props.level / 4)
-														: 0)
-												}
-											/>
-											<input
-												name="Charisma-save-prof"
-												type="checkbox"
-												defaultChecked={props.totalScore[5].saving}
-											/>
-										</li>
+										{props.totalScore.map(saving =>
+											<li>
+												<label htmlFor={saving.fullName + "save"}>{saving.fullName}</label>
+												<input
+													name="Strength-save"
+													type="text"
+													defaultValue={
+														posNeg(saving.mod +
+															(saving.saving
+																? 1 + Math.ceil(props.level / 4)
+																: 0))
+													}
+												/>
+												<input
+													name="Strength-save-prof"
+													type="checkbox"
+													defaultChecked={saving.saving}
+												/>
+											</li>
+										)}
 									</ul>
-									<div className="label">Saving Throws</div>
+									<div className="label">SAVING THROWS</div>
 								</div>
 								<div className="skills list-section box">
 									<ul>
-										<li>
-											<label htmlFor="Acrobatics">
-												Acrobatics <span className="skill">(Dex)</span>
-											</label>
-											<input
-												name="Acrobatics"
-												type="text"
-												defaultValue={
-													props.skills[0].total < 0
-														? props.skills[0].total
-														: "+" + props.skills[0].total
-												}
-											/>
-											<input
-												name="Acrobatics-prof"
-												type="checkbox"
-												readOnly
-												defaultChecked={props.skills[0].prof}
-											/>
-										</li>
-										<li>
-											<label htmlFor="Animal Handling">
-												Animal Handling <span className="skill">(Wis)</span>
-											</label>
-											<input
-												name="Animal Handling"
-												type="text"
-												defaultValue={
-													props.skills[1].total < 0
-														? props.skills[1].total
-														: "+" + props.skills[1].total
-												}
-											/>
-											<input
-												name="Animal Handling-prof"
-												defaultChecked={props.skills[1].prof}
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Arcana">
-												Arcana <span className="skill">(Int)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[2].total < 0
-														? props.skills[2].total
-														: "+" + props.skills[2].total
-												}
-												name="Arcana"
-												type="text"
-											/>
-											<input
-												name="Arcana-prof"
-												defaultChecked={props.skills[2].prof}
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Athletics">
-												Athletics <span className="skill">(Str)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[3].total < 0
-														? props.skills[3].total
-														: "+" + props.skills[3].total
-												}
-												name="Athletics"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[3].prof}
-												name="Athletics-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Deception">
-												Deception <span className="skill">(Cha)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[4].total < 0
-														? props.skills[4].total
-														: "+" + props.skills[4].total
-												}
-												name="Deception"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[4].prof}
-												name="Deception-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="History">
-												History <span className="skill">(Int)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[5].total < 0
-														? props.skills[5].total
-														: "+" + props.skills[5].total
-												}
-												name="History"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[5].prof}
-												name="History-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Insight">
-												Insight <span className="skill">(Wis)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[6].total < 0
-														? props.skills[6].total
-														: "+" + props.skills[6].total
-												}
-												name="Insight"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[6].prof}
-												name="Insight-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Intimidation">
-												Intimidation <span className="skill">(Cha)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[7].total < 0
-														? props.skills[7].total
-														: "+" + props.skills[7].total
-												}
-												name="Intimidation"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[7].prof}
-												name="Intimidation-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Investigation">
-												Investigation <span className="skill">(Int)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[8].total < 0
-														? props.skills[8].total
-														: "+" + props.skills[8].total
-												}
-												name="Investigation"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[8].prof}
-												name="Investigation-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Medicine">
-												Medicine <span className="skill">(Wis)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[9].total < 0
-														? props.skills[9].total
-														: "+" + props.skills[9].total
-												}
-												name="Medicine"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[9].prof}
-												name="Medicine-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Nature">
-												Nature <span className="skill">(Int)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[10].total < 0
-														? props.skills[10].total
-														: "+" + props.skills[10].total
-												}
-												name="Nature"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[10].prof}
-												name="Nature-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Perception">
-												Perception <span className="skill">(Wis)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[11].total < 0
-														? props.skills[11].total
-														: "+" + props.skills[11].total
-												}
-												name="Perception"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[11].prof}
-												name="Perception-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Performance">
-												Performance <span className="skill">(Cha)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[12].total < 0
-														? props.skills[12].total
-														: "+" + props.skills[12].total
-												}
-												name="Performance"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[12].prof}
-												name="Performance-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Persuasion">
-												Persuasion <span className="skill">(Cha)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[13].total < 0
-														? props.skills[13].total
-														: "+" + props.skills[13].total
-												}
-												name="Persuasion"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[13].prof}
-												name="Persuasion-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Religion">
-												Religion <span className="skill">(Int)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[14].total < 0
-														? props.skills[14].total
-														: "+" + props.skills[14].total
-												}
-												name="Religion"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[14].prof}
-												name="Religion-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Sleight of Hand">
-												Sleight of Hand <span className="skill">(Dex)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[15].total < 0
-														? props.skills[15].total
-														: "+" + props.skills[15].total
-												}
-												name="Sleight of Hand"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[15].prof}
-												name="Sleight of Hand-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Stealth">
-												Stealth <span className="skill">(Dex)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[16].total < 0
-														? props.skills[16].total
-														: "+" + props.skills[16].total
-												}
-												name="Stealth"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[16].prof}
-												name="Stealth-prof"
-												type="checkbox"
-											/>
-										</li>
-										<li>
-											<label htmlFor="Survival">
-												Survival <span className="skill">(Wis)</span>
-											</label>
-											<input
-												defaultValue={
-													props.skills[17].total < 0
-														? props.skills[17].total
-														: "+" + props.skills[17].total
-												}
-												name="Survival"
-												type="text"
-											/>
-											<input
-												defaultChecked={props.skills[17].prof}
-												name="Survival-prof"
-												type="checkbox"
-											/>
-										</li>
+										{props.skills.map((skill, i) =>
+											<li>
+												<label htmlFor={skill.data.name}>
+													{skill.data.name} <span className="skill">({skill.data.ability_score.name})</span>
+												</label>
+												<input
+													name={skill.data.name}
+													type="text"
+													defaultValue={posNeg(skill.total)}
+												/>
+											</li>)}
 									</ul>
-									<div className="label">Skills</div>
+									<div className="label">SKILLS</div>
 								</div>
+
 							</div>
 						</section>
 						<div className="passive-perception box">
+
+							<input
+								name="passiveperception"
+								defaultValue={posNeg(props.skills[11].total)}
+							/>
 							<div className="label-container">
 								<label htmlFor="passiveperception">
 									Passive Wisdom (Perception)
 								</label>
 							</div>
-							<input
-								name="passiveperception"
-								defaultValue={
-									props.skills[11].total < 0
-										? props.skills[11].total
-										: "+" + props.skills[11].total
-								}
-							/>
 						</div>
-						<div className="otherprofs box textblock">
+						<div className="otherprofs box ">
 							<label htmlFor="otherprofs">
 								Other Proficiencies and Languages
 							</label>
@@ -707,26 +183,26 @@ export default function ExportPDF(props) {
 							<input name="otherprofs" />
 							{props.classType.proficiencies.length > 7
 								? props.classType.proficiencies
-										.filter((_, i) => i % 2 === 0)
-										.map((e, i) => {
-											currentProf++;
-											const next = props.classType.proficiencies[i + 1]
-												? props.classType.proficiencies[i + 1].name
-												: "";
-											return (
-												<input
-													key={i}
-													name="otherprofs"
-													defaultValue={e.name + ", " + next}
-												/>
-											);
-										})
-								: props.classType.proficiencies.map((e, i) => {
+									.filter((_, i) => i % 2 === 0)
+									.map((e, i) => {
 										currentProf++;
+										const next = props.classType.proficiencies[i + 1]
+											? props.classType.proficiencies[i + 1].name
+											: "";
 										return (
-											<input key={i} name="otherprofs" defaultValue={e.name} />
+											<input
+												key={i}
+												name="otherprofs"
+												defaultValue={e.name + ", " + next}
+											/>
 										);
-								  })}
+									})
+								: props.classType.proficiencies.map((e, i) => {
+									currentProf++;
+									return (
+										<input key={i} name="otherprofs" defaultValue={e.name} />
+									);
+								})}
 							{currentProf < 12 &&
 								[...Array(12 - currentProf - 1)].map((_, i) => (
 									<input key={i} name="otherprofs" />
@@ -735,36 +211,39 @@ export default function ExportPDF(props) {
 					</section>
 					<section>
 						<section className="combat">
-							<div className="armorclass">
-								<div>
-									<label htmlFor="ac">Armor Class</label>
-									<input defaultValue={props.ac} name="ac" type="text" />
+							<div className="ais">
+								<div className="armorclass">
+									<div>
+										<label htmlFor="ac">Armor Class</label>
+										<input defaultValue={props.ac} name="ac" type="text" />
+									</div>
+								</div>
+								<div className="initiative">
+									<div>
+										<label htmlFor="initiative">Initiative</label>
+										<input
+											name="initiative"
+											type="text"
+											defaultValue={
+												props.totalScore[1].mod < 0
+													? props.totalScore[1].mod
+													: "+" + props.totalScore[1].mod
+											}
+										/>
+									</div>
+								</div>
+								<div className="speed">
+									<div>
+										<label htmlFor="speed">Speed</label>
+										<input
+											name="speed"
+											type="text"
+											defaultValue={0 + props.race.speed + "ft"}
+										/>
+									</div>
 								</div>
 							</div>
-							<div className="initiative">
-								<div>
-									<label htmlFor="initiative">Initiative</label>
-									<input
-										name="initiative"
-										type="text"
-										defaultValue={
-											props.totalScore[1].mod < 0
-												? props.totalScore[1].mod
-												: "+" + props.totalScore[1].mod
-										}
-									/>
-								</div>
-							</div>
-							<div className="speed">
-								<div>
-									<label htmlFor="speed">Speed</label>
-									<input
-										name="speed"
-										type="text"
-										defaultValue={0 + props.race.speed + "ft"}
-									/>
-								</div>
-							</div>
+
 							<div className="hp">
 								<div className="regular">
 									<div className="max">
@@ -781,8 +260,8 @@ export default function ExportPDF(props) {
 									<input name="temphp" type="text" readOnly />
 								</div>
 							</div>
-							<div className="hitdice">
-								<div>
+							<div className="hdDeath">
+								<div className="hitdice">
 									<div className="total">
 										<label htmlFor="totalhd">Total</label>
 										<input
@@ -796,12 +275,8 @@ export default function ExportPDF(props) {
 										<input readOnly name="remaininghd" type="text" />
 									</div>
 								</div>
-							</div>
-							<div className="deathsaves">
-								<div>
-									<div className="label">
-										<label>Death Saves</label>
-									</div>
+								<div className="deathsaves">
+									<label>Death Saves</label>
 									<div className="marks">
 										<div className="deathsuccesses">
 											<label>Successes</label>
@@ -822,139 +297,143 @@ export default function ExportPDF(props) {
 									</div>
 								</div>
 							</div>
+
 						</section>
 						<section className="attacksandspellcasting">
-							<div>
-								<label>Attacks & Spellcasting</label>
-								<table>
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Atk Bonus</th>
-											<th>Damage/Type</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<input
-													name="atkname1"
-													className="atkname"
-													type="text"
-													defaultValue={
-														props.inventory.weapons[0]
-															? props.inventory.weapons[0].name
-															: ""
-													}
-												/>
-											</td>
-											<td>
-												<input
-													name="atkbonus1"
-													className="atkbonus"
-													type="text"
-													defaultValue={
-														props.inventory.weapons[0]
-															? props.inventory.weapons[0].atk < 0
-																? props.inventory.weapons[0].atk
-																: "+" + props.inventory.weapons[0].atk
-															: ""
-													}
-												/>
-											</td>
-											<td>
-												<input
-													name="atkdamage1"
-													type="text"
-													defaultValue={
-														props.inventory.weapons[0]
-															? props.inventory.weapons[0].dmg
-															: ""
-													}
-												/>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<input
-													name="atkname2"
-													className="atkname"
-													type="text"
-													defaultValue={
-														props.inventory.weapons[1]
-															? props.inventory.weapons[1].name
-															: ""
-													}
-												/>
-											</td>
-											<td>
-												<input
-													name="atkbonus2"
-													className="atkbonus"
-													type="text"
-													defaultValue={
-														props.inventory.weapons[1]
-															? props.inventory.weapons[1].atk < 0
-																? props.inventory.weapons[1].atk
-																: "+" + props.inventory.weapons[1].atk
-															: ""
-													}
-												/>
-											</td>
-											<td>
-												<input
-													name="atkdamage2"
-													type="text"
-													defaultValue={
-														props.inventory.weapons[1]
-															? props.inventory.weapons[1].dmg
-															: ""
-													}
-												/>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<input
-													name="atkname3"
-													className="atkname"
-													type="text"
-													defaultValue={
-														props.inventory.weapons[2]
-															? props.inventory.weapons[2].name
-															: ""
-													}
-												/>
-											</td>
-											<td>
-												<input
-													name="atkbonus3"
-													className="atkbonus"
-													type="text"
-													defaultValue={
-														props.inventory.weapons[2]
-															? props.inventory.weapons[2].atk < 0
-																? props.inventory.weapons[2].atk
-																: "+" + props.inventory.weapons[2].atk
-															: ""
-													}
-												/>
-											</td>
-											<td>
-												<input
-													name="atkdamage3"
-													type="text"
-													defaultValue={
-														props.inventory.weapons[2]
-															? props.inventory.weapons[2].dmg
-															: ""
-													}
-												/>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-								<div className="Spell"></div>
+							<label>Attacks & Spellcasting</label>
+							<table>
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Atk Bonus</th>
+										<th>Damage/Type</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input
+												name="atkname1"
+												className="atkname"
+												type="text"
+												defaultValue={
+													props.inventory.weapons[0]
+														? props.inventory.weapons[0].name
+														: ""
+												}
+											/>
+										</td>
+										<td>
+											<input
+												name="atkbonus1"
+												className="atkbonus"
+												type="text"
+												defaultValue={
+													props.inventory.weapons[0]
+														? props.inventory.weapons[0].atk < 0
+															? props.inventory.weapons[0].atk
+															: "+" + props.inventory.weapons[0].atk
+														: ""
+												}
+											/>
+										</td>
+										<td>
+											<input
+												name="atkdamage1"
+												className="atkdamage"
+												type="text"
+												defaultValue={
+													props.inventory.weapons[0]
+														? props.inventory.weapons[0].dmg
+														: ""
+												}
+											/>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input
+												name="atkname2"
+												className="atkname"
+												type="text"
+												defaultValue={
+													props.inventory.weapons[1]
+														? props.inventory.weapons[1].name
+														: ""
+												}
+											/>
+										</td>
+										<td>
+											<input
+												name="atkbonus2"
+												className="atkbonus"
+												type="text"
+												defaultValue={
+													props.inventory.weapons[1]
+														? props.inventory.weapons[1].atk < 0
+															? props.inventory.weapons[1].atk
+															: "+" + props.inventory.weapons[1].atk
+														: ""
+												}
+											/>
+										</td>
+										<td>
+											<input
+												name="atkdamage2"
+												className="atkdamage"
+												type="text"
+												defaultValue={
+													props.inventory.weapons[1]
+														? props.inventory.weapons[1].dmg
+														: ""
+												}
+											/>
+										</td>
+									</tr>
+									<tr>
+										<td className="atkname">
+											<input
+												name="atkname3"
+
+												type="text"
+												defaultValue={
+													props.inventory.weapons[2]
+														? props.inventory.weapons[2].name
+														: ""
+												}
+											/>
+										</td>
+										<td className="atkbonus">
+											<input
+												name="atkbonus3"
+
+												type="text"
+												defaultValue={
+													props.inventory.weapons[2]
+														? props.inventory.weapons[2].atk < 0
+															? props.inventory.weapons[2].atk
+															: "+" + props.inventory.weapons[2].atk
+														: ""
+												}
+											/>
+										</td>
+										<td className="atkdamage">
+											<input
+												name="atkdamage3"
+
+												type="text"
+												defaultValue={
+													props.inventory.weapons[2]
+														? props.inventory.weapons[2].dmg
+														: ""
+												}
+											/>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div className="Spell">
+
 							</div>
 						</section>
 						<section className="equipment">
@@ -993,8 +472,8 @@ export default function ExportPDF(props) {
 										currentItems++;
 										return <input key={i} defaultValue={e.name} />;
 									})}
-									{currentItems < 12 &&
-										[...Array(12 - currentItems - 1)].map((_, i) => (
+									{currentItems < 14 &&
+										[...Array(14 - currentItems - 1)].map((_, i) => (
 											<input key={i} name="equipment" />
 										))}
 								</div>
@@ -1007,7 +486,7 @@ export default function ExportPDF(props) {
 								<label htmlFor="personality">Personality</label>
 								<div
 									name="personality"
-									// defaultValue={currb.personalities ? currb.personalities : ""}
+								// defaultValue={currb.personalities ? currb.personalities : ""}
 								>
 									{currb.personalities ? currb.personalities : ""}
 								</div>
@@ -1016,7 +495,7 @@ export default function ExportPDF(props) {
 								<label htmlFor="ideals">Ideals</label>
 								<div
 									name="ideals"
-									// defaultValue={currb.ideals ? currb.ideals : ""}
+								// defaultValue={currb.ideals ? currb.ideals : ""}
 								>
 									{currb.ideals ? currb.ideals : ""}
 								</div>
@@ -1025,7 +504,7 @@ export default function ExportPDF(props) {
 								<label htmlFor="bonds">Bonds</label>
 								<div
 									name="bonds"
-									// defaultValue={currb.bonds ? currb.bonds : ""}
+								// defaultValue={currb.bonds ? currb.bonds : ""}
 								>
 									{currb.bonds ? currb.bonds : ""}
 								</div>
@@ -1034,7 +513,7 @@ export default function ExportPDF(props) {
 								<label htmlFor="flaws">Flaws</label>
 								<div
 									name="flaws"
-									// defaultValue={currb.flaws ? currb.flaws : ""}
+								// defaultValue={currb.flaws ? currb.flaws : ""}
 								>
 									{currb.flaws ? currb.flaws : ""}
 								</div>
@@ -1055,14 +534,15 @@ export default function ExportPDF(props) {
 										<input key={i} name="features" defaultValue={e.name} />
 									);
 								})}
-								{currentFeats < 28 &&
-									[...Array(28 - currentFeats - 1)].map((_, i) => (
+								{currentFeats < 30 &&
+									[...Array(30 - currentFeats - 1)].map((_, i) => (
 										<input key={i} name="features" />
 									))}
 							</div>
 						</section>
 					</section>
 				</main>
+				<footer></footer>
 			</form>
 		</div>
 	);

@@ -144,29 +144,6 @@ export default function Body() {
 					)}
 				</React.Fragment>
 			)}
-
-			{/* {info &&
-                <React.Fragment>
-                    <Ability
-                        classType={classType}
-                        race={race}
-                        feats={feats}
-                        info={info}
-                        totalScore={totalScore}
-                        setTotalScore={setTotalScore}
-                        level={level}
-                        background={background}
-                        skills={skills}
-                        setSkills={setSkills}
-                        hp={hp}
-                        sethp={sethp}
-                    />
-                    {skills.map(e => e.prof).indexOf(true) > -1 &&
-                        <Gear totalScore={totalScore} level={level} classType={classType} />}
-                </React.Fragment>
-            } */}
-
-			{/* {alignment && <ExportCSV csvData={data} fileName={name? name:'Character'} />} */}
 		</ListGroup>
 	);
 }
