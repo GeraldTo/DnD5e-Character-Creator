@@ -75,7 +75,7 @@ export default function ExportPDF(props) {
 				</header>
 
 				<main>
-					<section>
+					<section className="column1">
 						<section className="attributes">
 							<div className="scores">
 								<ul>
@@ -209,7 +209,7 @@ export default function ExportPDF(props) {
 								))}
 						</div>
 					</section>
-					<section>
+					<section className="column2">
 						<section className="combat">
 							<div className="ais">
 								<div className="armorclass">
@@ -480,7 +480,7 @@ export default function ExportPDF(props) {
 							</div>
 						</section>
 					</section>
-					<section>
+					<section className="column3">
 						<section className="flavor">
 							<div className="personality">
 								<label htmlFor="personality">Personality</label>
