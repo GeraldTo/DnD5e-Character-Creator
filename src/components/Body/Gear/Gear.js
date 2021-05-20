@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 // import Inventory from './Inventory'
 import Armor from "./Armor";
 import Weapons from "./Weapons";
+import Dragon from './Dragon'
 import styles from "./Gear.module.css";
 import { ListGroup } from "react-bootstrap";
 
@@ -31,6 +32,7 @@ export default function Gear(props) {
 							totalScore={props.totalScore}
 							level={props.level}
 						/>
+						{props.race.trait_options ? <Dragon url={url} totalScore={props.totalScore} level={props.level} /> : <></>}
 						{props.ac !== null ? (
 							<Armor
 								inventory={props.inventory}

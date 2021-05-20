@@ -38,7 +38,7 @@ export default function Weapons(props) {
 	}, []);
 
 	useEffect(() => {
-		const newObj = totalWeapons
+		const newObj = [...totalWeapons]
 			.filter((e) => e)
 			.map((e, i) =>
 				Object.assign(e, {
@@ -47,13 +47,13 @@ export default function Weapons(props) {
 						(e.strMod ? props.totalScore[0].mod : props.totalScore[1].mod),
 					dmg: e.damage
 						? (e.strMod
-								? props.totalScore[0].mod === 0
-									? ""
-									: props.totalScore[0].mod + "+"
-								: props.totalScore[1].mod === 0
+							? props.totalScore[0].mod === 0
+								? ""
+								: props.totalScore[0].mod + "+"
+							: props.totalScore[1].mod === 0
 								? ""
 								: props.totalScore[1].mod + "+") +
-						  (e.damage.damage_dice + "/" + e.damage.damage_type.name)
+						(e.damage.damage_dice + "/" + e.damage.damage_type.name)
 						: "None",
 				})
 			);
@@ -165,15 +165,15 @@ export default function Weapons(props) {
 										Damage:{" "}
 										{current.damage
 											? (current.strMod
-													? props.totalScore[0].mod === 0
-														? ""
-														: props.totalScore[0].mod + "+"
-													: props.totalScore[1].mod === 0
+												? props.totalScore[0].mod === 0
+													? ""
+													: props.totalScore[0].mod + "+"
+												: props.totalScore[1].mod === 0
 													? ""
 													: props.totalScore[1].mod + "+") +
-											  (current.damage.damage_dice +
-													"/" +
-													current.damage.damage_type.name)
+											(current.damage.damage_dice +
+												"/" +
+												current.damage.damage_type.name)
 											: "None"}
 									</ListGroup.Item>
 									<ListGroup.Item>

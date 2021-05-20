@@ -118,6 +118,7 @@ export default function Body() {
 												totalScore={totalScore}
 												level={level}
 												classType={classType}
+												race={race}
 												inventory={inventory}
 												setInventory={setInventory}
 												ac={ac}
