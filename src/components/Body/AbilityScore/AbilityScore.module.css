@@ -11,4 +11,11 @@
 
 .Saves{
     width: 16rem;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.Lists{
+    margin: 1rem;
+    width:30rem;
 }

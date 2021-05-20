@@ -29,7 +29,7 @@ export default function Saving(props) {
     const head = ["Proficient", "Score", "Type"]
     return (
         <div>
-            <h4>Saving Throws:</h4>
+            <h3>Saving Throws:</h3>
             <Table size="sm" className={styles.Saves}>
                 <thead>
                     <tr>

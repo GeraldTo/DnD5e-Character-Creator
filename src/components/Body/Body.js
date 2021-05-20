@@ -87,18 +87,17 @@ export default function Body() {
 					{info && info.alignment && (
 						<React.Fragment>
 							<Ability
+								done={done}
 								classType={classType}
 								race={race}
 								feats={feats}
 								info={info}
+								setInfo={setInfo}
 								totalScore={totalScore}
 								setTotalScore={setTotalScore}
 								level={level}
 								background={background}
-								skills={skills}
-								setSkills={setSkills}
 								hp={hp}
-								done={done}
 								sethp={sethp}
 							/>
 							{hp > 0 ? (
@@ -107,6 +106,7 @@ export default function Body() {
 										proficiencies={background.proficiencies}
 										classType={classType}
 										totalScore={totalScore}
+										race={race}
 										level={level}
 										done={done}
 										skills={skills}
@@ -118,7 +118,6 @@ export default function Body() {
 												totalScore={totalScore}
 												level={level}
 												classType={classType}
-												race={race}
 												inventory={inventory}
 												setInventory={setInventory}
 												ac={ac}

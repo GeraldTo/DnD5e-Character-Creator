@@ -28,7 +28,8 @@ export default function Skills(props) {
 			handleInit(response.data);
 		});
 	}, []);
-	const currentProf = props.proficiencies.filter((e) => e);
+	const currentBackProf = props.proficiencies.filter((e) => e);
+	const currentRaceProf = props.race.starting_proficiencies.filter(e => e.index.includes('skill')).map(e => e.index.replace('skill-', ''))
 	const currentSkill = props.skills;
 	const head = ["Bonus", "Total", "Skill", "Mod", "Expert"];
 	const skillIndex =
@@ -50,22 +51,36 @@ export default function Skills(props) {
 					<h4>Choices:</h4>
 					<ListGroup>
 						<ListGroup.Item>
-							Choose {props.classType.proficiency_choices[skillIndex].choose}{" "}
+							Class choose {props.classType.proficiency_choices[skillIndex].choose}{" "}
 							from:{" "}
 							{props.classType.proficiency_choices[skillIndex].from
 								.map((e) => e.name.replace("Skill: ", ""))
 								.join(", ")}{" "}
-							<br />
 						</ListGroup.Item>
-						{currentProf.length > 0 && (
+						{props.race.starting_proficiency_options &&
+							props.race.starting_proficiency_options.from.filter(e => e.index.includes('skill')).length > 0 && (
+								<ListGroup.Item>
+									Race choose {props.race.starting_proficiency_options.choose}{" "}
+									from:{" "}
+									{props.race.starting_proficiency_options.from
+										.map((e) => e.name.replace("Skill: ", ""))
+										.join(", ")}{" "}
+								</ListGroup.Item>
+							)}
+						{currentBackProf.length > 0 && (
 							<ListGroup.Item>
-								Backgrounds: {currentProf.join(", ")}
+								Backgrounds: {currentBackProf.join(", ")}
 							</ListGroup.Item>
 						)}
+						{currentRaceProf.length > 0 && (
+							<ListGroup.Item>
+								Race Deafult: {currentRaceProf.join(', ')}
+							</ListGroup.Item>
+						)}
+						<ListGroup.Item>
+							(Also check traits and features for any extra skills)
+						</ListGroup.Item>
 					</ListGroup>
-					<ListGroup.Item>
-						(Also check traits and features for any extra skills)
-					</ListGroup.Item>
 				</ListGroup.Item>
 				<ListGroup.Item>
 					<Button
@@ -92,7 +107,8 @@ export default function Skills(props) {
 									index={i}
 									done={props.done}
 									display={display}
-									same={currentProf.indexOf(currentSkill[i].data.index) > -1}
+									same={currentBackProf.indexOf(e.data.index) > -1 ||
+										currentRaceProf.indexOf(e.data.index) > -1}
 									totalScore={props.totalScore}
 									profBonus={1 + Math.ceil(props.level / 4)}
 								/>

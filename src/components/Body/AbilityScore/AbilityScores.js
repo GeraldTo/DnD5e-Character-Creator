@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import Saving from "./Saving";
@@ -5,6 +6,7 @@ import Hitdie from "./Hitdie";
 import ScoreList from "./Scores/ScoreList";
 import styles from "../Body.module.css";
 import "./AbilityScore.css";
+import Dragon from './Dragon'
 import { ListGroup } from "react-bootstrap";
 
 export default function AbilityScore(props) {
@@ -30,8 +32,15 @@ export default function AbilityScore(props) {
 				};
 			})
 		);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	useEffect(() => {
+		if (props.info.dragon) {
+			let newObj = { ...props.info }
+			delete newObj.dragon
+			props.setInfo(newObj)
+		}
+	}, [props.race])
 
 	if (props.info.alignment) {
 		return (
@@ -69,6 +78,11 @@ export default function AbilityScore(props) {
 								(Dex Mod)
 								<br />
 							</ListGroup.Item>
+							{props.race.trait_options ?
+								<ListGroup.Item>
+									<Dragon totalScore={props.totalScore} level={props.level} info={props.info} setInfo={props.setInfo} />
+								</ListGroup.Item>
+								: <></>}
 							<ListGroup.Item>
 								<Hitdie
 									hitdie={props.classType.hit_die}
