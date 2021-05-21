@@ -15,7 +15,6 @@ export default function Body() {
 	const [level, setlevel] = useState(0);
 	const [race, setRace] = useState(null);
 	const [classType, setClassType] = useState(null);
-	const [feats, setFeats] = useState([]);
 	const [classLevels, setClassLevels] = useState(null)
 	const [info, setInfo] = useState(null);
 	const [totalScore, setTotalScore] = useState(null);
@@ -38,7 +37,6 @@ export default function Body() {
 						background={background}
 						classType={classType}
 						classLevels={classLevels}
-						feats={[]}
 						totalScore={totalScore}
 						skills={skills}
 						inventory={inventory}

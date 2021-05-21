@@ -14,7 +14,6 @@ export default function ExportPDF(props) {
 		return input < 0 ? input : "+" + input
 	}
 
-	console.log(props.classLevels)
 	return (
 		<div>
 			<Pdf
@@ -111,7 +110,7 @@ export default function ExportPDF(props) {
 								<div className="proficiencybonus box">
 									<input
 										name="proficiencybonus"
-										defaultValue={"+" + (1 + Math.ceil(props.level / 4))}
+										defaultValue={"+" + props.classLevels.current.prof_bonus}
 									/>
 									<div className="label-container">
 										<label htmlFor="proficiencybonus">Proficiency Bonus</label>
@@ -128,7 +127,7 @@ export default function ExportPDF(props) {
 													defaultValue={
 														posNeg(saving.mod +
 															(saving.saving
-																? 1 + Math.ceil(props.level / 4)
+																? props.classLevels.current.prof_bonus
 																: 0))
 													}
 												/>
@@ -187,8 +186,8 @@ export default function ExportPDF(props) {
 									.filter((_, i) => i % 2 === 0)
 									.map((e, i) => {
 										currentProf++;
-										const next = props.classType.proficiencies[i + 1]
-											? props.classType.proficiencies[i + 1].name
+										const next = props.classType.proficiencies[(i * 2) + 1]
+											? props.classType.proficiencies[(i * 2) + 1].name
 											: "";
 										return (
 											<input

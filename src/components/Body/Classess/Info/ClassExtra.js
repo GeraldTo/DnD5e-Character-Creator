@@ -27,9 +27,6 @@ export default function ClassExtra(props) {
                     from: {currentClass.proficiency_choices[0].from.map(e => (e.name)).join(', ')}
                 </ListGroup.Item>
             }
-            <ListGroup.Item>
-                <h4>Class Specific:</h4>
-            </ListGroup.Item>
             {props.classLevels && <ListGroup.Item><Features feats={props.classLevels.feats} /></ListGroup.Item>}
         </ListGroup>
     )
