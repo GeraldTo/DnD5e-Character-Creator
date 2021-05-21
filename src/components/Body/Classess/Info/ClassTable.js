@@ -11,7 +11,8 @@ export default function ClassTable(props) {
     const url = process.env.REACT_APP_BASE
     useEffect(() => {
         function handleChange(response) {
-            let currentFeatObjs = response.filter((e, i) => i < props.level)
+
+            let currentFeatObjs = response.filter((e) => e.level <= props.level).filter(e => e.hasOwnProperty('subclass'))
             const featurls = currentFeatObjs.map(e => (e.feature_choices.map(f => { return url + f.url })).concat(e.features.map(f => { return url + f.url }))).flat()
             let promiseArray = featurls.map(url => axios.get(url));
             Promise.all(promiseArray)

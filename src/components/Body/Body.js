@@ -28,14 +28,13 @@ export default function Body() {
 	//     console.log(url)
 	// }, [url])
 
-	const ref = React.createRef();
+
 	const [done, setDone] = useState(false);
 	return (
 		<ListGroup>
 			{done && (
 				<ListGroup.Item>
 					<ExportPDF
-						refer={ref}
 						level={level}
 						race={race}
 						info={info}

@@ -1,0 +1,132 @@
+[
+	{
+		"class": "barbarian",
+		"class_specific": {
+			"creating_spell_slots": [],
+			"rage_count": 4,
+			"rage_damage_bonus": 2,
+			"brutal_critical_dice": 0
+		}
+	},
+	{
+		"class": "bard",
+		"class_specific": {
+			"creating_spell_slots": [],
+			"bardic_inspiration_die": 6,
+			"song_of_rest_die": 0,
+			"magical_secrets_max_5": 0,
+			"magical_secrets_max_7": 0,
+			"magical_secrets_max_9": 0
+		}
+	},
+	{
+		"class": "cleric",
+		"class_specific": {
+			"creating_spell_slots": [],
+			"channel_divinity_charges": 0,
+			"destroy_undead_cr": 0
+		}
+	},
+	{
+		"class": "druid",
+		"class_specific": {
+			"creating_spell_slots": [],
+			"wild_shape_max_cr": 0.25,
+			"wild_shape_swim": false,
+			"wild_shape_fly": false
+		}
+	},
+	{
+		"class": "fighter",
+		"class_specific": {
+			"creating_spell_slots": [],
+			"action_surges": 1,
+			"indomitable_uses": 0,
+			"extra_attacks": 1
+		}
+	},
+	{
+		"class": "monk",
+		"class_specific": {
+			"creating_spell_slots": [],
+			"martial_arts": {
+				"dice_count": 1,
+				"dice_value": 4
+			},
+			"ki_points": 4,
+			"unarmored_movement": 10
+		}
+	},
+	{
+		"class": "paladin",
+		"class_specific": {
+			"creating_spell_slots": [],
+			"aura_range": 0
+		}
+	},
+	{
+		"class": "ranger",
+		"class_specific": {
+			"creating_spell_slots": [],
+			"favored_enemies": 1,
+			"favored_terrain": 1
+		}
+	},
+	{
+		"class": "rogue",
+		"class_specific": {
+			"creating_spell_slots": [],
+			"sneak_attack": {
+				"dice_count": 1,
+				"dice_value": 6
+			}
+		}
+	},
+	{
+		"class": "sorcerer",
+		"class_specific": {
+			"creating_spell_slots": [
+				{
+					"spell_slot_level": 1,
+					"sorcery_point_cost": 2
+				},
+				{
+					"spell_slot_level": 2,
+					"sorcery_point_cost": 3
+				},
+				{
+					"spell_slot_level": 3,
+					"sorcery_point_cost": 5
+				},
+				{
+					"spell_slot_level": 4,
+					"sorcery_point_cost": 6
+				},
+				{
+					"spell_slot_level": 5,
+					"sorcery_point_cost": 7
+				}
+			],
+			"sorcery_points": 2,
+			"metamagic_known": 0
+		}
+	},
+	{
+		"class": "warlock",
+		"class_specific": {
+			"creating_spell_slots": [],
+			"invocations_known": 2,
+			"mystic_arcanum_level_6": 0,
+			"mystic_arcanum_level_7": 0,
+			"mystic_arcanum_level_8": 0,
+			"mystic_arcanum_level_9": 0
+		}
+	},
+	{
+		"class": "wizard",
+		"class_specific": {
+			"creating_spell_slots": [],
+			"arcane_recovery_levels": 1
+		}
+	}
+]
