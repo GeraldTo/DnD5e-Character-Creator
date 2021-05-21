@@ -12,14 +12,14 @@ export default function Hitdie(props) {
 	}, [props.hitdie]);
 	useEffect(() => {
 		let totalHP = [...hpArr];
-		hpArr.length > props.level
+		hpArr.length > props.currentLevel.level
 			? totalHP.pop()
 			: totalHP.push(Math.floor(Math.random() * props.hitdie) + 1);
 		sethpArr(totalHP);
-	}, [props.level]);
+	}, [props.currentLevel]);
 	function randHP() {
 		let totalHP = [];
-		for (let i = 0; i < props.level; i++) {
+		for (let i = 0; i < props.currentLevel.level; i++) {
 			totalHP.push(Math.floor(Math.random() * props.hitdie) + 1);
 		}
 		return totalHP;
@@ -40,10 +40,10 @@ export default function Hitdie(props) {
 						hpArr.reduce((a, b) => {
 							return a + b;
 						}, 0) +
-							hpArr.length * props.conMod +
-							" (" +
-							hpArr.join(", ") +
-							")"}
+						hpArr.length * props.conMod +
+						" (" +
+						hpArr.join(", ") +
+						")"}
 					<br />
 					HP = [Hit Die (1d{props.hitdie}) + Consitution Modifier (
 					{props.conMod})] per level <br />

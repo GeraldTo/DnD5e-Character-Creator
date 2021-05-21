@@ -14,6 +14,7 @@ export default function Classes(props) {
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
 	return (
 		<ListGroup.Item>
 			<h2>Class </h2>
@@ -28,8 +29,8 @@ export default function Classes(props) {
 					classType={props.classType}
 					setProf={props.setProf}
 					level={props.level}
-					feats={props.feats}
-					setFeats={props.setFeats}
+					classLevels={props.classLevels}
+					setClassLevels={props.setClassLevels}
 				/>
 			)}
 		</ListGroup.Item>

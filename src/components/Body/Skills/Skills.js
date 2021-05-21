@@ -45,7 +45,7 @@ export default function Skills(props) {
 					ability score by using its modifier.
 				</ListGroup.Item>
 				<ListGroup.Item>
-					<h4>Proficiency Bonus: </h4> +{1 + Math.ceil(props.level / 4)}
+					<h4>Proficiency Bonus: </h4> +{props.bonus}
 				</ListGroup.Item>
 				<ListGroup.Item>
 					<h4>Choices:</h4>
@@ -110,7 +110,7 @@ export default function Skills(props) {
 									same={currentBackProf.indexOf(e.data.index) > -1 ||
 										currentRaceProf.indexOf(e.data.index) > -1}
 									totalScore={props.totalScore}
-									profBonus={1 + Math.ceil(props.level / 4)}
+									profBonus={props.bonus}
 								/>
 							))}
 						</tbody>

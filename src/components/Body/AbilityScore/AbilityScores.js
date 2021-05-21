@@ -52,7 +52,7 @@ export default function AbilityScore(props) {
 							<ScoreList
 								race={props.race}
 								classType={props.classType}
-								feats={props.feats}
+								inc={props.classLevels.current.ability_score_bonuses}
 								setFirst={setFirstScore}
 								totalScore={props.totalScore}
 								done={props.done}
@@ -67,7 +67,7 @@ export default function AbilityScore(props) {
 									totalScore={props.totalScore}
 									setTotalScore={props.setTotalScore}
 									classType={props.classType}
-									level={props.level}
+									bonus={props.classLevels.current.prof_bonus}
 								/>
 							</ListGroup.Item>
 							<ListGroup.Item>
@@ -80,14 +80,14 @@ export default function AbilityScore(props) {
 							</ListGroup.Item>
 							{props.race.trait_options ?
 								<ListGroup.Item>
-									<Dragon totalScore={props.totalScore} level={props.level} info={props.info} setInfo={props.setInfo} />
+									<Dragon totalScore={props.totalScore} currentLevel={props.classLevels.current} info={props.info} setInfo={props.setInfo} />
 								</ListGroup.Item>
 								: <></>}
 							<ListGroup.Item>
 								<Hitdie
 									hitdie={props.classType.hit_die}
 									conMod={props.totalScore[2].mod}
-									level={props.level}
+									currentLevel={props.classLevels.current}
 									done={props.done}
 									sethp={props.sethp}
 									hp={props.hp}

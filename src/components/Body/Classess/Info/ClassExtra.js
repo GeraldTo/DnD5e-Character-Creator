@@ -3,13 +3,14 @@ import Features from './Features'
 import { ListGroup } from 'react-bootstrap';
 
 
-// classType feats
+// classType classLevels
 export default function ClassExtra(props) {
     const currentClass = props.classType
     const skillIndex = currentClass.proficiency_choices[0].from[0].index.indexOf('skill') === 0 ? 0 : 2
     return (
         <ListGroup variant="flush">
             <ListGroup.Item><h4>Suggested Ability Scores:</h4> {currentClass.scores}</ListGroup.Item>
+            <ListGroup.Item><h4>Proficiency Bonus:</h4> +{1 + Math.ceil(props.level / 4)}</ListGroup.Item>
             <ListGroup.Item><h4>Usual Background:</h4> {currentClass.background} </ListGroup.Item>
             <ListGroup.Item><h4>Proficiencies: </h4> {currentClass.proficiencies.map((e, i) => e.name).join(', ')}</ListGroup.Item>
             <ListGroup.Item><h4>Skills:</h4> Choose {currentClass.proficiency_choices[skillIndex].choose} {" "}
@@ -26,7 +27,10 @@ export default function ClassExtra(props) {
                     from: {currentClass.proficiency_choices[0].from.map(e => (e.name)).join(', ')}
                 </ListGroup.Item>
             }
-            <ListGroup.Item><Features feats={props.feats} /></ListGroup.Item>
+            <ListGroup.Item>
+                <h4>Class Specific:</h4>
+            </ListGroup.Item>
+            {props.classLevels && <ListGroup.Item><Features feats={props.classLevels.feats} /></ListGroup.Item>}
         </ListGroup>
     )
 }

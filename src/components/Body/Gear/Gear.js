@@ -29,7 +29,7 @@ export default function Gear(props) {
 							setInventory={props.setInventory}
 							url={url}
 							totalScore={props.totalScore}
-							level={props.level}
+							bonus={props.bonus}
 						/>
 						{props.ac !== null ? (
 							<Armor

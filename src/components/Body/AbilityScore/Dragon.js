@@ -21,16 +21,16 @@ export default function Dragon(props) {
 
             });
     }, []);
-
+    const currentDam = props.currentLevel.level >= 16 ? '5d6' : props.currentLevel.level >= 11 ? '4d6' : props.currentLevel.level >= 6 ? '3d6' : '2d6'
     useEffect(() => {
         if (current) {
             let newObj = { ...current }
-            newObj.dmg = props.level >= 16 ? '5d6' : props.level >= 11 ? '4d6' : props.level >= 6 ? '3d6' : '2d6'
-            newObj.dc = 8 + props.totalScore[2].mod + (1 + Math.ceil(props.level / 4))
+            newObj.dmg = currentDam
+            newObj.dc = 8 + props.totalScore[2].mod + props.currentLevel.prof_bonus
             props.setInfo((prev) => ({ ...prev, dragon: newObj }))
             // setCurrent(newObj)
         }
-    }, [props.totalScore[2].mod, current, props.level])
+    }, [props.totalScore[2].mod, current, props.currentLevel.level])
 
     function breath() {
         function handleSelect(event) {
@@ -76,10 +76,10 @@ export default function Dragon(props) {
                             <h3>{current.name.substring(15, current.name.length - 1)} Dragon</h3>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            DC: {8 + props.totalScore[2].mod + (1 + Math.ceil(props.level / 4))}
+                            DC: {8 + props.totalScore[2].mod + props.currentLevel.level}
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            Damage: {props.level >= 16 ? '5d6' : props.level >= 11 ? '4d6' : props.level >= 6 ? '3d6' : '2d6'}{' '}
+                            Damage: {currentDam}{' '}
                             (half on success)
                         </ListGroup.Item>
                         <ListGroup.Item>

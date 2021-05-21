@@ -43,7 +43,7 @@ export default function Weapons(props) {
 			.map((e, i) =>
 				Object.assign(e, {
 					atk:
-						(e.prof ? 1 + Math.ceil(props.level / 4) : 0) +
+						(e.prof ? props.bonus : 0) +
 						(e.strMod ? props.totalScore[0].mod : props.totalScore[1].mod),
 					dmg: e.damage
 						? (e.strMod
@@ -62,7 +62,7 @@ export default function Weapons(props) {
 		totalWeapons,
 		props.totalScore[0].mod,
 		props.totalScore[1].mod,
-		props.level,
+		props.bonus,
 	]);
 
 	function weapons(list, type, index) {
@@ -155,7 +155,7 @@ export default function Weapons(props) {
 										/>
 										ATK Bonus: +
 										{(totalWeapons[i].prof
-											? 1 + Math.ceil(props.level / 4)
+											? props.bonus
 											: 0) +
 											(current.strMod
 												? props.totalScore[0].mod

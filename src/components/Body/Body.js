@@ -16,18 +16,14 @@ export default function Body() {
 	const [race, setRace] = useState(null);
 	const [classType, setClassType] = useState(null);
 	const [feats, setFeats] = useState([]);
+	const [classLevels, setClassLevels] = useState(null)
 	const [info, setInfo] = useState(null);
-	// [str,dex,con,int,wis,cha]
 	const [totalScore, setTotalScore] = useState(null);
 	const [skills, setSkills] = useState([]);
 	const [hp, sethp] = useState(0);
 	const [ac, setAc] = useState(null);
 	const [background, setBackground] = useState(null);
 	const [inventory, setInventory] = useState(null);
-	// useEffect(() => {
-	//     console.log(url)
-	// }, [url])
-
 
 	const [done, setDone] = useState(false);
 	return (
@@ -41,7 +37,8 @@ export default function Body() {
 						hp={hp}
 						background={background}
 						classType={classType}
-						feats={feats}
+						classLevels={classLevels}
+						feats={[]}
 						totalScore={totalScore}
 						skills={skills}
 						inventory={inventory}
@@ -65,9 +62,9 @@ export default function Body() {
 				<Classes
 					classType={classType}
 					setClassType={setClassType}
+					classLevels={classLevels}
+					setClassLevels={setClassLevels}
 					level={level}
-					feats={feats}
-					setFeats={setFeats}
 					done={done}
 				/>
 			)}
@@ -89,12 +86,11 @@ export default function Body() {
 								done={done}
 								classType={classType}
 								race={race}
-								feats={feats}
+								classLevels={classLevels}
 								info={info}
 								setInfo={setInfo}
 								totalScore={totalScore}
 								setTotalScore={setTotalScore}
-								level={level}
 								background={background}
 								hp={hp}
 								sethp={sethp}
@@ -106,7 +102,7 @@ export default function Body() {
 										classType={classType}
 										totalScore={totalScore}
 										race={race}
-										level={level}
+										bonus={classLevels.current.prof_bonus}
 										done={done}
 										skills={skills}
 										setSkills={setSkills}
@@ -115,7 +111,7 @@ export default function Body() {
 										<React.Fragment>
 											<Gear
 												totalScore={totalScore}
-												level={level}
+												bonus={classLevels.current.prof_bonus}
 												classType={classType}
 												inventory={inventory}
 												setInventory={setInventory}

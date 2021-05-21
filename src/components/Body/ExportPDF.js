@@ -12,8 +12,9 @@ export default function ExportPDF(props) {
 
 	function posNeg(input) {
 		return input < 0 ? input : "+" + input
-
 	}
+
+	console.log(props.classLevels)
 	return (
 		<div>
 			<Pdf
@@ -79,8 +80,8 @@ export default function ExportPDF(props) {
 						<section className="attributes">
 							<div className="scores">
 								<ul>
-									{props.totalScore.map(ability =>
-										<li>
+									{props.totalScore.map((ability, i) =>
+										<li key={i}>
 											<div className="score">
 												<label htmlFor={ability.fullName + "score"}>{ability.fullName}</label>
 												<input
@@ -528,7 +529,8 @@ export default function ExportPDF(props) {
 										<input key={i} name="features" defaultValue={e.name} />
 									);
 								})}
-								{props.feats.map((e, i) => {
+								<input name="features" />
+								{props.classLevels.feats.filter(e => !e.name.includes("Ability Score Improvement")).map((e, i) => {
 									currentFeats++;
 									return (
 										<input key={i} name="features" defaultValue={e.name} />

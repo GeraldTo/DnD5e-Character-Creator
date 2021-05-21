@@ -31,8 +31,8 @@ export default function ScoreList(props) {
 				<Rolls />
 				<h4>Suggestions:</h4> {props.classType.scores}
 				<br />
-				<h4>Feats:</h4> Can Distribute{" "}
-				{props.feats.filter((e) => e.index.split("-")[1] === "ability").length}{" "}
+				<h4>Ability Score Increase:</h4> Can Distribute{" "}
+				{props.inc}{' '}
 				Point(s) to any Score(s) (Can't increse past 20)
 				<div className={styles.Buttons}>
 					{Array.apply(null, Array(6)).map((x, i) => (
