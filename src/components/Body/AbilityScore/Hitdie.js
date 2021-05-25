@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import styles from "../Body.module.css";
-import { InputGroup, FormControl, Button } from "react-bootstrap";
+import { FormControl, Button } from "react-bootstrap";
 
 
 export default function Hitdie(props) {
