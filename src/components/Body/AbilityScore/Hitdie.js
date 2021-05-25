@@ -2,21 +2,18 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import styles from "../Body.module.css";
-import { Button } from "react-bootstrap";
+import { InputGroup, FormControl, Button } from "react-bootstrap";
+
 
 export default function Hitdie(props) {
-	const [click, setClick] = useState(false);
 	const [hpArr, sethpArr] = useState([]);
 	useEffect(() => {
-		sethpArr(randHP());
-	}, [props.hitdie]);
+		props.sethp('')
+	}, []);
+
 	useEffect(() => {
-		let totalHP = [...hpArr];
-		hpArr.length > props.currentLevel.level
-			? totalHP.pop()
-			: totalHP.push(Math.floor(Math.random() * props.hitdie) + 1);
-		sethpArr(totalHP);
-	}, [props.currentLevel]);
+		sethpArr([]);
+	}, [props.currentLevel, props.hitdie, props.conMod]);
 	function randHP() {
 		let totalHP = [];
 		for (let i = 0; i < props.currentLevel.level; i++) {
@@ -24,56 +21,34 @@ export default function Hitdie(props) {
 		}
 		return totalHP;
 	}
-	function handleClick() {
-		sethpArr(randHP());
-		setClick(true);
-	}
-	if (props.hitdie) {
-		return (
-			<div>
-				<h3>Roll Hit Points:</h3>
-				<div className={styles.Description}>
-					<Button variant="secondary" onClick={() => handleClick()}>
-						Roll HP
-					</Button>{" "}
-					{click &&
-						hpArr.reduce((a, b) => {
-							return a + b;
-						}, 0) +
-						hpArr.length * props.conMod +
-						" (" +
-						hpArr.join(", ") +
-						")"}
-					<br />
+	return (
+		<div>
+			<h3>Roll Hit Points:</h3>
+			<div className={styles.Description}>
+				<Button variant="secondary" onClick={() => sethpArr(randHP())}>
+					Roll HP
+				</Button>{" "}
+				{hpArr.length > 0 &&
+					hpArr.reduce((a, b) => {
+						return a + b;
+					}, 0) +
+					(hpArr.length * props.conMod) +
+					(" (" + hpArr.join(", ") + ")")}
+				<div>
 					HP = [Hit Die (1d{props.hitdie}) + Consitution Modifier (
-					{props.conMod})] per level <br />
-					<div>
-						<Button
-							disabled={props.done}
-							variant="secondary"
-							className={styles.IncDec}
-							onClick={() => {
-								props.sethp((prev) => (prev > 1 ? prev - 1 : prev));
-							}}
-						>
-							-{" "}
-						</Button>
-						<h3 style={{ display: "inline" }}> {props.hp} </h3>
-						<Button
-							disabled={props.done}
-							variant="secondary"
-							className={styles.IncDec}
-							onClick={() => {
-								props.sethp((prev) => prev + 1);
-							}}
-						>
-							+{" "}
-						</Button>
-					</div>
+					{props.conMod})] per level
 				</div>
+				{props.hp !== null &&
+					<FormControl
+						placeholder="Enter HP"
+						type='number'
+						value={props.hp}
+						disabled={props.done}
+						onFocus={(e) => e.target.select()}
+						onChange={(e) => props.sethp(e.target.value)}
+					/>}
 			</div>
-		);
-	} else {
-		return <div> </div>;
-	}
+		</div>
+	);
+
 }

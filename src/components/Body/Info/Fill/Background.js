@@ -68,104 +68,107 @@ export default function Background(props) {
 	}
 
 	return (
-		<div className={styles.Description}>
-			<Button
-				variant="link"
-				onClick={() =>
-					openInNewTab("https://d-n-d5e.fandom.com/wiki/Backgrounds")
-				}
-			>
-				More Backgrounds
+		<div>
+			<h3>Fill Background Info (optional)</h3>
+			<div className={styles.Description}>
+				<Button
+					variant="link"
+					onClick={() =>
+						openInNewTab("https://d-n-d5e.fandom.com/wiki/Backgrounds")
+					}
+				>
+					More Backgrounds
 			</Button>
-			<br />
-			<h4>Race Suggestion:</h4> {props.classType.background}
-			<br />
-			<h4>Background:</h4>{" "}
-			<input
-				disabled={props.done}
-				type="text"
-				onChange={(event) =>
-					props.setBackground((prev) => ({ ...prev, name: event.target.value }))
-				}
-			/>
-			<br />
-			<h4>Proficiencies:</h4>
-			{bonusProf(0)}
-			{bonusProf(1)}
-			<h4>Number of Languages:</h4>{" "}
-			<input
-				type="number"
-				min="0"
-				value={currentBackground.langNum}
-				onFocus={(e) => e.target.select()}
-				disabled={props.done}
-				onChange={(event) =>
-					props.setBackground((prev) => ({
-						...prev,
-						langNum: event.target.value
-							? Math.abs(parseInt(event.target.value))
-							: "",
-					}))
-				}
-			/>{" "}
+				<br />
+				<h4>Race Suggestion:</h4> {props.classType.background}
+				<br />
+				<h4>Background:</h4>{" "}
+				<input
+					disabled={props.done}
+					type="text"
+					onChange={(event) =>
+						props.setBackground((prev) => ({ ...prev, name: event.target.value }))
+					}
+				/>
+				<br />
+				<h4>Proficiencies:</h4>
+				{bonusProf(0)}
+				{bonusProf(1)}
+				<h4>Number of Languages:</h4>{" "}
+				<input
+					type="number"
+					min="0"
+					value={currentBackground.langNum}
+					onFocus={(e) => e.target.select()}
+					disabled={props.done}
+					onChange={(event) =>
+						props.setBackground((prev) => ({
+							...prev,
+							langNum: event.target.value
+								? Math.abs(parseInt(event.target.value))
+								: "",
+						}))
+					}
+				/>{" "}
 			(usually 0-3) <br />
-			<Button variant="secondary" onClick={() => handleRoll()}>
-				Roll Characteristics
+				<Button variant="secondary" onClick={() => handleRoll()}>
+					Roll Characteristics
 			</Button>
-			<br />
-			{rolls}
-			<h4>Personality:</h4>{" "}
-			<input
-				type="text"
-				value={currentBackground.personalities}
-				disabled={props.done}
-				onChange={(event) =>
-					props.setBackground((prev) => ({
-						...prev,
-						personalities: event.target.value,
-					}))
-				}
-			/>
-			<br />
-			<h4>Ideals:</h4>{" "}
-			<input
-				type="text"
-				value={currentBackground.ideals}
-				disabled={props.done}
-				onChange={(event) =>
-					props.setBackground((prev) => ({
-						...prev,
-						ideals: event.target.value,
-					}))
-				}
-			/>
-			<br />
-			<h4>Bonds:</h4>{" "}
-			<input
-				type="text"
-				value={currentBackground.bonds}
-				disabled={props.done}
-				onChange={(event) =>
-					props.setBackground((prev) => ({
-						...prev,
-						bonds: event.target.value,
-					}))
-				}
-			/>
-			<br />
-			<h4>Flaws:</h4>{" "}
-			<input
-				type="text"
-				value={currentBackground.flaws}
-				disabled={props.done}
-				onChange={(event) =>
-					props.setBackground((prev) => ({
-						...prev,
-						flaws: event.target.value,
-					}))
-				}
-			/>
-			<br />
+				<br />
+				{rolls}
+				<h4>Personality:</h4>{" "}
+				<input
+					type="text"
+					value={currentBackground.personalities}
+					disabled={props.done}
+					onChange={(event) =>
+						props.setBackground((prev) => ({
+							...prev,
+							personalities: event.target.value,
+						}))
+					}
+				/>
+				<br />
+				<h4>Ideals:</h4>{" "}
+				<input
+					type="text"
+					value={currentBackground.ideals}
+					disabled={props.done}
+					onChange={(event) =>
+						props.setBackground((prev) => ({
+							...prev,
+							ideals: event.target.value,
+						}))
+					}
+				/>
+				<br />
+				<h4>Bonds:</h4>{" "}
+				<input
+					type="text"
+					value={currentBackground.bonds}
+					disabled={props.done}
+					onChange={(event) =>
+						props.setBackground((prev) => ({
+							...prev,
+							bonds: event.target.value,
+						}))
+					}
+				/>
+				<br />
+				<h4>Flaws:</h4>{" "}
+				<input
+					type="text"
+					value={currentBackground.flaws}
+					disabled={props.done}
+					onChange={(event) =>
+						props.setBackground((prev) => ({
+							...prev,
+							flaws: event.target.value,
+						}))
+					}
+				/>
+				<br />
+			</div>
 		</div>
 	);
 }

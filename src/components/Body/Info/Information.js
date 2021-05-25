@@ -45,7 +45,7 @@ export default function Information(props) {
 										variant="secondary"
 										onClick={() => setToggle((prev) => !prev)}
 									>
-										Backgrounds (optional) {toggle ? "^" : "v"}
+										{toggle ? "Hide" : "Show"} Backgrounds
 									</Button>
 									{toggle && (
 										<Background

@@ -19,7 +19,7 @@ export default function Body() {
 	const [info, setInfo] = useState(null);
 	const [totalScore, setTotalScore] = useState(null);
 	const [skills, setSkills] = useState([]);
-	const [hp, sethp] = useState(0);
+	const [hp, sethp] = useState(null);
 	const [ac, setAc] = useState(null);
 	const [background, setBackground] = useState(null);
 	const [inventory, setInventory] = useState(null);
@@ -93,7 +93,7 @@ export default function Body() {
 								hp={hp}
 								sethp={sethp}
 							/>
-							{hp > 0 ? (
+							{hp !== null ? (
 								<React.Fragment>
 									<Skills
 										proficiencies={background.proficiencies}
