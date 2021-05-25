@@ -47,15 +47,19 @@ export default function Armor(props) {
     }, [])
 
     useEffect(() => {
-        const newAc = (totalArmor[0] ? totalArmor[0].armor_class.base : 0)
-            + (totalArmor[1] ? totalArmor[1].armor_class.base : 0)
-            + (totalArmor[0] ?
-                (totalArmor[0].armor_class.dex_bonus ?
-                    (totalArmor[0].armor_class.max_bonus ?
-                        Math.min(props.totalScore[1].mod, 2) :
-                        props.totalScore[1].mod) : 0) : props.totalScore[1].mod)
+        let newAc = 10 + props.totalScore[1].mod
+        if (totalArmor.filter(e => e).length > 0) {
+            newAc = (totalArmor[0] ? totalArmor[0].armor_class.base : 0)
+                + (totalArmor[1] ? totalArmor[1].armor_class.base : 0)
+                + (totalArmor[0] ?
+                    (totalArmor[0].armor_class.dex_bonus ?
+                        (totalArmor[0].armor_class.max_bonus ?
+                            Math.min(props.totalScore[1].mod, 2) :
+                            props.totalScore[1].mod) : 0) : props.totalScore[1].mod)
+        }
         props.setAc(newAc)
         props.setInventory(prev => ({ ...prev, armor: totalArmor.filter(e => e) }))
+
     }, [props.totalScore[1].mod, totalArmor])
     function armors(list, type, index) {
         function handleSelect(event) {

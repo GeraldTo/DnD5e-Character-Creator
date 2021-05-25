@@ -10,7 +10,7 @@ export default function Gear(props) {
 	const url = process.env.REACT_APP_BASE;
 	useEffect(() => {
 		props.setInventory({ weapons: [], armor: [] });
-		props.setAc(props.totalScore[1].mod);
+		props.setAc(props.totalScore[1].mod + 10);
 		// eslint-disable-next-line
 	}, []);
 	return (
