@@ -38,6 +38,15 @@ export default function Weapons(props) {
 	}, []);
 
 	useEffect(() => {
+
+		if (props.inventory.weapons) {
+			let newObj = [...totalWeapons]
+			props.inventory.weapons.map((e, i) => (newObj[i] = e))
+			setTotalWeapons(newObj)
+		}
+	}, [])
+
+	useEffect(() => {
 		const newObj = [...totalWeapons]
 			.filter((e) => e)
 			.map((e, i) =>
@@ -70,7 +79,7 @@ export default function Weapons(props) {
 			let curr = [...totalWeapons];
 			const currInd = list[list.map((e) => e.index).indexOf(event)];
 			curr[index] = Object.assign(currInd, {
-				prof: false,
+				prof: true,
 				strMod: currInd.weapon_range === "Melee",
 			});
 			setTotalWeapons(curr);
@@ -151,6 +160,7 @@ export default function Weapons(props) {
 										<Form.Check
 											label="Proficient"
 											value={current.prof}
+											defaultChecked={current.prof}
 											onChange={() => handleProf(i)}
 										/>
 										ATK Bonus: +

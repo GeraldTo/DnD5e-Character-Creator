@@ -15,38 +15,46 @@ export default function Gear(props) {
 	}, []);
 	return (
 		<ListGroup.Item>
+
 			<h2>Pick Gear</h2>
-			<div className={styles.Description}>
-				<h3>
-					Proficiencies:{" "}
-					{props.classType.proficiencies.map((e, i) => e.name).join(", ")}
-				</h3>
-				(Choose from your proficiencies or you'll have disadvantages)
+			<ListGroup className={styles.Description}>
+				<ListGroup.Item>
+					<h3>
+						Proficiencies:{" "}
+						{props.classType.proficiencies.map((e, i) => e.name).join(", ")}
+					</h3>
+					(Choose from your proficiencies or you'll have disadvantages)<br />
+					Assumes Proficiency In Items
+				</ListGroup.Item>
+
 				{props.inventory && (
 					<React.Fragment>
-						<Weapons
+						<ListGroup.Item><Weapons
 							inventory={props.inventory}
 							setInventory={props.setInventory}
 							url={url}
 							totalScore={props.totalScore}
 							bonus={props.bonus}
-						/>
+						/></ListGroup.Item>
+
 						{props.ac !== null ? (
-							<Armor
+							<ListGroup.Item><Armor
 								inventory={props.inventory}
 								setInventory={props.setInventory}
 								url={url}
 								totalScore={props.totalScore}
 								setAc={props.setAc}
 								ac={props.ac}
-							/>
+							/></ListGroup.Item>
+
 						) : (
 							<></>
 						)}
 					</React.Fragment>
 				)}
-				{/* <Inventory /> */}
-			</div>
+			</ListGroup>
+			{/* <Inventory /> */}
+
 		</ListGroup.Item>
 	);
 }

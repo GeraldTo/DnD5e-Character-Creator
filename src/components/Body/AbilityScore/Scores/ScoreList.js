@@ -33,7 +33,8 @@ export default function ScoreList(props) {
 				<br />
 				<h4>Ability Score Increase:</h4> Can Distribute{" "}
 				{props.inc}{' '}
-				Point(s) to any Score(s) (Can't increse past 20)
+				Point(s) to any Score(s) (Can't increse past 20) <br />
+				Total = Rolled Score + Race Bonus + Ability Score Increase
 				<div className={styles.Buttons}>
 					{Array.apply(null, Array(6)).map((x, i) => (
 						<AbilityItem
