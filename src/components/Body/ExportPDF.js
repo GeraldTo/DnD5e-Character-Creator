@@ -144,7 +144,7 @@ export default function ExportPDF(props) {
 								<div className="skills list-section box">
 									<ul>
 										{props.skills.map((skill, i) =>
-											<li>
+											<li key={i}>
 												<label htmlFor={skill.data.name}>
 													{skill.data.name} <span className="skill">({skill.data.ability_score.name})</span>
 												</label>
@@ -152,6 +152,10 @@ export default function ExportPDF(props) {
 													name={skill.data.name}
 													type="text"
 													defaultValue={posNeg(skill.total)}
+												/>
+												<input
+													type="checkbox"
+													defaultChecked={skill.prof}
 												/>
 											</li>)}
 									</ul>

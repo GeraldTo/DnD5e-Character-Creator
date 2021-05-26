@@ -21,6 +21,7 @@ form.charsheet
   width: $sheet-width
   margin-right: auto
   margin-left: auto
+  background-color: #fff
 
   ul
     margin: 0
@@ -101,7 +102,7 @@ form.charsheet
         display: flex
         flex-direction: row
         justify-content: space-between
-        $att-width: $sheet-width/7
+        $att-width: $section-width/2
         $att-height: $main-height/12
 
         div.scores
@@ -195,7 +196,6 @@ form.charsheet
               margin-bottom: $bit*2
               label
                 text-transform: none
-                font-size: .65$single
                 text-align: left
                 order: 3
 
@@ -454,6 +454,7 @@ form.charsheet
           th
             font-size: $label-small
             color: $faded
+            vertical-align: text-bottom
 
           td.atkname
             width: 38%
@@ -520,12 +521,13 @@ form.charsheet
       section.flavor
         padding: $space
         border-radius: $radius
-        height: 32%
+        height: 34%
         >div
           display: flex
           flex-direction: column
           padding: $space
           border: 1px solid black
+          height: 23%
 
           label
             text-align: center
@@ -534,6 +536,7 @@ form.charsheet
           div
             height: $section-width/6
             text-align: top
+            font-size: $label-medium
 
           &:first-child
             border-radius: $radius $radius 0 0
@@ -545,7 +548,7 @@ form.charsheet
             border-radius: 0 0 $radius $radius
 
       section.features
-        height: 68%
+        height: 66%
         div
           padding: $single
           border: 1px solid black

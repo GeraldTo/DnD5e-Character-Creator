@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import { Button, DropdownButton, Dropdown } from "react-bootstrap";
+import { Button, DropdownButton, Dropdown, InputGroup, ListGroup, FormControl } from "react-bootstrap";
 import axios from "axios";
 import styles from "../../Body.module.css";
 
@@ -70,104 +70,162 @@ export default function Background(props) {
 	return (
 		<div>
 			<h3>Fill Background Info (optional)</h3>
+
 			<div className={styles.Description}>
-				<Button
-					variant="link"
-					onClick={() =>
-						openInNewTab("https://d-n-d5e.fandom.com/wiki/Backgrounds")
-					}
-				>
-					More Backgrounds
-			</Button>
-				<br />
-				<h4>Race Suggestion:</h4> {props.classType.background}
-				<br />
-				<h4>Background:</h4>{" "}
-				<input
-					disabled={props.done}
-					type="text"
-					onChange={(event) =>
-						props.setBackground((prev) => ({ ...prev, name: event.target.value }))
-					}
-				/>
-				<br />
-				<h4>Proficiencies:</h4>
-				{bonusProf(0)}
-				{bonusProf(1)}
-				<h4>Number of Languages:</h4>{" "}
-				<input
-					type="number"
-					min="0"
-					value={currentBackground.langNum}
-					onFocus={(e) => e.target.select()}
-					disabled={props.done}
-					onChange={(event) =>
-						props.setBackground((prev) => ({
-							...prev,
-							langNum: event.target.value
-								? Math.abs(parseInt(event.target.value))
-								: "",
-						}))
-					}
-				/>{" "}
-			(usually 0-3) <br />
-				<Button variant="secondary" onClick={() => handleRoll()}>
-					Roll Characteristics
-			</Button>
-				<br />
-				{rolls}
-				<h4>Personality:</h4>{" "}
-				<input
-					type="text"
-					value={currentBackground.personalities}
-					disabled={props.done}
-					onChange={(event) =>
-						props.setBackground((prev) => ({
-							...prev,
-							personalities: event.target.value,
-						}))
-					}
-				/>
-				<br />
-				<h4>Ideals:</h4>{" "}
-				<input
-					type="text"
-					value={currentBackground.ideals}
-					disabled={props.done}
-					onChange={(event) =>
-						props.setBackground((prev) => ({
-							...prev,
-							ideals: event.target.value,
-						}))
-					}
-				/>
-				<br />
-				<h4>Bonds:</h4>{" "}
-				<input
-					type="text"
-					value={currentBackground.bonds}
-					disabled={props.done}
-					onChange={(event) =>
-						props.setBackground((prev) => ({
-							...prev,
-							bonds: event.target.value,
-						}))
-					}
-				/>
-				<br />
-				<h4>Flaws:</h4>{" "}
-				<input
-					type="text"
-					value={currentBackground.flaws}
-					disabled={props.done}
-					onChange={(event) =>
-						props.setBackground((prev) => ({
-							...prev,
-							flaws: event.target.value,
-						}))
-					}
-				/>
-				<br />
+				<ListGroup variant="flush">
+					<ListGroup.Item>
+						<Button
+							variant="link"
+							onClick={() => openInNewTab("https://d-n-d5e.fandom.com/wiki/Backgrounds")}
+						>
+							More Backgrounds Here Or Use Book
+						</Button>
+					</ListGroup.Item>
+					<ListGroup.Item>
+						<h4>Usual for {props.classType.name}:</h4> {props.classType.background}
+					</ListGroup.Item>
+					<ListGroup.Item>
+						<label>Find background and fill info based on it</label>
+					</ListGroup.Item>
+					<ListGroup.Item>
+						<InputGroup size="lg">
+							<InputGroup.Prepend>
+								<InputGroup.Text>
+									<h4>Name</h4>
+								</InputGroup.Text>
+							</InputGroup.Prepend>
+							<FormControl
+								placeholder="Background Name"
+								value={currentBackground.name}
+								disabled={props.done}
+								onFocus={(e) => e.target.select()}
+								onChange={(event) =>
+									props.setBackground((prev) => ({ ...prev, name: event.target.value }))
+								}
+							/>
+						</InputGroup>
+					</ListGroup.Item>
+					<ListGroup.Item>
+						<h4>Background Skills</h4>
+						{bonusProf(0)}
+						{bonusProf(1)}
+					</ListGroup.Item>
+					<ListGroup.Item>
+						<InputGroup size="lg">
+							<InputGroup.Prepend>
+								<InputGroup.Text>
+									<h4>Num of Langs</h4>
+								</InputGroup.Text>
+							</InputGroup.Prepend>
+							<FormControl
+								placeholder="Background Langs"
+								type="number"
+								value={currentBackground.langNum}
+								disabled={props.done}
+								onFocus={(e) => e.target.select()}
+								onChange={(event) =>
+									props.setBackground((prev) => ({
+										...prev,
+										langNum: event.target.value
+											? Math.abs(parseInt(event.target.value))
+											: "",
+									}))
+								}
+							/>
+						</InputGroup>
+
+					</ListGroup.Item>
+					<ListGroup.Item>
+						<Button variant="secondary" onClick={() => handleRoll()}>
+							Roll Characteristics
+						</Button>
+						{rolls}
+
+
+
+						<InputGroup size="lg">
+							<InputGroup.Prepend>
+								<InputGroup.Text>
+									<h4>Personality</h4>
+								</InputGroup.Text>
+							</InputGroup.Prepend>
+							<FormControl
+								placeholder="Background Personality"
+								value={currentBackground.personalities}
+								disabled={props.done}
+								onFocus={(e) => e.target.select()}
+								onChange={(event) =>
+									props.setBackground((prev) => ({
+										...prev,
+										personalities: event.target.value,
+									}))
+								}
+							/>
+						</InputGroup>
+
+
+						<InputGroup size="lg">
+							<InputGroup.Prepend>
+								<InputGroup.Text>
+									<h4>Ideals</h4>
+								</InputGroup.Text>
+							</InputGroup.Prepend>
+							<FormControl
+								placeholder="Background Ideals"
+								value={currentBackground.ideals}
+								disabled={props.done}
+								onFocus={(e) => e.target.select()}
+								onChange={(event) =>
+									props.setBackground((prev) => ({
+										...prev,
+										ideals: event.target.value,
+									}))
+								}
+							/>
+						</InputGroup>
+
+						<InputGroup size="lg">
+							<InputGroup.Prepend>
+								<InputGroup.Text>
+									<h4>Bonds</h4>
+								</InputGroup.Text>
+							</InputGroup.Prepend>
+							<FormControl
+								placeholder="Background Bonds"
+								value={currentBackground.bonds}
+								disabled={props.done}
+								onFocus={(e) => e.target.select()}
+								onChange={(event) =>
+									props.setBackground((prev) => ({
+										...prev,
+										bonds: event.target.value,
+									}))
+								}
+							/>
+						</InputGroup>
+
+						<InputGroup size="lg">
+							<InputGroup.Prepend>
+								<InputGroup.Text>
+									<h4>Flaws</h4>
+								</InputGroup.Text>
+							</InputGroup.Prepend>
+							<FormControl
+								placeholder="Background Flaw"
+								value={currentBackground.flaws}
+								disabled={props.done}
+								onFocus={(e) => e.target.select()}
+								onChange={(event) =>
+									props.setBackground((prev) => ({
+										...prev,
+										flaws: event.target.value,
+									}))
+								}
+							/>
+						</InputGroup>
+					</ListGroup.Item>
+				</ListGroup>
+
 			</div>
 		</div>
 	);
