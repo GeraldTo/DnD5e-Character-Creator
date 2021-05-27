@@ -88,6 +88,7 @@ export default function Armor(props) {
         <div>
             <h3>Choose Armor:</h3>
             <ListGroup variant="flush" className={styles.Description}>
+                (Use only Proficient Armor)
                 <ListGroup.Item>
                     <h3>AC: {props.ac}</h3>
                 </ListGroup.Item>

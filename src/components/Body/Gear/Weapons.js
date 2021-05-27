@@ -126,104 +126,105 @@ export default function Weapons(props) {
 		<div>
 			<h3>Choose Weapons:</h3>
 			<ListGroup variant="flush" className={styles.Description}>
+				(Assumes Proficiency For Each)
 				{totalWeapons.map((current, i) => (
-					<ListGroup.Item key={i}>
-						<Form>
-							<Form.Check
-								type="radio"
-								inline
-								name="group"
-								label="Simple"
-								checked={type[i]}
-								onChange={() => handleType(i, true)}
-							/>
-							<Form.Check
-								type="radio"
-								inline
-								checked={!type[i]}
-								name="group"
-								label="Martial"
-								onChange={() => handleType(i, false)}
-							/>
-							{type[i]
-								? weapons(simpleList, "Simple", i)
-								: weapons(martialList, "Martial", i)}
-							{current && (
-								<ListGroup className={styles.Lists}>
-									<ListGroup.Item>
-										<h3>{current.name}</h3>
+				<ListGroup.Item key={i}>
+					<Form>
+						<Form.Check
+							type="radio"
+							inline
+							name="group"
+							label="Simple"
+							checked={type[i]}
+							onChange={() => handleType(i, true)}
+						/>
+						<Form.Check
+							type="radio"
+							inline
+							checked={!type[i]}
+							name="group"
+							label="Martial"
+							onChange={() => handleType(i, false)}
+						/>
+						{type[i]
+							? weapons(simpleList, "Simple", i)
+							: weapons(martialList, "Martial", i)}
+						{current && (
+							<ListGroup className={styles.Lists}>
+								<ListGroup.Item>
+									<h3>{current.name}</h3>
+								</ListGroup.Item>
+								<ListGroup.Item>
+									{current.category_range} Weapon
 									</ListGroup.Item>
-									<ListGroup.Item>
-										{current.category_range} Weapon
-									</ListGroup.Item>
-									<ListGroup.Item>
-										<Form.Check
-											label="Proficient"
-											value={current.prof}
-											defaultChecked={current.prof}
-											onChange={() => handleProf(i)}
-										/>
+								<ListGroup.Item>
+									<Form.Check
+										label="Proficient"
+										value={current.prof}
+										defaultChecked={current.prof}
+										onChange={() => handleProf(i)}
+									/>
 										ATK Bonus: +
 										{(totalWeapons[i].prof
-											? props.bonus
-											: 0) +
-											(current.strMod
-												? props.totalScore[0].mod
-												: props.totalScore[1].mod)}
-									</ListGroup.Item>
-									<ListGroup.Item>
-										Damage:{" "}
-										{current.damage
-											? (current.strMod
-												? props.totalScore[0].mod === 0
-													? ""
-													: props.totalScore[0].mod + "+"
-												: props.totalScore[1].mod === 0
-													? ""
-													: props.totalScore[1].mod + "+") +
-											(current.damage.damage_dice +
-												"/" +
-												current.damage.damage_type.name)
-											: "None"}
-									</ListGroup.Item>
-									<ListGroup.Item>
-										Properties:{" "}
-										{current.properties.map((e) => e.name).join(", ")}
-									</ListGroup.Item>
-									<ListGroup.Item>
-										<Form.Check
-											type="radio"
-											inline
-											onChange={() => handleMod(i)}
-											name="group1"
-											label="STR"
-											checked={current.strMod}
-										/>
-										<Form.Check
-											type="radio"
-											inline
-											onChange={() => handleMod(i)}
-											name="group1"
-											label="DEX"
-											checked={!current.strMod}
-										/>
-										<br />
+										? props.bonus
+										: 0) +
+										(current.strMod
+											? props.totalScore[0].mod
+											: props.totalScore[1].mod)}
+								</ListGroup.Item>
+								<ListGroup.Item>
+									Damage:{" "}
+									{current.damage
+										? (current.strMod
+											? props.totalScore[0].mod === 0
+												? ""
+												: props.totalScore[0].mod + "+"
+											: props.totalScore[1].mod === 0
+												? ""
+												: props.totalScore[1].mod + "+") +
+										(current.damage.damage_dice +
+											"/" +
+											current.damage.damage_type.name)
+										: "None"}
+								</ListGroup.Item>
+								<ListGroup.Item>
+									Properties:{" "}
+									{current.properties.map((e) => e.name).join(", ")}
+								</ListGroup.Item>
+								<ListGroup.Item>
+									<Form.Check
+										type="radio"
+										inline
+										onChange={() => handleMod(i)}
+										name="group1"
+										label="STR"
+										checked={current.strMod}
+									/>
+									<Form.Check
+										type="radio"
+										inline
+										onChange={() => handleMod(i)}
+										name="group1"
+										label="DEX"
+										checked={!current.strMod}
+									/>
+									<br />
 										(Weapons with the fineese property can choose mod)
 									</ListGroup.Item>
-									<ListGroup.Item>Weight: {current.weight}lb</ListGroup.Item>
-									<ListGroup.Item>
-										<Button
-											variant="outline-danger"
-											onClick={() => handleRemove(i)}
-										>
-											Remove
+								<ListGroup.Item>Weight: {current.weight}lb</ListGroup.Item>
+								<ListGroup.Item>
+									<Button
+										variant="outline-danger"
+										onClick={() => handleRemove(i)}
+									>
+										Remove
 										</Button>
-									</ListGroup.Item>
-								</ListGroup>
-							)}
-						</Form>
-					</ListGroup.Item>
-				))}
+								</ListGroup.Item>
+							</ListGroup>
+						)}
+					</Form>
+				</ListGroup.Item>
+			))}
 			</ListGroup>
 		</div>
 	);

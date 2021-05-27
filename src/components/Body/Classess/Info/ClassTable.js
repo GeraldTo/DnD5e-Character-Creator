@@ -56,9 +56,9 @@ export default function ClassTable(props) {
                                     if (typeof currKey === 'object') {
                                         const subKeys = Object.keys(currKey)
                                         if (e === "creating_spell_slots" && currKey.length > 0) {
-                                            value = subKeys.map((f, i) => {
+                                            value = subKeys.map((f, j) => {
                                                 const subsubKeys = Object.keys(currKey[f])
-                                                return <div key={i}>{subsubKeys.map(g => (g.split('_').join(' ') + ': ' + currKey[f][g])).join(', ')}</div>
+                                                return <div key={j}>{subsubKeys.map(g => (g.split('_').join(' ') + ': ' + currKey[f][g])).join(', ')}</div>
                                             })
                                         } else {
                                             value = subKeys.map(f => (currKey[f])).join('d')
@@ -70,7 +70,7 @@ export default function ClassTable(props) {
                                     }
                                     return value ?
                                         <ListGroup.Item key={i}> {key + ': '}{value} </ListGroup.Item> :
-                                        <></>
+                                        <React.Fragment key={i}></React.Fragment>
                                 })}
                             </ListGroup>}
                     </td>
