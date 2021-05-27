@@ -10,19 +10,20 @@ export default function ClassPick(props) {
 	}
 	const buttons = props.api
 		? props.api.results.map((current, i) => (
-				<Button
-					disabled={props.done}
-					variant="outline-dark"
-					key={i}
-					onClick={() =>
-						axios.get(props.url + current.index).then((response) => {
-							setter(response.data, i);
-						})
-					}
-				>
-					{current.name}
-				</Button>
-		  ))
+			<Button
+				disabled={props.done}
+				variant="outline-dark"
+				key={i}
+				className={props.classType ? (current.index === props.classType.index ? styles.Selected : null) : null}
+				onClick={() =>
+					axios.get(props.url + current.index).then((response) => {
+						setter(response.data, i);
+					})
+				}
+			>
+				{current.name}
+			</Button>
+		))
 		: [];
 
 	return (

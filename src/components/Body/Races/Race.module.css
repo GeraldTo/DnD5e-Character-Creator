@@ -6,3 +6,8 @@
     display: grid !important;
     grid-template-columns: repeat(auto-fill,minmax(9rem,2fr));
 }
+
+.Selected{
+    background-color: black !important;
+    color: white !important;
+}

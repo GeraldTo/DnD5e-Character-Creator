@@ -14,19 +14,20 @@ export default function Alignment(props) {
 	}, []);
 	const buttons = api
 		? api.results.map((current, i) => (
-				<Button
-					variant="outline-dark"
-					disabled={props.done}
-					key={i}
-					onClick={() =>
-						axios.get(props.url + current.index).then((response) => {
-							props.setInfo((prev) => ({ ...prev, alignment: response.data }));
-						})
-					}
-				>
-					{current.name}
-				</Button>
-		  ))
+			<Button
+				variant="outline-dark"
+				disabled={props.done}
+				key={i}
+				className={props.info.alignment ? (current.index === props.info.alignment.index ? styles.Selected : null) : null}
+				onClick={() =>
+					axios.get(props.url + current.index).then((response) => {
+						props.setInfo((prev) => ({ ...prev, alignment: response.data }));
+					})
+				}
+			>
+				{current.name}
+			</Button>
+		))
 		: [];
 	return (
 		<ListGroup.Item>

@@ -10,6 +10,7 @@ export default function RacePick(props) {
 				variant="outline-dark"
 				key={i}
 				disabled={props.done}
+				className={props.race ? (current.index === props.race.index ? styles.Selected : null) : null}
 				onClick={() =>
 					axios.get(props.url + current.index).then((response) => {
 						props.setRace(response.data);

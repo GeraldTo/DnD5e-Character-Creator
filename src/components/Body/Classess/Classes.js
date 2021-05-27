@@ -21,6 +21,7 @@ export default function Classes(props) {
 			<ClassPick
 				api={api}
 				url={url + "classes/"}
+				classType={props.classType}
 				setClassType={props.setClassType}
 				done={props.done}
 			/>

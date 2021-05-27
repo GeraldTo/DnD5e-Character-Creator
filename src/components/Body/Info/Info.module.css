@@ -7,3 +7,8 @@
     margin-left: 5%;
     margin-right: 5%;
 }
+
+.Selected{
+    background-color: black !important;
+    color: white !important;
+}

@@ -23,6 +23,7 @@ export default function Races(props) {
 				api={api}
 				url={urlBase + raceUrl}
 				setRace={props.setRace}
+				race={props.race}
 				done={props.done}
 			/>
 			{props.race && <RaceInfo race={props.race} />}
