@@ -14,35 +14,54 @@ export default function Gear(props) {
 		// eslint-disable-next-line
 	}, []);
 	function equipmentQuant(e) {
-		return e.equipment.name + (e.quantity > 1 ? " (x" + e.quantity + ")" : "")
+		return e.equipment.name + (e.quantity > 1 ? " (x" + e.quantity + ")" : "");
 	}
-	console.log("hi")
 	function pp(f) {
-		console.log(f)
-		return "|"
+		console.log(f);
+		return "|";
 	}
-	const startingOp = props.classType.starting_equipment_options.map(
-		(e) => ((e.from.map(
-			(f, i) => "(" + String.fromCharCode(97 + i) + ") " + (f.equipment ? equipmentQuant(f) :
-				f.equipment_option ? f.equipment_option.from.equipment_category.name :
-					f.equipment_category ? f.equipment_category.name :
-						pp(f))).join(' or , '))))
+	const startingOp = props.classType.starting_equipment_options.map((e) =>
+		e.from
+			.map(
+				(f, i) =>
+					"(" +
+					String.fromCharCode(97 + i) +
+					") " +
+					(f.equipment
+						? equipmentQuant(f)
+						: f.equipment_option
+						? f.equipment_option.from.equipment_category.name
+						: f.equipment_category
+						? f.equipment_category.name
+						: pp(f))
+			)
+			.join(" or, ")
+	);
 
-	props.classType.starting_equipment_options.map(e => console.log(e))
-	console.log(startingOp.join('\n')) //f.map(g => g.equipment ? equipmentQuant(g) : g.equipment_option.from.equipment_category.name)
+	console.log(startingOp.join("\n")); //f.map(g => g.equipment ? equipmentQuant(g) : g.equipment_option.from.equipment_category.name)
 	return (
 		<ListGroup.Item>
 			<h2>Pick Gear</h2>
 			<ListGroup variant="flush" className={styles.Description}>
 				<ListGroup.Item>
-					Choose from your Class' Starting Equipment (or Proficiencies)<br />
+					Choose from your Class' Starting Equipment (or Proficiencies)
+					<br />
 					<h4>Proficiencies: </h4>
-					{props.classType.proficiencies.map((e) => e.name).join(", ")}<br />
+					{props.classType.proficiencies.map((e) => e.name).join(", ")}
+					<br />
 					<h4>Starting Gear: </h4>
-					<ListGroup >
+					<ListGroup>
 						(Choose 1 per row for each row with letters)
-						{startingOp.map((e, i) => <ListGroup.Item>{e}</ListGroup.Item>)}
-						{props.classType.starting_equipment.map((e) => (<ListGroup.Item>{equipmentQuant(e).join(", ")}</ListGroup.Item>))}
+						{startingOp.map((e, i) => (
+							<ListGroup.Item key={i}>{e}</ListGroup.Item>
+						))}
+						{props.classType.starting_equipment.length > 0 && (
+							<ListGroup.Item>
+								{props.classType.starting_equipment
+									.map((e) => equipmentQuant(e))
+									.join(", ")}
+							</ListGroup.Item>
+						)}
 					</ListGroup>
 				</ListGroup.Item>
 				{props.inventory && (
@@ -54,18 +73,20 @@ export default function Gear(props) {
 								url={url}
 								totalScore={props.totalScore}
 								bonus={props.bonus}
-							/></ListGroup.Item>
+							/>
+						</ListGroup.Item>
 
 						{props.ac !== null ? (
-							<ListGroup.Item><Armor
-								inventory={props.inventory}
-								setInventory={props.setInventory}
-								url={url}
-								totalScore={props.totalScore}
-								setAc={props.setAc}
-								ac={props.ac}
-							/></ListGroup.Item>
-
+							<ListGroup.Item>
+								<Armor
+									inventory={props.inventory}
+									setInventory={props.setInventory}
+									url={url}
+									totalScore={props.totalScore}
+									setAc={props.setAc}
+									ac={props.ac}
+								/>
+							</ListGroup.Item>
 						) : (
 							<></>
 						)}
@@ -73,7 +94,6 @@ export default function Gear(props) {
 				)}
 			</ListGroup>
 			{/* <Inventory /> */}
-
 		</ListGroup.Item>
 	);
 }
